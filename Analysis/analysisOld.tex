@@ -10,10 +10,10 @@ Terry would like a new system to clearly display which members need a sibling di
 \subsection{Define the current system}
 The current system is a manual operation. Records of clients are kept on paper in Terry's office and in a excel spread on his home laptop. Records include:
 \begin{itemize}
-	\item first name of member
-	\item last name of member
-	\item first name of parent
-	\item last name of parent
+   \item first name of member
+   \item last name of member
+   \item first name of parent
+   \item last name of parent
 	\item address of member
 	\item address of parent
 	\item phone number of parent
@@ -111,46 +111,46 @@ Printed Invoice \\
 \subsubsection{Algorithms}
 There are three algorithms in the current system:
 
-\begin{algorithm}[H]
-    \caption{Does the member get a sibling discount?}
-\begin{algorithmic}[1]
-\SET{$discount$}{$false$}
-\If{$member does have a sibling member$}
-\SET{$discount$}{$true$}
-\EndIf
-\end{algorithmic}
-\end{algorithm}
+Is the member old enough to join?
+IF (Age of member = Old enough to join) THEN
+	Allow to join = True
+ELSE
+	Allow to join = False
+
+Does the member need a sibling discount?
+IF (Client does have a sibling member) THEN
+	Discount = True
+ELSE
+	Discount = False
+END IF
+
 
 \begin{algorithm}[H]
-    \caption{Is the member old enough to join?}
+    \caption{Deciding which team won}
 \begin{algorithmic}[1]
-\If{$age\_of\_member > age\_to\_join$}
-\SET{$allow\_to\_join$}{$true$}
+\If{$team\_one\_score > team\_two\_score$}
+\SET{$winner$}{$team\_one$}
+\ElsIf{$team\_one\_score < team\_two\_score$}
+\SET{$winner$}{$team\_two$}
 \Else
-\SET{$allow\_to\_join$}{$false$}
+\SET{$winner$}{$"Draw"$}
 \EndIf
 \end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[H]
-    \caption{Has the parent payed?}
-\begin{algorithmic}[1]
-\SET{$invoice\_payed$}{$false$}
-\State
-\While{$not\ invoice\_payed$}
-    \SET{$Contact Parent for payment$}
-    \If{$parent does not want to pay$}
-        \SET{$member is rejected$}
-    \Else
-        \If{$parent did not get invoice$}
-           \SET{$reprint invoice and send to parent$}
-        \Else
-           \SET{$wait for invoice$}
-        \EndIf
-    \EndIf
-\EndWhile
-\end{algorithmic}
-\end{algorithm}
+Has the parent payed?
+WHILE (Invoice Payed = False) DO
+	Contact Parent for payment
+	IF (Parent does not want to pay) THEN
+		Member is rejected
+	ELSE
+		IF (Parent did not get invoice) THEN
+			Reprint invoice and send to parent
+		ELSE
+			Wait for invoice
+		END IF
+	END IF
+END WHILE
 
 \subsubsection{Data flow diagram}
 
@@ -159,6 +159,7 @@ Key:
 
 Adding a new member:
 \begin{figure}[H]
+
 \includegraphics[width=\textwidth]{./Analysis/Images/Data_Flow_Adding_New_Member.pdf}
     \caption{Adding a new member} \label{fig:add_new_member}
 \end{figure}
@@ -175,16 +176,16 @@ The System has no formal input forms, however parents must send Terry their data
 
 Output Forms:
 The system has one output form, the invoice.
-
+{Invoice Scan}
 
 
 \subsection{The proposed system}
 
 \subsubsection{Data sources and destinations}
 
-\begin{center}
-\begin{tabular}{|p{1.5cm}|p{3.5cm}|p{5cm}|p{2cm}|l}
-\textbf{Source}  & \textbf{Data}                      & \textbf{Data Type} & \textbf{Destination}     \\
+\begin{table}[h]
+\begin{tabular}{llll}
+Source          & Data                      & Data Type & Destination     \\
 Member's Parent & Member first name         & String    & Member Database \\
 Member's Parent & Member last name          & String    & Member Database \\
 Member's Parent & Parents first name        & String    & Member Database \\
@@ -196,92 +197,33 @@ Member's Parent & Parent email              & String    & Member Database \\
 Member's Parent & Member age                & Integer   & Member Database \\
 Member's Parent & Number of sibling members & Integer   & Member Database \\
 Member's Parent & Last invoice paid         & Integer   & Member Database \\
-Database            & Amount to be paid         & Integer   & Invoice Template \\
-Database            & Parent address            & String    & Invoice Template \\
-Database            & Return address            & String    & Invoice Template \\
-Database            & Parent first name         & String    & Invoice Template \\
-Database            & Member first name         & String    & Invoice Template \\
-Database            & Parent last name          & String    & Invoice Template \\
-Database            & Member last name          & String    & Invoice Template \\
-Database            & Invoice ID                & Integer   & Invoice Template \\
-Database            &                           &           & Invoice Template \\
-Database            &                           &           & Invoice Template \\
+Database        & Amount to be paid         & Integer   & Invoice Template \\
+Database        & Parent address            & String    & Invoice Template \\
+Database        & Return address            & String    & Invoice Template \\
+Database        & Parent first name         & String    & Invoice Template \\
+Database        & Member first name         & String    & Invoice Template \\
+Database        & Parent last name          & String    & Invoice Template \\
+Database        & Member last name          & String    & Invoice Template \\
+Database        & Invoice ID                & Integer   & Invoice Template \\
+Database        &                           &           & Invoice Template \\
+Database        &                           &           & Invoice Template \\
+
 \end{tabular}
-\end{center}
+\end{table}
 
 \subsubsection{Data flow diagram}
 
 \subsubsection{Data dictionary}
 
-\begin{center}
-\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|l}
-\textbf{Name}                    & \textbf{Data Type}    & \textbf{Length}                  & \textbf{Validation} \\ \hline
-Member first name              & String            & 1-20 characters   & Letters only \\ \hline
-Member last name               & String           &1-20 characters &  Letters only \\ \hline
-Parents first name               & String           & 1-20 characters &  Letters only \\ \hline
-Parent last name                 & String           & 1-20 characters &  Letters only \\ \hline
-Member address                 & String           & 1-20 characters &  Letters only \\ \hline \\ \hline
-Parent address                   & String           & 1-20 characters &  Letters only \\ \hline
-Parent phone number         & Integer        & 12 digits & Numbers only, correct format and a valid phone number \\ \hline
-Parent email                        & String          & 1-30 characters &  Letters only \\ \hline
-Member age                        & Integer       & 1-2 digits & Numbers only \\ \hline
-Number of sibling members & Integer       & 1-2 digits & Numbers only \\ \hline
-Last invoice paid                 & Integer       & 4-6 digits & Numbers only, correct format and a valid date \\ \hline
-Amount to be paid              & Integer       & 1-2 digits & Numbers only \\ \hline 
-Return address                   & String         & 1-20 characters &  Letters only \\ \hline
-Invoice ID                           & Integer       & 4 digits & Numbers only \\ \hline
-\end{tabular}
-\end{center}
-
 \subsubsection{Volumetrics}
-The system should handle up to 100 members, however should be able to expand. This is because the although there are 55 members currently this could vary over time, however more than 100 members would be impracticle for the group to run.
 
-Each member should have 13 fields. Assuming one character is equal to one bit there would be approximately 256 bits assigned to one member, so there would be 256 / 8 = bytes for each member so 32 * 100 = 3200 bytes for the whole database, which is equivalent to 3.125 mega bytes of maximum storage. However, this is not including the storage for the program itself.
- 
 \section{Objectives}
 
 \subsection{General Objectives}
 
-\begin{itemize}
-	\item Easy to input new data and change existing data
-	\item Automatically able to print new invoices by selecting a name with data straight from the database
-	\item Clean and easy to understand database with no redundant data.
-	\item Secure data, especially as the database does contain data relating to minors.
-\end{itemize}
-
 \subsection{Specific Objectives}
-Easy to input new data:
-\begin{itemize}
-	\item Data is input one field at a time via a GUI
-	\item If the data input is not valid it will ask for only the incorrect field to be re-entered
-	\item Data can be changed by selecting the record and field wishing to be changed
-	\item Able to delete a whole record at once
-\end{itemize}
-
-Automatically able to print new invoices by selecting a name with data straight from the database
-\begin{itemize}
-	\item GUI used to select a member's name to print the invoice for
-	\item Automatically puts the correct field into a template and then print the template
-	\item Can chose which printer to send it to
-\end{itemize}
-
-Clean and easy to understand database with no redundant data.
-\begin{itemize}
-	\item Data can be viewed using a clean GUI and does need need advanced skills to perform functions such as searching for a member or sorting by age.
-	\item When data is input, the database can check if the data has already been entered (for example trying to add a new member when one of the same name already exists) and ask the user if they want to replace the data or add a new record with the same data.
-\end{itemize}
-
-Secure data, especially as the database does contain data relating to minors.
-\begin{itemize}
-	\item Uses sql to secure data
-	\item Login needed to access the data base and print the invoice
-\end{itemize}
 
 \subsection{Core Objectives}
-\begin{itemize}
-	\item Able to input new data
-	\item Able to easily print an invoice
-\end{itemize}
 
 \subsection{Other Objectives}
 
@@ -289,35 +231,11 @@ Secure data, especially as the database does contain data relating to minors.
 
 \subsection{ER Diagram}
 
-\begin{figure}[H]
-\includegraphics[width=\textwidth]{./Analysis/Images/ER_diagram.pdf}
-    \caption{Entity Relationships} \label{fig:ER_diagram}
-\end{figure}
-
 \subsection{Entity Descriptions}
-Member\textbf{(MemberID},Member First Name, Member Last Name, Member Address, Member Age, Number of Sibling Members, Last Inoivce Pay Date)
-
-Member's Parent(\textbf{ParentID}, Parent First Name, Parent Last Name, Parent Email, Parent Address, Parent Phone Number)
-
-Scount Leader(\textbf{LeaderID})
-
-Database(\textbf{DatabaseID})
-
-Invoice Template(\textbf{TemplateID}, ParentID, Parent Address, Amount to be Paid, Return Address)
-
-Printed Invoice(\textbf{InvoiceID}(TemplateID)
 
 \section{Object Analysis}
 
 \subsection{Object Listing}
-
-\begin{itemize}
-	\item Member
-	\item Parent
-	\item Database
-	\item Invoice Template
-	\item Printed Invoice
-\end{itemize}
 
 \subsection{Relationship diagrams}
 
