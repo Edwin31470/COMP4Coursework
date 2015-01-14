@@ -2,12 +2,52 @@
 
 \section{Overall System Design}
 
+\subsection{Short description of the main parts of the system}
+My system will have five main fuctions:
 \begin{itemize}
-	\item
-	\item
+	\item Displaying all the data in the database.
+	\item Adding new information to the database.
+	\item Editing data already in the database.
+	\item Deleting items from the database.
+	\item Printing invoices automatically from the main window and storing them on the harddrive.
 \end{itemize}
 
-\subsection{Short description of the main parts of the system}
+Displaying all the data in the database:
+\begin{itemize}
+	\item The names and addresses of the members and the parents will be shown.
+	\item The data will be organised by date of birth of the members to show who will be leaving soon.
+	\item Links between the data will be shown. (for example who are the parents of every member)
+\end{itemize}
+
+Adding new information to the database:
+\begin{itemize}
+	\item The user will be presented with a new window where the type of data to be added will be selected. (for example a choice between adding a parent or a member)
+	\item Data will be added to the fields and the accept button pressed when the user is done. If the data is not valid then an error message will appear telling the user which fields are incorrect.
+	\item When the data is accepted as valid the data set will be given a unique ID and added to the database.
+\end{itemize}
+
+Editing data already in the database:
+\begin{itemize}
+	\item Similar to adding data, the user will be presented with a new window where the type of data to be edited will be selected.
+	\item Then another window will be presented chosing which data set will be edited by chosing the ID number of the person being edited.
+	\item Data will be added to the fields that need to be edited and the accept button pressed when the user is done. If the data is not valid then an error message will appear telling the user which fields are incorrect.
+	\item When the data is valid the fields will be changed
+\end{itemize}
+
+Deleting items from the database.
+\begin{itemize}
+	\item Similar to adding data, the user will be presented with a new window where the type of data to be deleted will be selected.
+	\item Then another window will be presented chosing which data set will be deleted by chosing the ID number of the person being deleted.
+	\item An ``Are you sure?'' message will be displayed and if pressed the data will be deleted.
+ 
+\end{itemize}
+
+Printing invoices automatically from the main window and storing them on the harddrive:
+\begin{itemize}
+	\item When the print invoices button is clicked a window will be presented with a choice of all the dates available that invoices can be sent.
+	\item The program will create word documents for every invoice and save them to the hardrive.
+	\item Then all the invoices will be printed automatically.
+\end{itemize}
 
 \subsection{System flowcharts showing an overview of the complete system}
 
@@ -55,69 +95,192 @@ Printing the invoices:
 
 \section{User Interface Designs}
 
+Main window (Displays the database):
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Design/images/Main_Interface_Design.pdf}
+    \caption{Main Interface} \label{fig:Interface Design}
+\end{figure}
+This is the main window. It will have a large area for displaying the database when the ``Display Members'' button is clicked and a dropdown menu to select functions to manipulate the data, and a button for printing invoices.
+
+Most of the window will be taken up by the database as this is the main purpose of the program, and a larger box means that many fields can be compared by the user at once. The menu bar is at the top so as not to break up the viewing of the database. Most features will come under managing data so the menu bar is not too cluttered and the program can be easily navigated.
+
+Adding a new member:
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Design/images/Add_New_Member.pdf}
+    \caption{Add New Member} \label{fig:Interface Design}
+\end{figure}
+The area showing the database will be replaced with a new window with multiple fields to fill in. The data will not be accepted until all the fields are filled in with valid data, and the accept button is pressed.
+
+The fields are labeled so the user can easily understand what data to input into them. The accept button is at the bottom so, assuming the user enters data from the top down, the flow will not be disrupted. The screen will persist with the data alreadt in the fields so siblings can be easily added.
+
+Edit member screen 1 (Finding the member to be changed):
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Design/images/Edit_Member_1.pdf}
+    \caption{Edit Member} \label{fig:Interface Design}
+\end{figure}
+The area showing the database will be replaced with a new window with two fields. The purpose of this window is to find the member to be edited. The second editing member screen will then show.
+
+The first name and last name fields are used as these will almost certainly be unique to one individual, and should be easily memorable for the leaders, unlike things like addresses or data of births.
+
+Edit member screen 2 (Adding new data):
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Design/images/Edit_Member_2.pdf}
+    \caption{Edit Member} \label{fig:Interface Design}
+\end{figure}
+This screen will only show when the member is found. Any data entered will be changed in the database. If a field is left blank then the data will not be changed.
+
+Multiple fields can be edited at once so the accept button does not have to be clicked for each piece of new data. The accept button is underneath the fields to continue the flow.
+
+Adding a new parent or a new invoice and editing a parent will be very similar to adding a new member and editing a member.
+
+
+
 \section{Hardware Specification}
-No extra hardware will be needed.
+The system will need a desktop or computer running a Windows OS. A keyboard and a mouse will be needed to add information and to click buttons. Data will be stored on the internal hard drive of the computer and a monitor or display will be needed to show the GUI.
 
 \section{Program Structure}
 
 \subsection{Top-down design structure charts}
 
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Design/images/Design_Structure_Chart.pdf}
+    \caption{Design Structure Chart} \label{fig:Structure_Chart}
+\end{figure}
+
 \subsection{Algorithms in pseudo-code for each data transformation process}
 
 \begin{algorithm}[H]
-\label{fig:repeat_pseudo_example}
-    \caption{Repeat Loop}
+\label{fig:check_username_and_password}
+    \caption{FUNCTION CheckPassword(Password):}
 \begin{algorithmic}[1]
-\SET{$total$}{$0$}
-\State
-\Repeat
-    \SEND{$"Please\ enter\ a\ number\ (0 to finish)"$}
-    \RECEIVE{$number$}
-    \SET{$total$}{$total + number$}
-\Until{$number = 0$}
+\SEND{$"Please\ enter\ your\ password:\ "$}
+\RECEIVE{$user\_password$}
+\If{$user\_password = password$}
+\SEND{$"Password \ is \ valid"$}
+\SET{$password\_valid$}{$True$}
+\Else
+\SEND{$"Password \ not \ valid"$}
+\SET{$password\_valid$}{$False$}
+\EndIf
 \end{algorithmic}
 \end{algorithm}
 
 \subsection{Object Diagrams}
 
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Design/images/Relationship_Diagram.pdf}
+    \caption{Relationship Diagram} \label{fig:Relationship Diagram}
+\end{figure}
+
 \subsection{Class Definitions}
 
+Class Definitions:
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Design/images/Class_definitions.pdf}
+    \caption{Class Definitions} \label{fig:Interface Design}
+\end{figure}
+
 \section{Prototyping}
+I will prototype a system that uses a python program to create a word document, save it to the harddrive in a pretermined location and print the document automatically.
+
+In the real program, when the print invoices button is pressed a window will pop up asking the user which date they would like to print invoices from. When chosen, a new invoice document will be created for each parent and will be printed.
 
 \section{Definition of Data Requirements}
 
 \subsection{Identification of all data input items}
 
+\begin{itemize}
+	\item Member First Name
+	\item Member Last Name
+	\item Member Town Name
+	\item Member Street Name
+	\item Member House Name/Number
+	\item Member Date of Birth
+	\item Parent First Name
+	\item Parent Last Name
+	\item Parent Town Name
+	\item Parent Street Name
+	\item Parent House Name/Number
+	\item Parent Phone Number
+	\item Parent Email
+	\item Was Invoice Paid
+	\item Date Invoice Was Sent
+\end{itemize}
+
 \subsection{Identification of all data output items}
 
+\begin{itemize}
+	\item Price of member per term
+\end{itemize}
+Output to database:
+\begin{itemize}
+	\item Member First Name
+	\item Member Last Name
+	\item Member Town Name
+	\item Member Street Name
+	\item Member House Name/Number
+	\item Member Date of Birth
+	\item Parent First Name
+	\item Parent Last Name
+	\item Parent Town Name
+	\item Parent Street Name
+	\item Parent House Name/Number
+	\item Parent Phone Number
+	\item Parent Email
+	\item Was Invoice Paid
+	\item Date Invoice Was Sent
+\end{itemize}
+
 \subsection{Explanation of how data output items are generated}
+
+\begin{center}
+	\begin{tabular}{|p{6cm}|p{6cm}|l}
+		\hline
+		\textbf{Outpt}                   & \textbf{How the data is output} \\ \hline   
+		Price of member per term   & Worked out from term price and number of siblings \\ \hline
+		Member first name              & Taken from inputs            \\ \hline
+		Member last name               & Taken from inputs          \\ \hline
+		Member town name             & Taken from inputs        \\ \hline
+		Member street name            & Taken from inputs       \\ \hline  
+		Member house name/number & Taken from inputs          \\ \hline
+		Member date of birth           & Taken from inputs          \\ \hline
+		Parents first name               & Taken from inputs             \\ \hline
+		Parent last name                 & Taken from inputs              \\ \hline
+		Parent town name               & Taken from inputs          \\ \hline
+		Parent street name             & Taken from inputs           \\ \hline
+		Parent house name/number & Taken from inputs            \\ \hline 
+		Parent phone number         & Taken from inputsr             \\ \hline
+		Parent email                         & Taken from inputs                \\ \hline
+		Was invoice paid                  & Taken from inputs             \\ \hline
+		Date invoice was sent          & Taken from inputs             \\ \hline
+	\end{tabular}
+\end{center}
 
 \subsection{Data Dictionary}
 
 \newpage
 \begin{center}
-\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|l}
-\hline
-\textbf{Name}                    & \textbf{Data Type}    & \textbf{Length}                  & \textbf{Validation} \\ \hline
-MemberID                           & String            & 4 digits                & Numbers only \\ \hline
-ParentID                             & String            & 4 digits                & Numbers only \\ \hline
-Member first name              & String            & 1-20 characters   & Letters only \\ \hline
-Member last name               & String           &1-20 characters &  Letters only \\ \hline
-Parents first name               & String           & 1-20 characters &  Letters only \\ \hline
-Parent last name                 & String           & 1-20 characters &  Letters only \\ \hline
-Member town name                 & String           & 1-20 characters &  Letters only \\ \hline
-Member street name                 & String           & 1-20 characters &  Letters only \\ \hline
-Member house name/number & String              & 1-20 characters &  Letters only \\ \hline
-Parent town name                 & String           & 1-20 characters &  Letters only \\ \hline
-Parent street name                 & String           & 1-20 characters &  Letters only \\ \hline
-Parent house name/number & String                 & 1-20 characters &  Letters only \\ \hline
-Parent primary phone number         & Integer        & 12 digits & Numbers only, correct format and a valid phone number \\ \hline
-Parent secondary phone number         & Integer        & 12 digits & Numbers only, correct format and a valid phone number \\ \hline
-Parent email                        & String          & 1-30 characters &  Letters only \\ \hline
-Member date of birth          & Datetime       & 6 digits & Numbers only (dd/mm/yy) \\ \hline
-Invoice ID                           & Integer       & 4 digits & Numbers only \\ \hline
-Was invoice paid                 & Integer       & 4-6 digits & Numbers only, correct format and a valid date \\ \hline
-Date invoice was sent        & Datetime       & 6 digits & Numbers only (dd/mm/yy) \\ \hline
+	\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|l}
+		\hline
+		\textbf{Name}                    & \textbf{Data Type}    & \textbf{Length}                  & \textbf{Validation} \\ \hline
+		MemberID                           & String            & 4 digits                & Numbers only \\ \hline
+		ParentID                             & String            & 4 digits                & Numbers only \\ \hline
+		Member first name              & String            & 1-20 characters   & Letters only \\ \hline
+		Member last name               & String           &1-20 characters &  Letters only \\ \hline
+		Parents first name               & String           & 1-20 characters &  Letters only \\ \hline
+		Parent last name                 & String           & 1-20 characters &  Letters only \\ \hline
+		Member town name                 & String           & 1-20 characters &  Letters only \\ \hline
+		Member street name                 & String           & 1-20 characters &  Letters only \\ \hline
+		Member house name/number & String              & 1-20 characters &  Letters only \\ \hline
+		Parent town name                 & String           & 1-20 characters &  Letters only \\ \hline
+		Parent street name                 & String           & 1-20 characters &  Letters only \\ \hline
+		Parent house name/number & String                 & 1-20 characters &  Letters only \\ \hline
+		Parent phone number         & Integer        & 12 digits & Numbers only, correct format and a valid phone number \\ \hline
+		Parent email                        & String          & 1-30 characters &  Letters only \\ \hline
+		Member date of birth          & Datetime       & 6 digits & Numbers only (dd/mm/yy) \\ \hline
+		Invoice ID                           & Integer       & 4 digits & Numbers only \\ \hline
+		Was invoice paid                 & Integer       & 4-6 digits & Numbers only, correct format and a valid date \\ \hline
+		Date invoice was sent        & Datetime       & 6 digits & Numbers only (dd/mm/yy) \\ \hline
 \end{tabular}
 \end{center}
 
@@ -140,60 +303,176 @@ ER diagram of the fully normalised database:
 
 \subsubsection{1NF to 3NF}
 
-\begin{figure}[H]
-\includegraphics[width=\textwidth]{./Design/images/UNF.png}
-    \caption{UNF of database} \label{fig:UNF}
-\end{figure}
+\textbf{\textit{UNF}}
+\begin{center}
+	\begin{tabular}{|p{4cm}|p{4cm}|}
+		\hline
+		MemberID \\ \hline
+		ParentID \\ \hline
+		Member First Name  \\ \hline
+		Member Last Name \\ \hline
+		Parent First Name \\ \hline
+		Parent Last Name \\ \hline
+		Member Town Name \\ \hline
+		Member Street Name \\ \hline
+		Member House Name/Number \\ \hline
+		Parent Town Name \\ \hline
+		Parent Street Name \\ \hline
+		Parent House Name/Number \\ \hline
+		Member Date of Birth \\ \hline
+		Primary Parent Phone Number \\ \hline
+		Secondary Parent Phone Number \\ \hline
+		Parent Email \\ \hline
+		InvoiceID \\ \hline
+		Was invoice paid \\ \hline
+		Date invoice was sent \\ \hline
+		PriceID \\ \hline
+		Term Price \\ \hline
+		Sibling discount amount \\ \hline
+	\end{tabular}
+\end{center}
+
+1. Split the attributes into repeating and non-repeating groups. Create a composite key in the repeating group.
+
+\textbf{\textit{1NF}}
+\textbf{\textit{Repeating}}
+\begin{center}
+	\begin{tabular}{|p{4cm}|p{4cm}|}
+		\hline
+		\textbf{ParentID} \\ \hline
+		\textit{MemberID} \\ \hline
+		Parent First Name \\ \hline
+		Parent Last Name \\ \hline
+		Parent Town Name \\ \hline
+		Parent Street Name \\ \hline
+		Parent House Name/Number \\ \hline
+		Parent Phone Number \\ \hline
+		Parent Email \\ \hline
+		InvoiceID \\ \hline
+		Was invoice paid \\ \hline
+		Date invoice was sent \\ \hline
+	\end{tabular}
+\end{center}
+
+\textbf{\textit{Non-Repeating}}
+\begin{center}
+	\begin{tabular}{|p{4cm}|p{4cm}|}
+		\hline
+		\textbf{MemberID} \\ \hline
+		Member First Name  \\ \hline
+		Member Last Name \\ \hline
+		Member Town Name \\ \hline
+		Member Street Name \\ \hline
+		Member House Name/Number \\ \hline
+		Member Date of Birth \\ \hline		
+		PriceID \\ \hline
+		Term Price \\ \hline
+		Sibling discount amount \\ \hline
+	\end{tabular}
+\end{center}
+
+2. Remove any attributes that do not rely on both parts of the composite key from the repeating group and add the key they do rely on to the new group.
+
+\textbf{\textit{2NF}}
+\begin{center}
+	\begin{tabular}{|p{4cm}|p{4cm}|}
+		\hline
+		\textbf{MemberID} \\ \hline
+		Member First Name  \\ \hline
+		Member Last Name \\ \hline
+		Member Town Name \\ \hline
+		Member Street Name \\ \hline
+		Member House Name/Number \\ \hline
+		Member Date of Birth \\ \hline		
+		PriceID \\ \hline
+		Term Price \\ \hline
+		Sibling discount amount \\ \hline
+	\end{tabular}
+\end{center}
+
+\textbf{\textit{(a)}}
+\begin{center}
+	\begin{tabular}{|p{4cm}|p{4cm}|}
+		\hline	
+		\textbf{ParentID} \\ \hline
+		\textit{MemberID} \\ \hline
+	\end{tabular}
+\end{center}
+
+\textbf{\textit{(b)}}
+\begin{center}
+	\begin{tabular}{|p{4cm}|p{4cm}|}
+		\hline
+		\textbf{ParentID} \\ \hline
+		\textit{MemberID} \\ \hline
+		Parent First Name \\ \hline
+		Parent Last Name \\ \hline
+		Parent Town Name \\ \hline
+		Parent Street Name \\ \hline
+		Parent House Name/Number \\ \hline
+		Parent Phone Number \\ \hline
+		Parent Email \\ \hline
+		InvoiceID \\ \hline
+		Was invoice paid \\ \hline
+		Date invoice was sent \\ \hline
+	\end{tabular}
+\end{center}
+
+3. Split the new group further so all attributes are in a group with a primary key they directly relate to.
+
+\textbf{\textit{3NF}}
+\begin{center}
+	\begin{tabular}{|p{4cm}|p{4cm}|}
+		\hline
+		\textbf{MemberID} \\ \hline
+		Member First Name  \\ \hline
+		Member Last Name \\ \hline
+		Member Town Name \\ \hline
+		Member Street Name \\ \hline
+		Member House Name/Number \\ \hline
+		Member Date of Birth \\ \hline		
+	\end{tabular}
+\end{center}
 
 \begin{center}
 	\begin{tabular}{|p{4cm}|p{4cm}|}
 		\hline
-		MemberID
-		ParentID
-		Member First Name
-		Member Last Name
-		Parent First Name
-		Parent Last Name
-		Member Town Name
-		Member Street Name
-		Member House Name/Number
-		Parent Town Name
-		Parent Street Name
-		Parent House Name/Number
-		Member Date of Birth
-		Primary Parent Phone Number
-		Secondary Parent Phone Number
-		Parent Email
-		InvoiceID
-		Was invoice paid
-		Data invoice was sent
-		PriceID
-		Term Price
-		Sibling discount amount
+		\textbf{ParentID} \\ \hline
+		Parent First Name \\ \hline
+		Parent Last Name \\ \hline
+		Parent Town Name \\ \hline
+		Parent Street Name \\ \hline
+		Parent House Name/Number \\ \hline
+		Parent Phone Number \\ \hline
+		Parent Email \\ \hline	
 	\end{tabular}
 \end{center}
 
+\begin{center}
+	\begin{tabular}{|p{4cm}|p{4cm}|}
+		\hline
+		\textbf{ParentID} \\ \hline
+		\textit{MemberID} \\ \hline		
+	\end{tabular}
+\end{center}
 
-1. Split the attributes into repeating and non-repeating groups. Create a composite key in the repeating group.
+\begin{center}
+	\begin{tabular}{|p{4cm}|p{4cm}|}
+		\hline
+		\textbf{PriceID} \\ \hline
+		Term Price \\ \hline
+		Sibling discount amount \\ \hline		
+	\end{tabular}
+\end{center}
 
-\begin{figure}[H]
-\includegraphics[width=\textwidth]{./Design/images/1NF.png}
-    \caption{1NF of database} \label{fig:UNF}
-\end{figure}
-
-2. Remove any attributes that do not rely on both parts of the composite key from the repeating group and add the key they do rely on to the new group.
-
-\begin{figure}[H]
-\includegraphics[width=\textwidth]{./Design/images/2NF.png}
-    \caption{2NF of database} \label{fig:UNF}
-\end{figure}
-
-3. Split the new group further so all attributes are in a group with a primary key they directly relate to.
-
-\begin{figure}[H]
-\includegraphics[width=\textwidth]{./Design/images/3NF.png}
-    \caption{3NF of database} \label{fig:UNF}
-\end{figure}
+\begin{center}
+	\begin{tabular}{|p{4cm}|p{4cm}|}
+		\hline
+		\textbf{InvoiceID} \\ \hline
+		Was invoice paid \\ \hline
+		Date invoice was sent \\ \hline		
+	\end{tabular}
+\end{center}
 
 Member\textbf{(MemberID},Member First Name, Member Last Name, Member Town Name, Member Street Name, Member house Name/Number, Member Date of Birth)
 
@@ -205,11 +484,24 @@ Invoice(\textbf{InvoiceID}, \textit{ParentID}, \textit{PriceID}, Was Invoice Pai
 
 Price(\textbf{PriceID}, Term Price, Sibling Discount)
 
+\subsubsection{SQL Queries}
+
+Displaying a list of members in age order: \\
+SELECT *  \\
+FROM Member \\
+ORDER BY MemberDateOfBirth \\
+
+Displaying the whole database: \\
+Select * \\
+FROM Member, Parent, Invoice \\
+
 \section{Security and Integrity of the System and Data}
 
 \subsection{Security and Integrity of Data}
+As the system will be storing data of minors, such as date of birth, name, and address, security must be strict as the data falls under the data protection act. There will only be one login and data should be kept as up to date as possible and should be encrypted until the correct user name and password is entered, or else the files containing the data could be viewed manually without proper authorisation. Validation will be used to ensure all data entered is feasible.
 
 \subsection{System Security}
+Access will be limited to one user name and password, which will be given to Terry when the system is set up.
 
 \section{Validation}
 
@@ -222,6 +514,7 @@ Price(\textbf{PriceID}, Term Price, Sibling Discount)
     \begin{tabular}{|p{2cm}|p{5cm}|p{5cm}|p{4cm}|}
         \hline
         \textbf{Test Series} & \textbf{Purpose of Test Series} & \textbf{Testing Strategy} & \textbf{Strategy Rationale}\\ \hline
+        2.1 & Validate Input into member or parent first name & John, 16, John Smith,  John_ & Example \\ \hline
         Example & Example & Example & Example \\ \hline
     \end{tabular}
 \end{center}
