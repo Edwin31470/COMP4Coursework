@@ -137,22 +137,22 @@ class Window(QMainWindow):
         search_dialog.exec_()
         searched_values = search_dialog.return_searched()
         print("Searched Value: ",searched_values[0])
-        sqlFilter = QSqlQuery()
-        sqlFilter.exec_("""select * from Member where MemberFirstName = ?""",(searched_values[0],))
+        query = QSqlQuery()
+        query.prepare("select * from Member where MemberFirstName = ?")
+        query.addBindValue(searched_values[0])
+        query.exec_()
         
-
         if not hasattr(self,"display_widget"):
             self.display_widget = DisplayWidget()
-        self.display_widget.show_results(sqlFilter)
-##        self.display_widget.refresh()
+        self.display_widget.show_results(query)
         print("Filtered")
+
+        self.data_dialog = EditMemberDataDialog()
+        self.data_dialog.updatedData.connect(self.display_widget.refresh)
         
-##        self.data_dialog = EditMemberDataDialog()
-##        self.data_dialog.updatedData.connect(self.display_widget.refresh)
-##        
         self.layout = QVBoxLayout()
         self.layout.addWidget(self.display_widget)
-##        self.layout.addWidget(self.data_dialog)
+        self.layout.addWidget(self.data_dialog)
         self.main_widget = QWidget()
         self.main_widget.setLayout(self.layout)
         self.setCentralWidget(self.main_widget)

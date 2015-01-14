@@ -3,7 +3,7 @@ import sqlite3
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
-class EditDataDialog(QDialog):
+class EditDataDialog(QWidget):
     """this class provides a dialog for editing data"""
     updatedData = pyqtSignal()
     def __init__(self):

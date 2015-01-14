@@ -28,6 +28,7 @@ class DeleteMemberDataDialog(DeleteDataDialog):
         self.dialog_layout.addWidget(self.accept_button)
 
         self.accept_button.clicked.connect(self.delete_member)
+        
 
     def delete_member(self):
         values = (self.memberID_button.text(),)
@@ -39,6 +40,8 @@ class DeleteMemberDataDialog(DeleteDataDialog):
             db.commit()
 
         self.updatedData.emit()
+
+        self.memberID_button.setText("")
 
 class DeleteParentDataDialog(DeleteDataDialog):
     """this class provides a dialog for editing member data"""
@@ -65,3 +68,5 @@ class DeleteParentDataDialog(DeleteDataDialog):
             db.commit()
 
         self.updatedData.emit()
+
+        self.parentID_button.setText("")

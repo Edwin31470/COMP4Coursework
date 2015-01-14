@@ -22,7 +22,7 @@ class DisplayWidget(QWidget):
         self.display_results_layout()
         if not self.model or not isinstance(self.model,QSqlQueryModel):
             self.model = QSqlQueryModel()
-        self.model.setQuery(query)      
+        self.model.setQuery(query)
         self.results_table.setModel(self.model)
         self.results_table.show()
 
