@@ -136,10 +136,24 @@ class Window(QMainWindow):
         search_dialog = SearchDialog()
         search_dialog.exec_()
         searched_values = search_dialog.return_searched()
-        print("Searched Value: ",searched_values[0])
+        print("Searched Values: ",searched_values)
+        for count in range(0,4):
+            searched_values[count]
+        
+        string = "select * from Member where "
+        if searched_values[0] != "":
+            string += "MemberFirstName = {0} and".format(searched_values[0])
+        if searched_values[1] != "":
+            string += "MemberLastName = {0} and".format(searched_values[1])
+        if searched_values[2] != "":
+            string += "MemberTownName = {0} and".format(searched_values[2])
+        if searched_values[3] != "":
+           string += "MemberStreetName = {0} and".format(searched_values[3])
+        print(string)
+        string = string[:-4]
+        print(string)
         query = QSqlQuery()
-        query.prepare("select * from Member where MemberFirstName = ?")
-        query.addBindValue(searched_values[0])
+        query.prepare(string)
         query.exec_()
         
         if not hasattr(self,"display_widget"):
