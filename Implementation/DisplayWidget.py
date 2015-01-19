@@ -12,6 +12,7 @@ class DisplayWidget(QWidget):
 
     def display_results_layout(self):
         self.results_table = QTableView()
+        self.results_table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.results_layout = QVBoxLayout()
         self.results_layout.addWidget(self.results_table)
         self.results_widget = QWidget()

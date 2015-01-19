@@ -138,28 +138,35 @@ class Window(QMainWindow):
         searched_values = search_dialog.return_searched()
         print("Searched Values: ",searched_values)
         for count in range(0,4):
-            searched_values[count]
-        
+            print(searched_values[count])
+
+        values = []
         string = "select * from Member where "
         if searched_values[0] != "":
-            string += "MemberFirstName = {0} and".format(searched_values[0])
+            string += "MemberFirstName = ? and "
+            values.append(searched_values[0])
         if searched_values[1] != "":
-            string += "MemberLastName = {0} and".format(searched_values[1])
+            string += "MemberLastName = ? and "
+            values.append(searched_values[1])
         if searched_values[2] != "":
-            string += "MemberTownName = {0} and".format(searched_values[2])
+            string += "MemberTownName = ? and "
+            values.append(searched_values[2])
         if searched_values[3] != "":
-           string += "MemberStreetName = {0} and".format(searched_values[3])
-        print(string)
+           string += "MemberStreetName = ? and "
+           values.append(searched_values[3])
+        print("Pre snipping: ",string)
         string = string[:-4]
-        print(string)
+        print("Post snipping: ",string)
+
         query = QSqlQuery()
         query.prepare(string)
-        query.exec_()
+        print("Values: ",values)
+        print("Query: ",query)
+        query.addBindValue(values)    
         
         if not hasattr(self,"display_widget"):
             self.display_widget = DisplayWidget()
         self.display_widget.show_results(query)
-        print("Filtered")
 
         self.data_dialog = EditMemberDataDialog()
         self.data_dialog.updatedData.connect(self.display_widget.refresh)
