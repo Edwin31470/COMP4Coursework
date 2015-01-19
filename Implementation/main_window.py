@@ -132,46 +132,78 @@ class Window(QMainWindow):
         self.main_widget.setLayout(self.layout)
         self.setCentralWidget(self.main_widget)
         
-    def edit_member_data(self):
-        search_dialog = SearchDialog()
-        search_dialog.exec_()
-        searched_values = search_dialog.return_searched()
-        print("Searched Values: ",searched_values)
-        for count in range(0,4):
-            print(searched_values[count])
+##    def edit_member_data_old(self):
+##        search_dialog = SearchDialog()
+##        search_dialog.exec_()
+##        searched_values = search_dialog.return_searched()
+##        print("Searched Values: ",searched_values)
+##        for count in range(0,4):
+##            print(searched_values[count])
+##
+##        values = []
+##        string = "select * from Member where"
+##        if searched_values[0] != "":
+##            string += " MemberFirstName = :firstName and"
+##            values.append(searched_values[0])
+##        if searched_values[1] != "":
+##            string += " MemberLastName = :lastName and"
+##            values.append(searched_values[1])
+##        if searched_values[2] != "":
+##            string += " MemberTownName = :townName and"
+##            values.append(searched_values[2])
+##        if searched_values[3] != "":
+##           string += " MemberStreetName = :streetName and"
+##           values.append(searched_values[3])
+##        print("Pre snipping:",string)
+##        string = string[:-4]
+##        print("Post snipping:",string)
+##
+##        query = QSqlQuery(string)
+##        #query.prepare(string)
+##        print("Values: ",values)
+##        print("Values 0: ",values[0])
+##        if len(values) > 0:
+##            query.bindValue(":firstName",values[0])
+##            print("Bound ",values[0])
+##        if len(values) > 1:
+##            query.bindValue(":lastName",values[1])
+##            print("Bound ",values[1])
+##        if len(values) > 2:
+##            query.bindValue(":townName",values[2])
+##            print("Bound ",values[2])
+##        if len(values) > 3:
+##            query.bindValue(":streetName",values[3])
+##            print("Bound ",values[3])
+##        
+##        if not hasattr(self,"display_widget"):
+##            self.display_widget = DisplayWidget()
+##        self.display_widget.show_results(query)
+##
+##        self.data_dialog = EditMemberDataDialog()
+##        self.data_dialog.updatedData.connect(self.display_widget.refresh)
+##        
+##        self.layout = QVBoxLayout()
+##        self.layout.addWidget(self.display_widget)
+##        self.layout.addWidget(self.data_dialog)
+##        self.main_widget = QWidget()
+##        self.main_widget.setLayout(self.layout)
+##        self.setCentralWidget(self.main_widget)
 
-        values = []
-        string = "select * from Member where "
-        if searched_values[0] != "":
-            string += "MemberFirstName = ? and "
-            values.append(searched_values[0])
-        if searched_values[1] != "":
-            string += "MemberLastName = ? and "
-            values.append(searched_values[1])
-        if searched_values[2] != "":
-            string += "MemberTownName = ? and "
-            values.append(searched_values[2])
-        if searched_values[3] != "":
-           string += "MemberStreetName = ? and "
-           values.append(searched_values[3])
-        print("Pre snipping: ",string)
-        string = string[:-4]
-        print("Post snipping: ",string)
-
-        query = QSqlQuery()
-        query.prepare(string)
-        print("Values: ",values)
-        print("Query: ",query)
-        query.addBindValue(values)    
-        
+    def edit_member_data(self):        
         if not hasattr(self,"display_widget"):
             self.display_widget = DisplayWidget()
-        self.display_widget.show_results(query)
+        self.display_widget.show_table("Member")
+
+        self.search_dialog = SearchDialog()
+        searched_values = self.search_dialog.updatedData.connect(self.search_dialog.return_searched)
+        #searched_values = self.search_dialog.return_searched()
+        print(searched_values)
 
         self.data_dialog = EditMemberDataDialog()
         self.data_dialog.updatedData.connect(self.display_widget.refresh)
         
         self.layout = QVBoxLayout()
+        self.layout.addWidget(self.search_dialog)
         self.layout.addWidget(self.display_widget)
         self.layout.addWidget(self.data_dialog)
         self.main_widget = QWidget()
