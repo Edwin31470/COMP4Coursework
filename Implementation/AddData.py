@@ -70,27 +70,26 @@ class EnterMemberDataDialog(EnterDataDialog):
 
         self.updatedData.emit()
 
-    def validate(self):
-        pass wrapper functions
+    def validate(self, regularExpression, text):
+        self.pattern = re.compile(regularExpression)
+        valid = self.pattern.match(text.upper())
+        return valid
     
     def validate_first_name(self):
-        print(self)
-        self.text = self.add_first_name_button.text()
-        self.pattern = re.compile("^[A-Z]{1,20}$")
-        self.add_first_name_button.setText(self.text.capitalize())
-        valid = self.pattern.match(self.text.upper())
+        text = self.add_first_name_button.text()
+        self.add_first_name_button.setText(text.capitalize())
+        valid = self.validate("^[A-Z]{1,20}$",text)
         if valid:
-                self.add_first_name_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
+            self.add_first_name_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
         else:
             self.add_first_name_button.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
 
     def validate_last_name(self):
-        self.text = self.add_last_name_button.text()
-        self.pattern = re.compile("^[A-Z]{1,20}$")
-        self.add_last_name_button.setText(self.text.capitalize())
-        valid = self.pattern.match(self.text.upper())
+        text = self.add_last_name_button.text()
+        self.add_last_name_button.setText(text.capitalize())
+        valid = self.validate("^[A-Z]{1,20}$",text)
         if valid:
-                self.add_last_name_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
+            self.add_last_name_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
         else:
             self.add_last_name_button.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
 
@@ -100,7 +99,7 @@ class EnterMemberDataDialog(EnterDataDialog):
         self.add_town_name_button.setText(self.text.capitalize())
         valid = self.pattern.match(self.text.upper())
         if valid:
-                self.add_town_name_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
+            self.add_town_name_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
         else:
             self.add_town_name_button.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
 
@@ -110,7 +109,7 @@ class EnterMemberDataDialog(EnterDataDialog):
         self.add_street_name_button.setText(self.text.capitalize())
         valid = self.pattern.match(self.text.upper())
         if valid:
-                self.add_street_name_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
+            self.add_street_name_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
         else:
             self.add_street_name_button.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
 
@@ -120,7 +119,7 @@ class EnterMemberDataDialog(EnterDataDialog):
         self.add_house_name_button.setText(self.text.capitalize())
         valid = self.pattern.match(self.text.upper())
         if valid:
-                self.add_house_name_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
+            self.add_house_name_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
         else:
             self.add_house_name_button.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
 
@@ -130,7 +129,7 @@ class EnterMemberDataDialog(EnterDataDialog):
         self.add_dob_button.setText(self.text.capitalize())
         valid = self.pattern.match(self.text.upper())
         if valid:
-                self.add_dob_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
+            self.add_dob_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
         else:
             self.add_dob_button.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
 
