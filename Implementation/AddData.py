@@ -70,7 +70,11 @@ class EnterMemberDataDialog(EnterDataDialog):
 
         self.updatedData.emit()
 
+    def validate(self):
+        pass wrapper functions
+    
     def validate_first_name(self):
+        print(self)
         self.text = self.add_first_name_button.text()
         self.pattern = re.compile("^[A-Z]{1,20}$")
         self.add_first_name_button.setText(self.text.capitalize())

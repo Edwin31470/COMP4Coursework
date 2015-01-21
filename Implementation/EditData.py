@@ -11,45 +11,8 @@ class EditDataDialog(QWidget):
         
         self.dialog_layout = QVBoxLayout()
         
-        self.setLayout(self.dialog_layout)      
-    
-
-##class SearchDialogOld(QDialog):
-##    """this class provides a dialog for searching the database"""
-##    def __init__(self):
-##        super().__init__()
-##
-##        self.dialog_layout = QVBoxLayout()
-##
-##        self.search_first_name = QLineEdit()
-##        self.search_last_name = QLineEdit()
-##        self.search_town_name = QLineEdit()
-##        self.search_street_name = QLineEdit()
-##        self.accept_button = QPushButton("Accept")
-##
-##        self.search_first_name.setPlaceholderText("First Name")
-##        self.search_last_name.setPlaceholderText("Last Name")
-##        self.search_town_name.setPlaceholderText("Town Name")
-##        self.search_street_name.setPlaceholderText("Street Name")
-##
-##        self.dialog_layout.addWidget(self.search_first_name)
-##        self.dialog_layout.addWidget(self.search_last_name)
-##        self.dialog_layout.addWidget(self.search_town_name)
-##        self.dialog_layout.addWidget(self.search_street_name)
-##
-##        self.dialog_layout.addWidget(self.accept_button)
-##
-##        self.setLayout(self.dialog_layout)
-##
-##        self.accept_button.clicked.connect(self.close)
-##
-##    def return_searched(self):
-##        values = (self.search_first_name.text(),
-##                  self.search_last_name.text(),
-##                  self.search_town_name.text(),
-##                  self.search_street_name.text())
-##
-##        return values
+        self.setLayout(self.dialog_layout)
+        
 
 class SearchDialog(QWidget):
     """this class provides a dialog for searching the database"""
@@ -71,17 +34,21 @@ class SearchDialog(QWidget):
 
     def return_searched(self):
         values = (self.search_for_member.text(),)
+        print("Raw value: ",values)
 
         return values
 
     def update_data(self):
         self.updatedData.emit()
-        text = self.search_for_member.text()
-        filter_query = "MemberName like '%{0}%'".format(text)
-        self.model.setFilter(filter_query)
-        self.model.select()
+        print("Emitted")
 
+class SearchDialogParent(SearchDialog):
+    """This class provides a widget for searching for a parent"""
+    def __init__(self):
+        super().__init__()
 
+        self.label = QLabel("Search for a parent:")
+        
 class EditMemberDataDialog(EditDataDialog):
     """this class provides a dialog for editing member data"""
     def __init__(self):

@@ -34,6 +34,7 @@ class DisplayWidget(QWidget):
         self.model.setTable(tableName)
         self.model.select()
         self.results_table.setModel(self.model)
+        self.results_table.resizeColumnsToContents()
         self.results_table.show()
 
     def search_table(self,tableName,sqlFilter):
@@ -42,8 +43,6 @@ class DisplayWidget(QWidget):
             self.model = QSqlTableModel()
         self.model.setTable(tableName)
         self.model.setFilter(sqlFilter)
-        print(self.model.filter())
-        #self.model.select()
         self.results_table.setModel(self.model)
         self.results_table.show()
 
