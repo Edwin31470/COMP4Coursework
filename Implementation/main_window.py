@@ -116,8 +116,9 @@ class Window(QMainWindow):
         if not hasattr(self,"display_widget"):
             self.display_widget = DisplayWidget()
         self.setCentralWidget(self.display_widget)
-        #query = self.connection.show_invoices()
         self.display_widget.show_table("Invoice")
+
+
         
     def add_member_data(self):
         self.show_member()
@@ -132,44 +133,30 @@ class Window(QMainWindow):
         self.main_widget.setLayout(self.layout)
         self.setCentralWidget(self.main_widget)
         
-    def edit_member_data(self):
-        search_dialog = SearchDialog()
-        search_dialog.exec_()
-        searched_values = search_dialog.return_searched()
-        print("Searched Values: ",searched_values)
-        for count in range(0,4):
-            searched_values[count]
-        
-        string = "select * from Member where "
-        if searched_values[0] != "":
-            string += "MemberFirstName = {0} and".format(searched_values[0])
-        if searched_values[1] != "":
-            string += "MemberLastName = {0} and".format(searched_values[1])
-        if searched_values[2] != "":
-            string += "MemberTownName = {0} and".format(searched_values[2])
-        if searched_values[3] != "":
-           string += "MemberStreetName = {0} and".format(searched_values[3])
-        print(string)
-        string = string[:-4]
-        print(string)
-        query = QSqlQuery()
-        query.prepare(string)
-        query.exec_()
-        
+
+    def edit_member_data(self):        
         if not hasattr(self,"display_widget"):
             self.display_widget = DisplayWidget()
-        self.display_widget.show_results(query)
-        print("Filtered")
+        self.display_widget.show_table("Member")
 
-        self.data_dialog = EditMemberDataDialog()
-        self.data_dialog.updatedData.connect(self.display_widget.refresh)
+        self.search_dialog = SearchDialog()
+        
+        self.search_dialog.updatedData.connect(self.return_searched_data_member)
+        
         
         self.layout = QVBoxLayout()
+        self.layout.addWidget(self.search_dialog)
         self.layout.addWidget(self.display_widget)
-        self.layout.addWidget(self.data_dialog)
         self.main_widget = QWidget()
         self.main_widget.setLayout(self.layout)
         self.setCentralWidget(self.main_widget)
+
+    def return_searched_data_member(self):
+        text = self.search_dialog.search_for_member.text()
+        filter_query = "MemberFirstName like '%{0}%' or MemberLastName like '%{0}%'".format(text)
+        self.display_widget.model.setFilter(filter_query)
+        self.display_widget.model.select()
+        self.display_widget.results_table.setModel(self.display_widget.model)
         
     def delete_member_data(self):
         self.show_member()
@@ -197,22 +184,29 @@ class Window(QMainWindow):
         self.main_widget.setLayout(self.layout)
         self.setCentralWidget(self.main_widget)
 
-    def edit_parent_data(self):
+    def edit_parent_data(self):        
         if not hasattr(self,"display_widget"):
             self.display_widget = DisplayWidget()
-        self.search_dialog = SearchDialog()
-
         self.display_widget.show_table("Parent")
+
+        self.search_dialog = SearchDialogParent()
         
-        self.data_dialog = EditParentDataDialog()
-        self.data_dialog.updatedData.connect(self.display_widget.refresh)
+        self.search_dialog.updatedData.connect(self.return_searched_data_parent)
+        
         
         self.layout = QVBoxLayout()
+        self.layout.addWidget(self.search_dialog)
         self.layout.addWidget(self.display_widget)
-        self.layout.addWidget(self.data_dialog)
         self.main_widget = QWidget()
         self.main_widget.setLayout(self.layout)
         self.setCentralWidget(self.main_widget)
+
+    def return_searched_data_parent(self):
+        text = self.search_dialog.search_for_member.text()
+        filter_query = "ParentFirstName like '%{0}%' or ParentLastName like '%{0}%'".format(text)
+        self.display_widget.model.setFilter(filter_query)
+        self.display_widget.model.select()
+        self.display_widget.results_table.setModel(self.display_widget.model)
 
     def delete_parent_data(self):
         self.show_parent()
@@ -230,6 +224,28 @@ class Window(QMainWindow):
     def manage_invoice_data(self):
         self.show_invoice()
 
+        if not hasattr(self,"display_widget_2"):
+            self.display_widget_2 = DisplayWidget()
+        self.display_widget_2.show_table("Parent")
+
+        self.data_dialog = EnterInvoiceData()
+        self.data_dialog.updatedData.connect(self.display_widget.refresh)
+
+        self.table_layout = QHBoxLayout()
+        self.layout = QVBoxLayout()
+        self.tables = QWidget()
+        self.table_layout.addWidget(self.display_widget_2)
+        self.table_layout.addWidget(self.display_widget)
+        self.tables.setLayout(self.table_layout)
+        self.layout.addWidget(self.tables)
+        self.layout.addWidget(self.data_dialog)
+        self.main_widget = QWidget()
+        self.main_widget.setLayout(self.layout)
+        self.setCentralWidget(self.main_widget)
+
+    def add_invoice_data(self):
+        self.show_invoice()
+
         self.data_dialog = EnterInvoiceData()
         self.data_dialog.updatedData.connect(self.display_widget.refresh)
 
@@ -240,6 +256,20 @@ class Window(QMainWindow):
         self.main_widget.setLayout(self.layout)
         self.setCentralWidget(self.main_widget)
 
+    def delete_invoice(self):
+        self.show_invoice()
+
+        self.data_dialog = DeleteParentDataDialog()
+        self.data_dialog.updatedData.connect(self.display_widget.refresh)
+
+        self.layout = QVBoxLayout()
+        self.layout.addWidget(self.display_widget)
+        self.layout.addWidget(self.data_dialog)
+        self.main_widget = QWidget()
+        self.main_widget.setLayout(self.layout)
+        self.setCentralWidget(self.main_widget)
+
+    
     def print_invoice_data(self):
         print("Working")
 

@@ -11,64 +11,63 @@ class EditDataDialog(QWidget):
         
         self.dialog_layout = QVBoxLayout()
         
-        self.setLayout(self.dialog_layout)      
-    
+        self.setLayout(self.dialog_layout)
+        
 
-class SearchDialog(QDialog):
+class SearchDialog(QWidget):
     """this class provides a dialog for searching the database"""
+    updatedData = pyqtSignal()
     def __init__(self):
         super().__init__()
 
-        self.dialog_layout = QVBoxLayout()
+        self.dialog_layout = QHBoxLayout()
 
-        self.search_first_name = QLineEdit()
-        self.search_last_name = QLineEdit()
-        self.search_town_name = QLineEdit()
-        self.search_street_name = QLineEdit()
-        self.accept_button = QPushButton("Accept")
+        self.label = QLabel("Search for a member:")
+        self.search_for_member = QLineEdit()
 
-        self.search_first_name.setPlaceholderText("First Name")
-        self.search_last_name.setPlaceholderText("Last Name")
-        self.search_town_name.setPlaceholderText("Town Name")
-        self.search_street_name.setPlaceholderText("Street Name")
+        self.search_for_member.textChanged.connect(self.update_data)        
 
-        self.dialog_layout.addWidget(self.search_first_name)
-        self.dialog_layout.addWidget(self.search_last_name)
-        self.dialog_layout.addWidget(self.search_town_name)
-        self.dialog_layout.addWidget(self.search_street_name)
-
-        self.dialog_layout.addWidget(self.accept_button)
+        self.dialog_layout.addWidget(self.label)
+        self.dialog_layout.addWidget(self.search_for_member)
 
         self.setLayout(self.dialog_layout)
 
-        self.accept_button.clicked.connect(self.close)
-
     def return_searched(self):
-        values = (self.search_first_name.text(),
-                  self.search_last_name.text(),
-                  self.search_town_name.text(),
-                  self.search_street_name.text())
+        values = (self.search_for_member.text(),)
+        print("Raw value: ",values)
 
         return values
 
-        
+    def update_data(self):
+        self.updatedData.emit()
+        print("Emitted")
 
-        
+class SearchDialogParent(SearchDialog):
+    """This class provides a widget for searching for a parent"""
+    def __init__(self):
+        super().__init__()
 
+        self.label = QLabel("Search for a parent:")
+        
 class EditMemberDataDialog(EditDataDialog):
     """this class provides a dialog for editing member data"""
     def __init__(self):
         super().__init__()
 
+        self.member_to_search = QLineEdit()
+        
         self.memberID_button = QLineEdit()
         self.field_to_edit = QLineEdit()
         self.data_to_add_button = QLineEdit()
         self.accept_button = QPushButton("Accept")
 
+        self.member_to_search.setPlaceholderText("Search for a member")
+        
         self.memberID_button.setPlaceholderText("ID of member to edit")
         self.field_to_edit.setPlaceholderText("Field to edit")
         self.data_to_add_button.setPlaceholderText("New data")
 
+        
         self.dialog_layout.addWidget(self.memberID_button)
         self.dialog_layout.addWidget(self.field_to_edit)
         self.dialog_layout.addWidget(self.data_to_add_button)
