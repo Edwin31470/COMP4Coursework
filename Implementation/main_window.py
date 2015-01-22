@@ -224,13 +224,13 @@ class Window(QMainWindow):
     def manage_invoice_data(self):
         self.show_invoice()
 
-        if not hasattr(self,"display_widget_2"):
-            self.display_widget_2 = DisplayWidget()
+        self.display_widget_2 = DisplayWidget()
         self.display_widget_2.show_table("Parent")
 
+        self.choose_button = ChooseOption()
         self.data_dialog = EnterInvoiceData()
-        self.data_dialog.updatedData.connect(self.display_widget.refresh)
-
+        self.choose_button.updatedData.connect(self.add_invoice_data)
+        
         self.table_layout = QHBoxLayout()
         self.layout = QVBoxLayout()
         self.tables = QWidget()
@@ -238,7 +238,7 @@ class Window(QMainWindow):
         self.table_layout.addWidget(self.display_widget)
         self.tables.setLayout(self.table_layout)
         self.layout.addWidget(self.tables)
-        self.layout.addWidget(self.data_dialog)
+        self.layout.addWidget(self.choose_button)
         self.main_widget = QWidget()
         self.main_widget.setLayout(self.layout)
         self.setCentralWidget(self.main_widget)
@@ -262,12 +262,24 @@ class Window(QMainWindow):
         self.data_dialog = DeleteParentDataDialog()
         self.data_dialog.updatedData.connect(self.display_widget.refresh)
 
+        self.table_layout = QHBoxLayout()
         self.layout = QVBoxLayout()
-        self.layout.addWidget(self.display_widget)
+        self.tables = QWidget()
+        self.table_layout.addWidget(self.display_widget_2)
+        self.table_layout.addWidget(self.display_widget)
+        self.tables.setLayout(self.table_layout)
+        self.layout.addWidget(self.tables)
         self.layout.addWidget(self.data_dialog)
         self.main_widget = QWidget()
         self.main_widget.setLayout(self.layout)
         self.setCentralWidget(self.main_widget)
+        
+##        self.layout = QVBoxLayout()
+##        self.layout.addWidget(self.display_widget)
+##        self.layout.addWidget(self.data_dialog)
+##        self.main_widget = QWidget()
+##        self.main_widget.setLayout(self.layout)
+##        self.setCentralWidget(self.main_widget)
 
     
     def print_invoice_data(self):
