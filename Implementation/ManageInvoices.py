@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3, smtplib
 
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
@@ -40,9 +40,9 @@ class EnterInvoiceData(ManageInvoiceData):
 
 
     def insert_invoice(self):
-        values = [self.add_parentID_button.text(),
+        values = (self.add_parentID_button.text(),
                   self.add_invoice_paid_button.text(),
-                  self.add_date_sent_button.text()]
+                  self.add_date_sent_button.text())
     
         with sqlite3.connect("scout_database.db") as db:
             cursor = db.cursor()
@@ -51,17 +51,43 @@ class EnterInvoiceData(ManageInvoiceData):
             cursor.execute(sql,values)
             db.commit()
 
+        self.updatedData.emit()       
+
+class DeleteInvoiceData(ManageInvoiceData):
+    """this class provides a dialog for deleting member data"""
+    def __init__(self):
+        super().__init__()
+        
+        self.delete_invoiceID_button = QLineEdit()
+        self.accept_button = QPushButton("Accept")
+        
+        self.delete_invoiceID_button.setPlaceholderText("Enter InvoiceID to be deleted")
+
+        self.dialog_layout.addWidget(self.delete_invoiceID_button)
+        self.dialog_layout.addWidget(self.accept_button)
+
+        self.accept_button.clicked.connect(self.delete_invoice)
+
+
+    def delete_invoice(self):
+        values = (self.delete_invoiceID_button.text(),)
+    
+        with sqlite3.connect("scout_database.db") as db:
+            cursor = db.cursor()
+            sql = "delete from Invoice where InvoiceID = ?"
+            cursor.execute(sql,values)
+            db.commit()
+
         self.updatedData.emit()
 
 class ChooseOption(QWidget):
-    updatedData = pyqtSignal()
+    addData = pyqtSignal()
+    deleteData = pyqtSignal()
     """Provides a choice of add or delete invoices"""
     def __init__(self):
         super().__init__()
         self.add_button = QPushButton("Add")
         self.delete_button = QPushButton("Delete")
-
-        #self.stacked_layout = QStackedLayout()
         
         self.button_layout = QHBoxLayout()
 
@@ -70,12 +96,6 @@ class ChooseOption(QWidget):
 
         self.button_widget = QWidget()
         self.button_widget.setLayout(self.button_layout)
-        
-        #self.stacked_layout.addWidget(self.button_widget)
-        
-        #self.data_dialog = EnterInvoiceData()
-        #self.data_widget.setLayout(self.data_dialog)
-        #self.stacked_layout.addWidget(self.data_widget)
         
         self.setLayout(self.button_layout)
                 
@@ -90,22 +110,14 @@ class ChooseOption(QWidget):
             self.stacked_layout.setCurrentIndex(0)
 
     def add_invoice(self):
-        self.updatedData.emit()
+        self.addData.emit()
 
     def delete_invoice(self):
-        pass
+        self.deleteData.emit()
 
 
-
-
-
-
-
-
-
-
-
-
-
+def email_document(self):
+    content = ""
+    mail = smtplib.SMTP('smtp.longroad.
 
     

@@ -32,7 +32,16 @@ class SQLConnection():
 
     def show_invoices(self):
         query = QSqlQuery()
-        query.prepare("""select * from Invoice""")
+        query.prepare("""SELECT
+                         Invoice.InvoiceID,
+                         Parent.ParentFirstName,
+                         Parent.ParentLastName,
+                         Invoice.PriceID,
+                         Invoice.WasInvoicePaid,
+                         Invoice.DateInvoiceWasSent
+                         FROM Invoice
+                         INNER JOIN Parent
+                         ON Invoice.ParentID=Parent.ParentID""")
         query.exec_()
         return query
 

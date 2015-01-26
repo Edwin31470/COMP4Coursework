@@ -112,12 +112,18 @@ class Window(QMainWindow):
         self.setCentralWidget(self.display_widget)
         self.display_widget.show_table("Parent")
 
+##    def show_invoice(self):
+##        if not hasattr(self,"display_widget"):
+##            self.display_widget = DisplayWidget()
+##        self.setCentralWidget(self.display_widget)
+##        self.display_widget.show_table("Invoice")
+
     def show_invoice(self):
         if not hasattr(self,"display_widget"):
             self.display_widget = DisplayWidget()
         self.setCentralWidget(self.display_widget)
-        self.display_widget.show_table("Invoice")
-
+        query = self.connection.show_invoices()
+        self.display_widget.show_results(query)
 
         
     def add_member_data(self):
@@ -229,7 +235,8 @@ class Window(QMainWindow):
 
         self.choose_button = ChooseOption()
         self.data_dialog = EnterInvoiceData()
-        self.choose_button.updatedData.connect(self.add_invoice_data)
+        self.choose_button.addData.connect(self.add_invoice_data)
+        self.choose_button.deleteData.connect(self.delete_invoice_data)
         
         self.table_layout = QHBoxLayout()
         self.layout = QVBoxLayout()
@@ -256,10 +263,10 @@ class Window(QMainWindow):
         self.main_widget.setLayout(self.layout)
         self.setCentralWidget(self.main_widget)
 
-    def delete_invoice(self):
+    def delete_invoice_data(self):
         self.show_invoice()
 
-        self.data_dialog = DeleteParentDataDialog()
+        self.data_dialog = DeleteInvoiceData()
         self.data_dialog.updatedData.connect(self.display_widget.refresh)
 
         self.table_layout = QHBoxLayout()
@@ -273,14 +280,6 @@ class Window(QMainWindow):
         self.main_widget = QWidget()
         self.main_widget.setLayout(self.layout)
         self.setCentralWidget(self.main_widget)
-        
-##        self.layout = QVBoxLayout()
-##        self.layout.addWidget(self.display_widget)
-##        self.layout.addWidget(self.data_dialog)
-##        self.main_widget = QWidget()
-##        self.main_widget.setLayout(self.layout)
-##        self.setCentralWidget(self.main_widget)
-
     
     def print_invoice_data(self):
         print("Working")

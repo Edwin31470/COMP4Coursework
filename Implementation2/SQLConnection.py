@@ -32,9 +32,10 @@ class SQLConnection():
 
     def show_invoices(self):
         query = QSqlQuery()
-        query.prepare("""select * from Invoice""")
+        query.prepare("""select * from Invoice and select ParentFirstName,ParentLastName from Parent""")
         query.exec_()
         return query
+    
 
     def add_member_data(self):
         return "Working"
