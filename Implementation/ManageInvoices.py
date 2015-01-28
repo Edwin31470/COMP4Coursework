@@ -1,4 +1,4 @@
-import sqlite3, smtplib
+import sqlite3
 
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
@@ -102,22 +102,9 @@ class ChooseOption(QWidget):
         self.add_button.clicked.connect(self.add_invoice)
         self.delete_button.clicked.connect(self.delete_invoice)
 
-    def add_invoice_stacked(self):
-        if self.stacked_layout.currentIndex == 0:
-            print("Stack layout changed to 1")
-            self.stacked_layout.setCurrentIndex(1)
-        if self.stacked_layout.currentIndex == 1:
-            self.stacked_layout.setCurrentIndex(0)
-
     def add_invoice(self):
         self.addData.emit()
 
     def delete_invoice(self):
         self.deleteData.emit()
-
-
-def email_document(self):
-    content = ""
-    mail = smtplib.SMTP('smtp.longroad.
-
     

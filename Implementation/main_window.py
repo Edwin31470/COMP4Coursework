@@ -27,16 +27,21 @@ class Window(QMainWindow):
         self.delete_parent = QAction("Delete Parent",self)
         self.manage_invoices = QAction("Manage Invoices",self)
         self.print_invoices = QAction("Print Invoices",self)
+        self.email_invoices = QAction("Email Invoices",self)
+        self.report_invoice = QAction("Report Invoice",self)
         
 
         #Create the menu bar
         self.menu_bar = QMenuBar()
         self.database_toolbar = QToolBar()
         self.manage_data_toolbar = QToolBar()
-        self.print_invoices_toolbar = QToolBar()
+        self.send_invoices_toolbar = QToolBar()
+        self.reports_toolbar = QToolBar()
         self.display_database_menu = self.menu_bar.addMenu("Display Database")
         self.manage_data_menu = self.menu_bar.addMenu("Manage Data")
-        self.print_invoices_menu = self.menu_bar.addMenu("Print Invoices")
+        self.send_invoices_menu = self.menu_bar.addMenu("Send Invoices")
+        self.reports_menu = self.menu_bar.addMenu("Reports")
+        
 
         #Create toolbar
         self.display_database_menu.addAction(self.display_member)
@@ -49,7 +54,9 @@ class Window(QMainWindow):
         self.manage_data_menu.addAction(self.edit_parent)
         self.manage_data_menu.addAction(self.delete_parent)
         self.manage_data_menu.addAction(self.manage_invoices)
-        self.print_invoices_menu.addAction(self.print_invoices)
+        self.send_invoices_menu.addAction(self.print_invoices)
+        self.send_invoices_menu.addAction(self.email_invoices)
+        self.reports_menu.addAction(self.report_invoice)
 
         #Add toolbars to window
         self.database_toolbar.addAction(self.display_member)
@@ -62,12 +69,15 @@ class Window(QMainWindow):
         self.manage_data_toolbar.addAction(self.edit_parent)
         self.manage_data_toolbar.addAction(self.delete_parent)
         self.manage_data_toolbar.addAction(self.manage_invoices)
-        self.print_invoices_toolbar.addAction(self.print_invoices)
+        self.send_invoices_toolbar.addAction(self.print_invoices)
+        self.send_invoices_toolbar.addAction(self.email_invoices)
+        self.reports_toolbar.addAction(self.report_invoice)
 
         #Add toolbar
         self.addToolBar(self.database_toolbar)
         self.addToolBar(self.manage_data_toolbar)
-        self.addToolBar(self.print_invoices_toolbar)
+        self.addToolBar(self.send_invoices_toolbar)
+        self.addToolBar(self.reports_toolbar)
 
         #Set menu bar
         self.setMenuBar(self.menu_bar)
@@ -84,6 +94,8 @@ class Window(QMainWindow):
         self.delete_parent.triggered.connect(self.delete_parent_data)
         self.manage_invoices.triggered.connect(self.manage_invoice_data)
         self.print_invoices.triggered.connect(self.print_invoice_data)
+        self.email_invoices.triggered.connect(self.email_invoice_data)
+        self.report_invoice.triggered.connect(self.report_invoice_data)
 
         #Resizing
         self.resize(1200,800)
@@ -111,12 +123,6 @@ class Window(QMainWindow):
             self.display_widget = DisplayWidget()
         self.setCentralWidget(self.display_widget)
         self.display_widget.show_table("Parent")
-
-##    def show_invoice(self):
-##        if not hasattr(self,"display_widget"):
-##            self.display_widget = DisplayWidget()
-##        self.setCentralWidget(self.display_widget)
-##        self.display_widget.show_table("Invoice")
 
     def show_invoice(self):
         if not hasattr(self,"display_widget"):
@@ -250,11 +256,11 @@ class Window(QMainWindow):
         self.main_widget.setLayout(self.layout)
         self.setCentralWidget(self.main_widget)
 
-    def add_invoice_data(self):
+    def delete_invoice_data(self):
         self.show_invoice()
 
-        self.data_dialog = EnterInvoiceData()
-        self.data_dialog.updatedData.connect(self.display_widget.refresh)
+        self.data_dialog = DeleteInvoiceData()
+        self.data_dialog.updatedData.connect(self.delete_invoice_data)
 
         self.layout = QVBoxLayout()
         self.layout.addWidget(self.display_widget)
@@ -263,11 +269,11 @@ class Window(QMainWindow):
         self.main_widget.setLayout(self.layout)
         self.setCentralWidget(self.main_widget)
 
-    def delete_invoice_data(self):
+    def add_invoice_data(self):
         self.show_invoice()
 
-        self.data_dialog = DeleteInvoiceData()
-        self.data_dialog.updatedData.connect(self.display_widget.refresh)
+        self.data_dialog = EnterInvoiceData()
+        self.data_dialog.updatedData.connect(self.add_invoice_data)
 
         self.table_layout = QHBoxLayout()
         self.layout = QVBoxLayout()
@@ -280,9 +286,33 @@ class Window(QMainWindow):
         self.main_widget = QWidget()
         self.main_widget.setLayout(self.layout)
         self.setCentralWidget(self.main_widget)
-    
+
     def print_invoice_data(self):
         print("Working")
+
+    def report_invoice_data(self):
+        if not hasattr(self,"display_widget"):
+            self.display_widget = DisplayWidget()
+        self.setCentralWidget(self.display_widget)
+        query = self.connection.report_invoices()
+        self.display_widget.show_results(query)
+
+    def email_invoice_data(self):
+        self.email_document()
+
+    def email_document(self):
+        content = ""
+        mail = smtplib.SMTP('smtp.hotmail.co.uk','587')
+
+        mail.ehlo()
+
+        mail.starttls()
+
+        mail.login('email adress','password')
+
+        mail.sendmail('emailing from','emailing to',content)
+
+        mail.close()
 
 if __name__ == "__main__":
     application = QApplication(sys.argv)

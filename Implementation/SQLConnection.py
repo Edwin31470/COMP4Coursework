@@ -45,6 +45,13 @@ class SQLConnection():
         query.exec_()
         return query
 
+    def report_invoices(self):
+        query = QSqlQuery()
+        query.prepare("""select * from Invoice where WasInvoicePaid = 'No'""")
+        query.exec_()
+        return query
+
+
     def add_member_data(self):
         return "Working"
 
