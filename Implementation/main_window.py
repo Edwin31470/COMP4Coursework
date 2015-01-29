@@ -9,6 +9,7 @@ from AddData import *
 from EditData import *
 from DeleteData import *
 from ManageInvoices import *
+from SendInvoices import *
 
 class Window(QMainWindow):
     def __init__(self):
@@ -288,7 +289,8 @@ class Window(QMainWindow):
         self.setCentralWidget(self.main_widget)
 
     def print_invoice_data(self):
-        print("Working")
+        invoice = SendInvoiceData()
+        invoice.print_preview()
 
     def report_invoice_data(self):
         if not hasattr(self,"display_widget"):
@@ -298,21 +300,9 @@ class Window(QMainWindow):
         self.display_widget.show_results(query)
 
     def email_invoice_data(self):
-        self.email_document()
+        invoice = SendInvoiceData()
+        invoice.email_document("31470@longroad.ac.uk","31470@longroad.ac.uk","password")
 
-    def email_document(self):
-        content = ""
-        mail = smtplib.SMTP('smtp.hotmail.co.uk','587')
-
-        mail.ehlo()
-
-        mail.starttls()
-
-        mail.login('email adress','password')
-
-        mail.sendmail('emailing from','emailing to',content)
-
-        mail.close()
 
 if __name__ == "__main__":
     application = QApplication(sys.argv)
