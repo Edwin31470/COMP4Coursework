@@ -504,6 +504,16 @@ As the system will be storing data of minors, such as date of birth, name, and a
 Access will be limited to one user name and password, which will be given to Terry when the system is set up.
 
 \section{Validation}
+My program will validate all locations where ambiguous data could be entered. This includes where names could be entered (1 to 20 letters), for dates (in the format DD/MM/YY) and for phone numbers (12 digits) and email (1 to 30 characters broken up by a @ in the middle). If erroneous data is entered the user will be warned if trying to accept however the validation can be overwritten in the rare cases the validation could be inncorrect (for example if a person's last name is very long).
+
+\begin{center}
+	\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|l}
+		\hline
+		\textbf{Test Series}   & \textbf{Purpose of Test Series}   & \textbf{Testing Strategy}   & \textbf{Strategy Rationale} \\ \hline
+		1                       & Validate input into member or parent first name  & John, 16, John Smith  & Numbers only \\ \hline
+		ParentID                             & String            & 4 digits                & Numbers only \\ \hline
+\end{tabular}
+\end{center}
 
 \section{Testing}
 
@@ -511,12 +521,15 @@ Access will be limited to one user name and password, which will be given to Ter
 \subsection{Outline Plan}
 
 \begin{center}
-    \begin{tabular}{|p{2cm}|p{5cm}|p{5cm}|p{4cm}|}
-        \hline
-        \textbf{Test Series} & \textbf{Purpose of Test Series} & \textbf{Testing Strategy} & \textbf{Strategy Rationale}\\ \hline
-        2.1 & Validate Input into member or parent first name & John, 16, John Smith,  John_ & Example \\ \hline
-        Example & Example & Example & Example \\ \hline
-    \end{tabular}
+	\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|l}
+		\hline
+		\textbf{Test Series}   & \textbf{Purpose of Test Series}   & \textbf{Testing Strategy}   & \textbf{Strategy Rationale} \\ \hline
+		1  & Validating names, numbers and other strings  & Bottom-up testing  & Components will be tested as they are developed \\ \hline
+		2  & Check searching the database is working correctly & Bottom-up testing  & Components will be tested as they are developed \\ \hline
+		3  & Check data is inserted into the database in the right locations & Bottom-up testing  & Components will be tested as they are developed \\ \hline
+		4  & Check buttons and flow of control work as intented & Top-down testing  & Components will be tested when the program is finished to check buttons still retain their functionality \\ \hline
+		5  & Test the GUI & Bottom-up testing  & Components will be tested as they are developed \\ \hline
+\end{tabular}
 \end{center}
 
 \subsection{Detailed Plan}
@@ -525,7 +538,15 @@ Access will be limited to one user name and password, which will be given to Ter
     \begin{longtable}{|p{1.5cm}|p{2.5cm}|p{2.5cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
         \hline
         \textbf{Test Series} & \textbf{Purpose of Test} & \textbf{Test Description} & \textbf{Test Data} & \textbf{Test Data Type (Normal/ Erroneous/ Boundary)} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Evidence}\\ \hline
-        Example & Example & Example & Example & Example & Example & Example & Example \\ \hline
+        1.1 & Validate first or last name is likely to be correct & Check the string consists of just letters and is between 1 and 20 characters and contains no spaces & John, 12345, John19, J, John Smith & Normal, Erroneous, Erroneous, Boundary, Erroneous & Accepted, Error, Error, Accepted, Error & \\ \hline
+        1.2 & Validate town name is likely to be correct & Check the string consists of just letters, hyphens and spaces and is between 1 and 20 characters & Fordham, Walton-on-the-Naze, Bury St Edmunds, Soham19 & Normal, Normal, Normal, Erroneous & Accepted, Accepted, Accepted, Error & \\ \hline
+        1.3 & Validate street name is likely to be correct & Check the string consists of just letters, hyphens and spaces and is between 1 and 20 characters & Market Street, Feast Close, ChurchStreet19 & Normal, Normal, Erroneous & Accepted, Accepted, Error & \\ \hline
+        1.4 & Validate house name/number is likely to be correct & Check the string consists of just letters, hyphens and spaces and is between 1 and 20 characters OR is a number of 1 to 3 characters & Swan, 4, Swan4 & Normal, Normal, Erroneous & Accepted, Accepted, Error & \\ \hline
+        1.5 & Validate phone number is likely to be correct & Check the string consists of just numbers and is 12 characters & 01234, 012345678911, one two three & Erroneous, Normal, Erroneous & Error, Accepted, Error & \\ \hline
+        1.6 & Validate email is likely to be correct & Check the string consists of letters, ``@ `` and ``.`` 1 to  30 characters & johnsmith.co.uk, johnsmith@longroad.ac.uk, johnsmithatlongroad.ac.uk & Erroneous, Normal, Erroneous & Error, Accepted, Error & \\ \hline
+        1.7 & Validate date of birth is likely to be correct & Check the string consists of just numbers and / and in the format DD/MM/YY & 15th November, 15/11/96, 15/11/1996, 15.11.96 & Erroneous, Normal, Erroneous, Erroneous & Error, Accepted, Error, Error & \\ \hline
+        1.8 & Validate date the invoice was sent is likely to be correct & Check the string consists of just numbers and / and in the format DD/MM/YY & 1st January, 01/01/11, 01/01/2011, 01.01.11 & Erroneous, Normal, Erroneous, Erroneous & Error, Accepted, Error, Error & \\ \hline
+        2.1 & Validate date of birth is likely to be correct & Check the string consists of just numbers and / and in the format DD/MM/YY & 15th November, 15/11/96, 15/11/1996, 15.11.96 & Erroneous, Normal, Erroneous, Erroneous & Error, Accepted, Error, Error & \\ \hline
     \end{longtable}
 \end{center}
 \end{landscape}
