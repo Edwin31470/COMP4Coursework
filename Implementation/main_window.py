@@ -10,6 +10,7 @@ from EditData import *
 from DeleteData import *
 from ManageInvoices import *
 from SendInvoices import *
+from SortingTable import *
 
 class Window(QMainWindow):
     def __init__(self):
@@ -116,8 +117,20 @@ class Window(QMainWindow):
     def show_member(self):
         if not hasattr(self,"display_widget"):
             self.display_widget = DisplayWidget()
-        self.setCentralWidget(self.display_widget)
         self.display_widget.show_table("Member")
+        
+        self.search_widget = SearchWidget()
+        
+        self.main_layout = QVBoxLayout()
+        self.main_widget = QWidget()
+
+        self.main_layout.addWidget(self.search_widget)
+        self.main_layout.addWidget(self.display_widget)
+
+        self.main_widget.setLayout(self.main_layout)
+        
+        self.setCentralWidget(self.main_widget)
+        #self.display_widget.show_table("Member")
 
     def show_parent(self):
         if not hasattr(self,"display_widget"):
@@ -300,8 +313,11 @@ class Window(QMainWindow):
         self.display_widget.show_results(query)
 
     def email_invoice_data(self):
-        invoice = SendInvoiceData()
-        invoice.email_document("31470@longroad.ac.uk","31470@longroad.ac.uk","password")
+        invoice = EmailInvoice()
+        invoice.exec_()
+        values = invoice.return_values()
+        print(values)
+        invoice.email_document(values[0],values[1],values[2],values[3])
 
 
 if __name__ == "__main__":

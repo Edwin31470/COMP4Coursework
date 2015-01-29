@@ -13,6 +13,13 @@ class SendInvoiceData(QWidget):
         self.setLayout(self.dialog_layout)
 
         
+class PrintInvoice(QDialog):
+    """This class provides a dialog box for getting email information"""
+    def __init__(self):
+        super().__init__()
+
+        
+
 
     def create_html(self):
         html = ""
@@ -75,9 +82,48 @@ class SendInvoiceData(QWidget):
         PrintPreview.resize(1600,1000)
         PrintPreview.exec()
 
-    def email_document(self,addressFrom,addressTo,password):
+
+class EmailInvoice(QDialog):
+    """This class provides a dialog box to email invoices"""
+    def __init__(self):
+        super().__init__()
+
+        self.dialog_layout = QVBoxLayout()
+        
+        self.invoiceID = QLineEdit()
+        self.email_address_from = QLineEdit()
+        self.email_address_to = QLineEdit()
+        self.password = QLineEdit()
+        self.accept_button = QPushButton("Accept")
+        
+        self.invoiceID.setPlaceholderText("Enter InvoiceID to Email")
+        self.email_address_from.setPlaceholderText("Enter Email Address")
+        self.email_address_to.setPlaceholderText("Enter Parent's Email Address")
+        self.password.setPlaceholderText("Enter Email Password")
+        self.password.setEchoMode(2)
+
+        self.dialog_layout.addWidget(self.invoiceID)
+        self.dialog_layout.addWidget(self.email_address_from)
+        self.dialog_layout.addWidget(self.email_address_to)
+        self.dialog_layout.addWidget(self.password)
+        self.dialog_layout.addWidget(self.accept_button)
+
+        self.setLayout(self.dialog_layout)
+        
+        self.accept_button.clicked.connect(self.close)
+
+    def return_values(self):
+        values = (self.invoiceID.text(),
+                  self.email_address_from.text(),
+                  self.email_address_to.text(),
+                  self.password.text())
+
+        return values
+        
+    def email_document(self,invoiceID,addressFrom,addressTo,password):
         content = "Test"
-        mail = smtplib.SMTP('smtp.hotmail.co.uk','587')
+        
+        mail = smtplib.SMTP('smtp.longroad.ac.uk','587')
 
         mail.ehlo()
 
@@ -88,3 +134,4 @@ class SendInvoiceData(QWidget):
         mail.sendmail(addressFrom,addressTo,content)
 
         mail.close()
+
