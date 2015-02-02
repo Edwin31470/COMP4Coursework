@@ -26,6 +26,7 @@ class DisplayWidget(QWidget):
             self.model = QSqlQueryModel()
         self.model.setQuery(query)
         self.results_table.setModel(self.model)
+        self.results_table.resizeColumnsToContents()
         self.results_table.show()
         
 

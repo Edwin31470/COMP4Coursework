@@ -113,13 +113,15 @@ class Window(QMainWindow):
         ok = self.connection.open_database()
         print("Opened Ok: ",ok)
 
-
     def show_member(self):
         if not hasattr(self,"display_widget"):
             self.display_widget = DisplayWidget()
-        self.display_widget.show_table("Member")
         
-        self.search_widget = SearchWidget()
+        query = self.connection.show_members()
+        self.display_widget.show_results(query)
+
+        self.search_widget = SearchWidgetMembers()
+        self.search_widget.order_combobox.currentIndexChanged.connect(self.search_member)
         
         self.main_layout = QVBoxLayout()
         self.main_widget = QWidget()
@@ -130,13 +132,105 @@ class Window(QMainWindow):
         self.main_widget.setLayout(self.main_layout)
         
         self.setCentralWidget(self.main_widget)
-        #self.display_widget.show_table("Member")
+
+    def search_member(self):
+        index = self.search_widget.order_combobox.currentIndex()
+        if index == 0:
+            query = self.connection.show_members()
+        if index == 1:
+            query = self.connection.order_member_data("MemberDateOfBirth","ASC")
+        if index == 2:
+            query = self.connection.order_member_data("MemberFirstName","ASC")
+        if index == 3:
+            query = self.connection.order_member_data("MemberFirstName","DESC")
+        if index == 4:
+            query = self.connection.order_member_data("MemberLastName","ASC")
+        if index == 5:
+            query = self.connection.order_member_data("MemberLastName","DESC")
+        if index == 6:
+            query = self.connection.order_member_data("MemberTownName","ASC")
+        if index == 7:
+            query = self.connection.order_member_data("MemberTownName","DESC")
+        self.display_widget.model.setQuery(query)
+        self.display_widget.results_table.show()
 
     def show_parent(self):
         if not hasattr(self,"display_widget"):
             self.display_widget = DisplayWidget()
-        self.setCentralWidget(self.display_widget)
-        self.display_widget.show_table("Parent")
+        
+        query = self.connection.show_parents()
+        self.display_widget.show_results(query)
+
+        self.search_widget = SearchWidgetParents()
+        self.search_widget.order_combobox.currentIndexChanged.connect(self.search_parent)
+        
+        self.main_layout = QVBoxLayout()
+        self.main_widget = QWidget()
+
+        self.main_layout.addWidget(self.search_widget)
+        self.main_layout.addWidget(self.display_widget)
+
+        self.main_widget.setLayout(self.main_layout)
+        
+        self.setCentralWidget(self.main_widget)
+
+    def search_parent(self):
+        index = self.search_widget.order_combobox.currentIndex()
+        if index == 0:
+            query = self.connection.show_parents()
+        if index == 1:
+            query = self.connection.order_parent_data("ParentFirstName","ASC")
+        if index == 2:
+            query = self.connection.order_parent_data("ParentFirstName","DESC")
+        if index == 3:
+            query = self.connection.order_parent_data("ParentLastName","ASC")
+        if index == 4:
+            query = self.connection.order_parent_data("ParentLastName","DESC")
+        if index == 5:
+            query = self.connection.order_parent_data("ParentTownName","ASC")
+        if index == 6:
+            query = self.connection.order_parent_data("ParentTownName","DESC")
+        self.display_widget.model.setQuery(query)
+        self.display_widget.results_table.show()
+
+    def show_invoice(self):
+        if not hasattr(self,"display_widget"):
+            self.display_widget = DisplayWidget()
+        
+        query = self.connection.show_parents()
+        self.display_widget.show_results(query)
+
+        self.search_widget = SearchWidgetInvoice()
+        self.search_widget.order_combobox.currentIndexChanged.connect(self.search_invoice)
+        
+        self.main_layout = QVBoxLayout()
+        self.main_widget = QWidget()
+
+        self.main_layout.addWidget(self.search_widget)
+        self.main_layout.addWidget(self.display_widget)
+
+        self.main_widget.setLayout(self.main_layout)
+        
+        self.setCentralWidget(self.main_widget)
+
+    def search_invoice(self):
+        index = self.search_widget.order_combobox.currentIndex()
+        if index == 0:
+            query = self.connection.show_invoice()
+        if index == 1:
+            query = self.connection.order_parent_data("ParentFirstName","ASC")
+        if index == 2:
+            query = self.connection.order_parent_data("ParentFirstName","DESC")
+        if index == 3:
+            query = self.connection.order_parent_data("ParentLastName","ASC")
+        if index == 4:
+            query = self.connection.order_parent_data("ParentLastName","DESC")
+        if index == 5:
+            query = self.connection.order_parent_data("ParentTownName","ASC")
+        if index == 6:
+            query = self.connection.order_parent_data("ParentTownName","DESC")
+        self.display_widget.model.setQuery(query)
+        self.display_widget.results_table.show()
 
     def show_invoice(self):
         if not hasattr(self,"display_widget"):

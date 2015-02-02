@@ -64,6 +64,25 @@ class SQLConnection():
     def delete_member_data(self):
         return "Working"
 
+    def order_member_data(self,column,order):
+        query = QSqlQuery()
+        query.prepare("""select * from Member order by {0} {1}""".format(column,order))
+        #query.prepare("""select * from Member order by MemberDateOfBirth ASC""")
+        query.exec_()
+        return query
+
+    def order_parent_data(self,column,order):
+        query = QSqlQuery()
+        query.prepare("""select * from Parent order by {0} {1}""".format(column,order))
+        query.exec_()
+        return query
+
+    def order_invoice_data(self,column,order):
+        query = QSqlQuery()
+        query.prepare("""select * from Parent order by {0} {1}""".format(column,order))
+        query.exec_()
+        return query
+
     def add_parent_data(self):
         return "Working"
 
