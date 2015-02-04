@@ -77,9 +77,26 @@ class SQLConnection():
         query.exec_()
         return query
 
+    def order_invoice_data_old(self,column,order):
+        query = QSqlQuery()
+        query.prepare("""select * from Invoice order by {0} {1}""".format(column,order))
+        query.exec_()
+        return query
+
     def order_invoice_data(self,column,order):
         query = QSqlQuery()
-        query.prepare("""select * from Parent order by {0} {1}""".format(column,order))
+        query.prepare("""SELECT
+                         Invoice.InvoiceID,
+                         Parent.ParentFirstName,
+                         Parent.ParentLastName,
+                         Invoice.PriceID,
+                         Invoice.WasInvoicePaid,
+                         Invoice.DateInvoiceWasSent
+                         FROM Invoice
+                         INNER JOIN Parent
+                         ON Invoice.ParentID=Parent.ParentID
+
+                         ORDER BY {0} {1}""".format(column,order))
         query.exec_()
         return query
 

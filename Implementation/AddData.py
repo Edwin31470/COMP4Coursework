@@ -1,4 +1,4 @@
-import sqlite3, re
+import sqlite3, re, datetime, calendar
 
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
@@ -31,13 +31,36 @@ class EnterMemberDataDialog(EnterDataDialog):
         self.add_street_name_button.textChanged.connect(self.validate_street_name)
         self.add_house_name_button = QLineEdit()
         self.add_house_name_button.textChanged.connect(self.validate_house_name)
-        self.add_dob_button = QLineEdit()
-        self.add_dob_button.textChanged.connect(self.validate_dob)
         self.accept_button = QPushButton("Accept")
+
+
+        #Creating DoB widget
+        self.dob_label = QLabel("Date of birth:")
+        self.add_dob_day_button = QComboBox()
+        self.add_dob_month_button = QComboBox()
+        self.add_dob_year_button = QComboBox()
+
+        currentYear = int(datetime.date.today().strftime("%Y"))
+        print(currentYear)
+
+        for count in range(1,32):
+            self.add_dob_day_button.addItem(str(count))
+        for count in range(1,13):
+            self.add_dob_month_button.addItem(str(count))
+        for count in range(currentYear - 16,currentYear - 8):
+            self.add_dob_year_button.addItem(str(count))
+        
+        self.dob_layout = QHBoxLayout()
+        self.dob_widget = QWidget()
+        self.dob_layout.addWidget(self.dob_label)
+        self.dob_layout.addWidget(self.add_dob_day_button)
+        self.dob_layout.addWidget(self.add_dob_month_button)
+        self.dob_layout.addWidget(self.add_dob_year_button)
+        self.dob_widget.setLayout(self.dob_layout)
+        
         
         self.add_first_name_button.setPlaceholderText("Enter First Name")
         self.add_last_name_button.setPlaceholderText("Enter Last Name")
-        self.add_dob_button.setPlaceholderText("Enter Date Of Birth (DD/MM/YY)")
         self.add_town_name_button.setPlaceholderText("Enter Town Name")
         self.add_street_name_button.setPlaceholderText("Enter Street Name")
         self.add_house_name_button.setPlaceholderText("Enter House Name")
@@ -47,19 +70,30 @@ class EnterMemberDataDialog(EnterDataDialog):
         self.dialog_layout.addWidget(self.add_town_name_button)
         self.dialog_layout.addWidget(self.add_street_name_button)
         self.dialog_layout.addWidget(self.add_house_name_button)
-        self.dialog_layout.addWidget(self.add_dob_button)
+        self.dialog_layout.addWidget(self.dob_widget)
         self.dialog_layout.addWidget(self.accept_button)
 
         self.accept_button.clicked.connect(self.insert_member)
 
 
     def insert_member(self):
+        day = self.add_dob_day_button.itemText(self.add_dob_day_button.currentIndex()) 
+        month = self.add_dob_month_button.itemText(self.add_dob_month_button.currentIndex())
+        year = self.add_dob_year_button.itemText(self.add_dob_year_button.currentIndex())
+        
+        if int(day) in range(1,10):
+            day = "0" + day
+        if int(month) in range(1,10):
+            month = "0" + month
+        
+        dob = year + "/" + month + "/" + day
+        print(dob)
         values = (self.add_first_name_button.text(),
                   self.add_last_name_button.text(),
                   self.add_town_name_button.text(),
                   self.add_street_name_button.text(),
                   self.add_house_name_button.text(),
-                  self.add_dob_button.text())
+                  dob)
     
         with sqlite3.connect("scout_database.db") as db:
             cursor = db.cursor()

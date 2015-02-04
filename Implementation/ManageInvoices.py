@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3,datetime
 
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
@@ -30,9 +30,32 @@ class EnterInvoiceData(ManageInvoiceData):
         self.add_invoice_paid_button.setPlaceholderText("Was the invoicew paid? (Yes/No)")
         self.add_date_sent_button.setPlaceholderText("Enter Date Sent (DD/MM/YY)")
 
+        #Creating date widget
+        self.date_label = QLabel("Date sent:")
+        self.add_date_day_button = QComboBox()
+        self.add_date_month_button = QComboBox()
+        self.add_date_year_button = QComboBox()
+
+        currentYear = int(datetime.date.today().strftime("%Y"))
+
+        for count in range(1,32):
+            self.add_date_day_button.addItem(str(count))
+        for count in range(1,13):
+            self.add_date_month_button.addItem(str(count))
+        for count in range(currentYear - 16,currentYear - 8):
+            self.add_date_year_button.addItem(str(count))
+        
+        self.date_layout = QHBoxLayout()
+        self.date_widget = QWidget()
+        self.date_layout.addWidget(self.date_label)
+        self.date_layout.addWidget(self.add_date_day_button)
+        self.date_layout.addWidget(self.add_date_month_button)
+        self.date_layout.addWidget(self.add_date_year_button)
+        self.date_widget.setLayout(self.date_layout)
+
         self.dialog_layout.addWidget(self.add_parentID_button)
         self.dialog_layout.addWidget(self.add_invoice_paid_button)
-        self.dialog_layout.addWidget(self.add_date_sent_button)
+        self.dialog_layout.addWidget(self.date_widget)
 
         self.dialog_layout.addWidget(self.accept_button)
 
@@ -40,9 +63,20 @@ class EnterInvoiceData(ManageInvoiceData):
 
 
     def insert_invoice(self):
+        day = self.add_date_day_button.itemText(self.add_date_day_button.currentIndex()) 
+        month = self.add_date_month_button.itemText(self.add_date_month_button.currentIndex())
+        year = self.add_date_year_button.itemText(self.add_date_year_button.currentIndex())
+        
+        if int(day) in range(1,10):
+            day = "0" + day
+        if int(month) in range(1,10):
+            month = "0" + month
+        
+        date = year + "/" + month + "/" + day
+        
         values = (self.add_parentID_button.text(),
                   self.add_invoice_paid_button.text(),
-                  self.add_date_sent_button.text())
+                  date)
     
         with sqlite3.connect("scout_database.db") as db:
             cursor = db.cursor()

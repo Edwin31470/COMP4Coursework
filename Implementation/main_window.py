@@ -105,13 +105,31 @@ class Window(QMainWindow):
         #Opening Database
         self.open_database()
         self.show_member()
-        
+
     def open_database(self):
         path = "scout_database.db"
         print("Path: ",path)
         self.connection = SQLConnection(path)
         ok = self.connection.open_database()
         print("Opened Ok: ",ok)
+
+
+    def show_member_table(self):
+        if not hasattr(self,"display_widget"):
+            self.display_widget = DisplayWidget()
+        self.display_widget.show_table("Member")
+
+    def show_parent_table(self):
+        if not hasattr(self,"display_widget"):
+            self.display_widget = DisplayWidget()
+        self.display_widget.show_table("Parent")
+
+    def show_invoice_table(self):
+        if not hasattr(self,"display_widget"):
+            self.display_widget = DisplayWidget()
+        self.display_widget.show_table("Invoice")
+    
+ 
 
     def show_member(self):
         if not hasattr(self,"display_widget"):
@@ -133,6 +151,7 @@ class Window(QMainWindow):
         
         self.setCentralWidget(self.main_widget)
 
+        
     def search_member(self):
         index = self.search_widget.order_combobox.currentIndex()
         if index == 0:
@@ -197,7 +216,7 @@ class Window(QMainWindow):
         if not hasattr(self,"display_widget"):
             self.display_widget = DisplayWidget()
         
-        query = self.connection.show_parents()
+        query = self.connection.show_invoices()
         self.display_widget.show_results(query)
 
         self.search_widget = SearchWidgetInvoice()
@@ -216,32 +235,25 @@ class Window(QMainWindow):
     def search_invoice(self):
         index = self.search_widget.order_combobox.currentIndex()
         if index == 0:
-            query = self.connection.show_invoice()
+            query = self.connection.show_invoices()
         if index == 1:
-            query = self.connection.order_parent_data("ParentFirstName","ASC")
+            query = self.connection.order_invoice_data("DateInvoiceWasSent","ASC")
         if index == 2:
-            query = self.connection.order_parent_data("ParentFirstName","DESC")
+            query = self.connection.order_invoice_data("ParentFirstName","ASC")
         if index == 3:
-            query = self.connection.order_parent_data("ParentLastName","ASC")
+            query = self.connection.order_invoice_data("ParentFirstName","DESC")
         if index == 4:
-            query = self.connection.order_parent_data("ParentLastName","DESC")
+            query = self.connection.order_invoice_data("ParentLastName","ASC")
         if index == 5:
-            query = self.connection.order_parent_data("ParentTownName","ASC")
+            query = self.connection.order_invoice_data("ParentLastName","DESC")
         if index == 6:
-            query = self.connection.order_parent_data("ParentTownName","DESC")
+            query = self.connection.order_invoice_data("WasInvoicePaid","ASC")
         self.display_widget.model.setQuery(query)
         self.display_widget.results_table.show()
 
-    def show_invoice(self):
-        if not hasattr(self,"display_widget"):
-            self.display_widget = DisplayWidget()
-        self.setCentralWidget(self.display_widget)
-        query = self.connection.show_invoices()
-        self.display_widget.show_results(query)
-
         
     def add_member_data(self):
-        self.show_member()
+        self.show_member_table()
 
         self.data_dialog = EnterMemberDataDialog()
         self.data_dialog.updatedData.connect(self.display_widget.refresh)
@@ -255,9 +267,7 @@ class Window(QMainWindow):
         
 
     def edit_member_data(self):        
-        if not hasattr(self,"display_widget"):
-            self.display_widget = DisplayWidget()
-        self.display_widget.show_table("Member")
+        self.show_member_table()
 
         self.search_dialog = SearchDialog()
         
@@ -279,7 +289,7 @@ class Window(QMainWindow):
         self.display_widget.results_table.setModel(self.display_widget.model)
         
     def delete_member_data(self):
-        self.show_member()
+        self.show_member_table()
 
         self.data_dialog = DeleteMemberDataDialog()
         self.data_dialog.updatedData.connect(self.display_widget.refresh)
@@ -292,7 +302,7 @@ class Window(QMainWindow):
         self.setCentralWidget(self.main_widget)
 
     def add_parent_data(self):
-        self.show_parent()
+        self.show_parent_table()
 
         self.data_dialog = EnterParentDataDialog()
         self.data_dialog.updatedData.connect(self.display_widget.refresh)
@@ -305,10 +315,8 @@ class Window(QMainWindow):
         self.setCentralWidget(self.main_widget)
 
     def edit_parent_data(self):        
-        if not hasattr(self,"display_widget"):
-            self.display_widget = DisplayWidget()
-        self.display_widget.show_table("Parent")
-
+        self.show_parent_table()
+        
         self.search_dialog = SearchDialogParent()
         
         self.search_dialog.updatedData.connect(self.return_searched_data_parent)
@@ -329,7 +337,7 @@ class Window(QMainWindow):
         self.display_widget.results_table.setModel(self.display_widget.model)
 
     def delete_parent_data(self):
-        self.show_parent()
+        self.show_parent_table()
 
         self.data_dialog = DeleteParentDataDialog()
         self.data_dialog.updatedData.connect(self.display_widget.refresh)
@@ -342,7 +350,7 @@ class Window(QMainWindow):
         self.setCentralWidget(self.main_widget)
 
     def manage_invoice_data(self):
-        self.show_invoice()
+        self.show_invoice_table()
 
         self.display_widget_2 = DisplayWidget()
         self.display_widget_2.show_table("Parent")
@@ -365,7 +373,7 @@ class Window(QMainWindow):
         self.setCentralWidget(self.main_widget)
 
     def delete_invoice_data(self):
-        self.show_invoice()
+        self.show_invoice_table()
 
         self.data_dialog = DeleteInvoiceData()
         self.data_dialog.updatedData.connect(self.delete_invoice_data)
@@ -378,7 +386,7 @@ class Window(QMainWindow):
         self.setCentralWidget(self.main_widget)
 
     def add_invoice_data(self):
-        self.show_invoice()
+        self.show_invoice_table()
 
         self.data_dialog = EnterInvoiceData()
         self.data_dialog.updatedData.connect(self.add_invoice_data)
