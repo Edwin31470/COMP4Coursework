@@ -13,14 +13,15 @@ class DisplayWidget(QWidget):
 
     def display_results_layout(self):
         self.results_table = QTableView()
-        #self.results_table.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.results_table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.results_table.setAlternatingRowColors(True)
         self.results_layout = QVBoxLayout()
         self.results_layout.addWidget(self.results_table)
         self.results_widget = QWidget()
         self.results_widget.setLayout(self.results_layout)
         self.layout.addWidget(self.results_widget)
-
+        
+        
     def show_results(self,query):
         if not self.model or not isinstance(self.model,QSqlQueryModel):
             self.model = QSqlQueryModel()
@@ -50,3 +51,6 @@ class DisplayWidget(QWidget):
     def refresh(self):
         self.model.select()
         self.results_table.setModel(self.model)
+
+    def selection(self):
+        print(self.results_table.selectedIndexes()[0].row())

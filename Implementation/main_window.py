@@ -11,6 +11,7 @@ from DeleteData import *
 from ManageInvoices import *
 from SendInvoices import *
 from SortingTable import *
+from SearchingData import *
 
 class Window(QMainWindow):
     def __init__(self):
@@ -291,16 +292,28 @@ class Window(QMainWindow):
     def delete_member_data(self):
         self.show_member_table()
 
-        self.data_dialog = DeleteMemberDataDialog()
-        self.data_dialog.updatedData.connect(self.display_widget.refresh)
+        self.search_dialog = SearchDialog()
+        self.search_dialog.updatedData.connect(self.return_searched_data_member)
+
+        self.display_widget.results_table.doubleClicked.connect(self.delete_member_data_clicked)
+
+        self.label = QLabel("Double click a row to delete.")
+        self.label.setAlignment(Qt.AlignCenter)
+
 
         self.layout = QVBoxLayout()
+        self.layout.addWidget(self.search_dialog)
+        self.layout.addWidget(self.label)
         self.layout.addWidget(self.display_widget)
-        self.layout.addWidget(self.data_dialog)
         self.main_widget = QWidget()
         self.main_widget.setLayout(self.layout)
         self.setCentralWidget(self.main_widget)
 
+    def delete_member_data_clicked(self):
+        row = self.display_widget.results_table.selectedIndexes()[0].row()
+        self.display_widget.model.removeRow(row)
+        
+    
     def add_parent_data(self):
         self.show_parent_table()
 
@@ -320,7 +333,7 @@ class Window(QMainWindow):
         self.search_dialog = SearchDialogParent()
         
         self.search_dialog.updatedData.connect(self.return_searched_data_parent)
-        
+        self.delete(self.delete_member_data)
         
         self.layout = QVBoxLayout()
         self.layout.addWidget(self.search_dialog)
@@ -336,6 +349,7 @@ class Window(QMainWindow):
         self.display_widget.model.select()
         self.display_widget.results_table.setModel(self.display_widget.model)
 
+    
     def delete_parent_data(self):
         self.show_parent_table()
 
