@@ -130,7 +130,15 @@ class Window(QMainWindow):
             self.display_widget = DisplayWidget()
         self.display_widget.show_table("Invoice")
     
- 
+    def show_invoice_query(self):
+        if not hasattr(self,"display_widget"):
+            self.display_widget = DisplayWidget()   
+        query = self.connection.show_invoices()
+        self.display_widget.show_results(query)
+        
+
+
+
 
     def show_member(self):
         if not hasattr(self,"display_widget"):
@@ -273,10 +281,13 @@ class Window(QMainWindow):
         self.search_dialog = SearchDialog()
         
         self.search_dialog.updatedData.connect(self.return_searched_data_member)
-        
+
+        self.label = QLabel("Click on a field to edit it.")
+        self.label.setAlignment(Qt.AlignCenter)
         
         self.layout = QVBoxLayout()
         self.layout.addWidget(self.search_dialog)
+        self.layout.addWidget(self.label)
         self.layout.addWidget(self.display_widget)
         self.main_widget = QWidget()
         self.main_widget.setLayout(self.layout)
@@ -295,7 +306,7 @@ class Window(QMainWindow):
         self.search_dialog = SearchDialog()
         self.search_dialog.updatedData.connect(self.return_searched_data_member)
 
-        self.display_widget.results_table.doubleClicked.connect(self.delete_member_data_clicked)
+        self.display_widget.results_table.doubleClicked.connect(self.delete_row_clicked)
 
         self.label = QLabel("Double click a row to delete.")
         self.label.setAlignment(Qt.AlignCenter)
@@ -309,7 +320,7 @@ class Window(QMainWindow):
         self.main_widget.setLayout(self.layout)
         self.setCentralWidget(self.main_widget)
 
-    def delete_member_data_clicked(self):
+    def delete_row_clicked(self):
         row = self.display_widget.results_table.selectedIndexes()[0].row()
         self.display_widget.model.removeRow(row)
         
@@ -333,14 +344,18 @@ class Window(QMainWindow):
         self.search_dialog = SearchDialogParent()
         
         self.search_dialog.updatedData.connect(self.return_searched_data_parent)
-        self.delete(self.delete_member_data)
+
+        self.label = QLabel("Click on a field to edit it.")
+        self.label.setAlignment(Qt.AlignCenter)
         
         self.layout = QVBoxLayout()
         self.layout.addWidget(self.search_dialog)
+        self.layout.addWidget(self.label)
         self.layout.addWidget(self.display_widget)
         self.main_widget = QWidget()
         self.main_widget.setLayout(self.layout)
         self.setCentralWidget(self.main_widget)
+
 
     def return_searched_data_parent(self):
         text = self.search_dialog.search_for_member.text()
@@ -353,18 +368,24 @@ class Window(QMainWindow):
     def delete_parent_data(self):
         self.show_parent_table()
 
-        self.data_dialog = DeleteParentDataDialog()
-        self.data_dialog.updatedData.connect(self.display_widget.refresh)
+        self.search_dialog = SearchDialogParent()
+        self.search_dialog.updatedData.connect(self.return_searched_data_parent)
+
+        self.display_widget.results_table.doubleClicked.connect(self.delete_row_clicked)
+
+        self.label = QLabel("Double click a row to delete.")
+        self.label.setAlignment(Qt.AlignCenter)
 
         self.layout = QVBoxLayout()
+        self.layout.addWidget(self.search_dialog)
+        self.layout.addWidget(self.label)
         self.layout.addWidget(self.display_widget)
-        self.layout.addWidget(self.data_dialog)
         self.main_widget = QWidget()
         self.main_widget.setLayout(self.layout)
         self.setCentralWidget(self.main_widget)
 
     def manage_invoice_data(self):
-        self.show_invoice_table()
+        self.show_invoice_query()
 
         self.display_widget_2 = DisplayWidget()
         self.display_widget_2.show_table("Parent")
@@ -373,6 +394,16 @@ class Window(QMainWindow):
         self.data_dialog = EnterInvoiceData()
         self.choose_button.addData.connect(self.add_invoice_data)
         self.choose_button.deleteData.connect(self.delete_invoice_data)
+
+        self.label_layout = QHBoxLayout()
+        self.parent_label = QLabel("Parent Table")
+        self.parent_label.setAlignment(Qt.AlignCenter)
+        self.invoice_label = QLabel("Invoice Table")
+        self.invoice_label.setAlignment(Qt.AlignCenter)
+        self.label_layout.addWidget(self.parent_label)
+        self.label_layout.addWidget(self.invoice_label)
+        self.label_widget = QWidget()
+        self.label_widget.setLayout(self.label_layout)
         
         self.table_layout = QHBoxLayout()
         self.layout = QVBoxLayout()
@@ -380,6 +411,7 @@ class Window(QMainWindow):
         self.table_layout.addWidget(self.display_widget_2)
         self.table_layout.addWidget(self.display_widget)
         self.tables.setLayout(self.table_layout)
+        self.layout.addWidget(self.label_widget)
         self.layout.addWidget(self.tables)
         self.layout.addWidget(self.choose_button)
         self.main_widget = QWidget()
@@ -387,20 +419,26 @@ class Window(QMainWindow):
         self.setCentralWidget(self.main_widget)
 
     def delete_invoice_data(self):
-        self.show_invoice_table()
+        self.show_invoice_query()
 
-        self.data_dialog = DeleteInvoiceData()
-        self.data_dialog.updatedData.connect(self.delete_invoice_data)
+        self.search_dialog = SearchDialogParent()
+        self.search_dialog.updatedData.connect(self.return_searched_data_parent)
+
+        self.display_widget.results_table.doubleClicked.connect(self.delete_row_clicked)
+
+        self.label = QLabel("Double click a row to delete.")
+        self.label.setAlignment(Qt.AlignCenter)
 
         self.layout = QVBoxLayout()
+        self.layout.addWidget(self.search_dialog)
+        self.layout.addWidget(self.label)
         self.layout.addWidget(self.display_widget)
-        self.layout.addWidget(self.data_dialog)
         self.main_widget = QWidget()
         self.main_widget.setLayout(self.layout)
         self.setCentralWidget(self.main_widget)
 
     def add_invoice_data(self):
-        self.show_invoice_table()
+        self.show_invoice_query()
 
         self.data_dialog = EnterInvoiceData()
         self.data_dialog.updatedData.connect(self.add_invoice_data)

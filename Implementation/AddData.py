@@ -10,30 +10,93 @@ class EnterDataDialog(QWidget):
     def __init__(self):
         super().__init__()
         
+        self.add_first_name = QLineEdit()
+        self.add_first_name.textChanged.connect(self.validate_first_name)
+        self.add_last_name = QLineEdit()
+        self.add_last_name.textChanged.connect(self.validate_last_name)      
+        self.add_town_name = QLineEdit()
+        self.add_town_name.textChanged.connect(self.validate_town_name)
+        self.add_street_name = QLineEdit()
+        self.add_street_name.textChanged.connect(self.validate_street_name)
+        self.add_house_name = QLineEdit()
+        self.add_house_name.textChanged.connect(self.validate_house_name)
+        self.accept_button = QPushButton("Accept")
+
+        self.add_first_name.setPlaceholderText("Enter First Name")
+        self.add_last_name.setPlaceholderText("Enter Last Name")
+        self.add_town_name.setPlaceholderText("Enter Town Name")
+        self.add_street_name.setPlaceholderText("Enter Street Name")
+        self.add_house_name.setPlaceholderText("Enter House Name")
+
         self.dialog_layout = QVBoxLayout()
+
+        self.dialog_layout.addWidget(self.add_first_name)
+        self.dialog_layout.addWidget(self.add_last_name)
+        self.dialog_layout.addWidget(self.add_town_name)
+        self.dialog_layout.addWidget(self.add_street_name)
+        self.dialog_layout.addWidget(self.add_house_name)
+        self.dialog_layout.addWidget(self.accept_button)
+        
         
         self.setLayout(self.dialog_layout)
+
         
+    def validate(self, regularExpression, text):
+        self.pattern = re.compile(regularExpression)
+        valid = self.pattern.match(text.upper())
+        return valid
     
+    def validate_first_name(self):
+        text = self.add_first_name.text()
+        self.add_first_name.setText(text.capitalize())
+        valid = self.validate("^[A-Z-\s]{1,20}$",text)
+        if valid:
+            self.add_first_name.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
+        else:
+            self.add_first_name.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
+
+    def validate_last_name(self):
+        text = self.add_last_name.text()
+        self.add_last_name.setText(text.capitalize())
+        valid = self.validate("^[A-Z-\s]{1,20}$",text)
+        if valid:
+            self.add_last_name.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
+        else:
+            self.add_last_name.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
+
+    def validate_town_name(self):
+        text = self.add_town_name.text()
+        self.add_town_name.setText(text.capitalize())
+        valid = self.validate("^[A-Z-\s]{1,20}$",text)
+        if valid:
+            self.add_town_name.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
+        else:
+            self.add_town_name.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
+
+    def validate_street_name(self):
+        text = self.add_street_name.text()
+        self.add_street_name.setText(text.capitalize())
+        valid = self.validate("^[A-Z-\s]{1,20}$",text)
+        if valid:
+            self.add_street_name.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
+        else:
+            self.add_street_name.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
+
+    def validate_house_name(self):
+        text = self.add_house_name.text()
+        self.add_house_name.setText(text.capitalize())
+        valid = self.validate("^[A-Z1-9-\s]{1,20}$",text)
+        if valid:
+            self.add_house_name.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
+        else:
+            self.add_house_name.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
 
         
 class EnterMemberDataDialog(EnterDataDialog):
     """this class provides a dialog for entering member data"""
     def __init__(self):
         super().__init__()
-        self.add_first_name_button = QLineEdit()
-        self.add_first_name_button.textChanged.connect(self.validate_first_name)
-        self.add_last_name_button = QLineEdit()
-        self.add_last_name_button.textChanged.connect(self.validate_last_name)      
-        self.add_town_name_button = QLineEdit()
-        self.add_town_name_button.textChanged.connect(self.validate_town_name)
-        self.add_street_name_button = QLineEdit()
-        self.add_street_name_button.textChanged.connect(self.validate_street_name)
-        self.add_house_name_button = QLineEdit()
-        self.add_house_name_button.textChanged.connect(self.validate_house_name)
-        self.accept_button = QPushButton("Accept")
-
-
+        
         #Creating DoB widget
         self.dob_label = QLabel("Date of birth:")
         self.add_dob_day_button = QComboBox()
@@ -57,22 +120,10 @@ class EnterMemberDataDialog(EnterDataDialog):
         self.dob_layout.addWidget(self.add_dob_month_button)
         self.dob_layout.addWidget(self.add_dob_year_button)
         self.dob_widget.setLayout(self.dob_layout)
-        
-        
-        self.add_first_name_button.setPlaceholderText("Enter First Name")
-        self.add_last_name_button.setPlaceholderText("Enter Last Name")
-        self.add_town_name_button.setPlaceholderText("Enter Town Name")
-        self.add_street_name_button.setPlaceholderText("Enter Street Name")
-        self.add_house_name_button.setPlaceholderText("Enter House Name")
 
-        self.dialog_layout.addWidget(self.add_first_name_button)
-        self.dialog_layout.addWidget(self.add_last_name_button)
-        self.dialog_layout.addWidget(self.add_town_name_button)
-        self.dialog_layout.addWidget(self.add_street_name_button)
-        self.dialog_layout.addWidget(self.add_house_name_button)
         self.dialog_layout.addWidget(self.dob_widget)
-        self.dialog_layout.addWidget(self.accept_button)
-
+        
+        
         self.accept_button.clicked.connect(self.insert_member)
 
 
@@ -88,11 +139,11 @@ class EnterMemberDataDialog(EnterDataDialog):
         
         dob = year + "/" + month + "/" + day
         print(dob)
-        values = (self.add_first_name_button.text(),
-                  self.add_last_name_button.text(),
-                  self.add_town_name_button.text(),
-                  self.add_street_name_button.text(),
-                  self.add_house_name_button.text(),
+        values = (self.add_first_name.text(),
+                  self.add_last_name.text(),
+                  self.add_town_name.text(),
+                  self.add_street_name.text(),
+                  self.add_house_name.text(),
                   dob)
     
         with sqlite3.connect("scout_database.db") as db:
@@ -104,82 +155,7 @@ class EnterMemberDataDialog(EnterDataDialog):
 
         self.updatedData.emit()
 
-    def validate(self, regularExpression, text):
-        self.pattern = re.compile(regularExpression)
-        valid = self.pattern.match(text.upper())
-        return valid
     
-    def validate_first_name(self):
-        text = self.add_first_name_button.text()
-        self.add_first_name_button.setText(text.capitalize())
-        valid = self.validate("^[A-Z]{1,20}$",text)
-        if valid:
-            self.add_first_name_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
-        else:
-            self.add_first_name_button.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
-
-    def validate_last_name(self):
-        text = self.add_last_name_button.text()
-        self.add_last_name_button.setText(text.capitalize())
-        valid = self.validate("^[A-Z]{1,20}$",text)
-        if valid:
-            self.add_last_name_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
-        else:
-            self.add_last_name_button.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
-
-    def validate_town_name(self):
-        self.text = self.add_town_name_button.text()
-        self.pattern = re.compile("^[A-Z]{1,20}$")
-        self.add_town_name_button.setText(self.text.capitalize())
-        valid = self.pattern.match(self.text.upper())
-        if valid:
-            self.add_town_name_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
-        else:
-            self.add_town_name_button.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
-
-    def validate_street_name(self):
-        self.text = self.add_street_name_button.text()
-        self.pattern = re.compile("^[A-Z\s]{1,20}$")
-        self.add_street_name_button.setText(self.text.capitalize())
-        valid = self.pattern.match(self.text.upper())
-        if valid:
-            self.add_street_name_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
-        else:
-            self.add_street_name_button.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
-
-    def validate_house_name(self):
-        self.text = self.add_house_name_button.text()
-        self.pattern = re.compile("^[A-Z1-9]{1,20}$")
-        self.add_house_name_button.setText(self.text.capitalize())
-        valid = self.pattern.match(self.text.upper())
-        if valid:
-            self.add_house_name_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
-        else:
-            self.add_house_name_button.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
-
-    def validate_dob(self):
-        self.text = self.add_dob_button.text()
-        self.pattern = re.compile("^[0-9]{2}[/][0-9]{2}[/][0-9]{2}$")
-        self.add_dob_button.setText(self.text.capitalize())
-        valid = self.pattern.match(self.text.upper())
-        if valid:
-            self.add_dob_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
-        else:
-            self.add_dob_button.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
-
-##    def validate_text(self):
-##        self.pattern = re.compile("^[A-Z]{1,20}$")
-##        valid = self.pattern.match(self.text.upper())
-##        
-##        self.text = self.add_first_name_button.text()
-##        self.add_first_name_button.setText(self.text.capitalize())
-##        if valid:
-##                self.add_first_name_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
-##        else:
-##            self.add_first_name_button.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
-
-    
-
     
 
 class EnterParentDataDialog(EnterDataDialog):
@@ -187,43 +163,31 @@ class EnterParentDataDialog(EnterDataDialog):
     def __init__(self):
         super().__init__()
 
-        self.add_first_name_button = QLineEdit()
-        self.add_last_name_button = QLineEdit()
-        self.add_town_name_button = QLineEdit()
-        self.add_street_name_button = QLineEdit()
-        self.add_house_name_button = QLineEdit()
-        self.add_email_button = QLineEdit()
-        self.add_phone_number_button = QLineEdit()
-        self.accept_button = QPushButton("Accept")
+        self.add_email = QLineEdit()
+        self.add_phone_number = QLineEdit()
 
-        self.add_first_name_button.setPlaceholderText("Enter First Name")
-        self.add_last_name_button.setPlaceholderText("Enter Last Name")
-        self.add_town_name_button.setPlaceholderText("Enter Town Name")
-        self.add_street_name_button.setPlaceholderText("Enter Street Name")
-        self.add_house_name_button.setPlaceholderText("Enter House Name")
-        self.add_email_button.setPlaceholderText("Enter Email Address")
-        self.add_phone_number_button.setPlaceholderText("Enter Phone Number")
+
+        self.add_email.setPlaceholderText("Enter Email Address")
+        self.add_email.textChanged.connect(self.validate_email)
+        self.add_phone_number.setPlaceholderText("Enter Phone Number")
+        self.add_phone_number.textChanged.connect(self.validate_phone_number)
+
         
-        self.dialog_layout.addWidget(self.add_first_name_button)
-        self.dialog_layout.addWidget(self.add_last_name_button)
-        self.dialog_layout.addWidget(self.add_town_name_button)
-        self.dialog_layout.addWidget(self.add_street_name_button)
-        self.dialog_layout.addWidget(self.add_house_name_button)
-        self.dialog_layout.addWidget(self.add_email_button)
-        self.dialog_layout.addWidget(self.add_phone_number_button)
-        self.dialog_layout.addWidget(self.accept_button)
+        self.dialog_layout.addWidget(self.add_email)
+        self.dialog_layout.addWidget(self.add_phone_number)
+
 
         self.accept_button.clicked.connect(self.insert_parent)
         
 
     def insert_parent(self):
-        values = (self.add_first_name_button.text(),
-                  self.add_last_name_button.text(),
-                  self.add_town_name_button.text(),
-                  self.add_street_name_button.text(),
-                  self.add_house_name_button.text(),
-                  self.add_email_button.text(),
-                  self.add_phone_number_button.text())
+        values = (self.add_first_name.text(),
+                  self.add_last_name.text(),
+                  self.add_town_name.text(),
+                  self.add_street_name.text(),
+                  self.add_house_name.text(),
+                  self.add_email.text(),
+                  self.add_phone_number.text())
         
         with sqlite3.connect("scout_database.db") as db:
             cursor = db.cursor()
@@ -234,73 +198,23 @@ class EnterParentDataDialog(EnterDataDialog):
 
         self.updatedData.emit()
 
-    def validate_first_name(self):
-        self.text = self.add_first_name_button.text()
-        self.pattern = re.compile("^[A-Z]{1,20}$")
-        self.add_first_name_button.setText(self.text.capitalize())
-        valid = self.pattern.match(self.text.upper())
-        if valid:
-                self.add_first_name_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
-        else:
-            self.add_first_name_button.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
-
-    def validate_last_name(self):
-        self.text = self.add_last_name_button.text()
-        self.pattern = re.compile("^[A-Z]{1,20}$")
-        self.add_last_name_button.setText(self.text.capitalize())
-        valid = self.pattern.match(self.text.upper())
-        if valid:
-                self.add_last_name_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
-        else:
-            self.add_last_name_button.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
-
-    def validate_town_name(self):
-        self.text = self.add_town_name_button.text()
-        self.pattern = re.compile("^[A-Z]{1,20}$")
-        self.add_town_name_button.setText(self.text.capitalize())
-        valid = self.pattern.match(self.text.upper())
-        if valid:
-                self.add_town_name_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
-        else:
-            self.add_town_name_button.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
-
-    def validate_street_name(self):
-        self.text = self.add_street_name_button.text()
-        self.pattern = re.compile("^[A-Z\s]{1,20}$")
-        self.add_street_name_button.setText(self.text.capitalize())
-        valid = self.pattern.match(self.text.upper())
-        if valid:
-                self.add_street_name_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
-        else:
-            self.add_street_name_button.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
-
-    def validate_house_name(self):
-        self.text = self.add_house_name_button.text()
-        self.pattern = re.compile("^[A-Z1-9]{1,20}$")
-        self.add_house_name_button.setText(self.text.capitalize())
-        valid = self.pattern.match(self.text.upper())
-        if valid:
-                self.add_house_name_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
-        else:
-            self.add_house_name_button.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
 
     def validate_email(self):
-        self.text = self.add_email_button.text()
-        self.pattern = re.compile("^[A-Z1-9]{1,20}[@][A-Z1-9.]{1,20}$")
-        self.add_email_button.setText(self.text.capitalize())
-        valid = self.pattern.match(self.text.upper())
+        text = self.add_email.text()
+        valid = self.validate("^[A-Z1-9-]{1,20}[@][A-Z1-9.]{1,20}$",text)
         if valid:
-                self.add_email_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
+            self.add_email.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
+        elif not valid and '@' not in text:
+            self.add_email.setStyleSheet("QLineEdit { background-color : rgb(255,194,0);}")
         else:
-            self.add_email_button.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
+            self.add_email.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
 
-
-    def validate_house_name(self):
-        self.text = self.add_phone_number_button.text()
-        self.pattern = re.compile("^[1-9]{11}$")
-        self.add_phone_number_button.setText(self.text.capitalize())
-        valid = self.pattern.match(self.text.upper())
+    def validate_phone_number(self):
+        text = self.add_phone_number.text()
+        valid = self.validate("^[0-9]{11}$",text)
         if valid:
-                self.add_phone_number_button.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
+            self.add_phone_number.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
+        elif not valid and len(text) > 11:
+            self.add_phone_number.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
         else:
-            self.add_phone_number_button.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")            
+            self.add_phone_number.setStyleSheet("QLineEdit { background-color : rgb(255,194,0);}")
