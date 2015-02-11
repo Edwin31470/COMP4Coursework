@@ -121,7 +121,7 @@ class EnterMemberDataDialog(EnterDataDialog):
         self.dob_layout.addWidget(self.add_dob_year_button)
         self.dob_widget.setLayout(self.dob_layout)
 
-        self.dialog_layout.addWidget(self.dob_widget)
+        self.dialog_layout.insertWidget(5,self.dob_widget)
         
         
         self.accept_button.clicked.connect(self.insert_member)
@@ -173,8 +173,8 @@ class EnterParentDataDialog(EnterDataDialog):
         self.add_phone_number.textChanged.connect(self.validate_phone_number)
 
         
-        self.dialog_layout.addWidget(self.add_email)
-        self.dialog_layout.addWidget(self.add_phone_number)
+        self.dialog_layout.insertWidget(5,self.add_email)
+        self.dialog_layout.insertWidget(6,self.add_phone_number)
 
 
         self.accept_button.clicked.connect(self.insert_parent)
@@ -204,10 +204,11 @@ class EnterParentDataDialog(EnterDataDialog):
         valid = self.validate("^[A-Z1-9-]{1,20}[@][A-Z1-9.]{1,20}$",text)
         if valid:
             self.add_email.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
-        elif not valid and '@' not in text:
+        elif '@' not in text:
             self.add_email.setStyleSheet("QLineEdit { background-color : rgb(255,194,0);}")
-        else:
+        elif not valid:
             self.add_email.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
+                
 
     def validate_phone_number(self):
         text = self.add_phone_number.text()

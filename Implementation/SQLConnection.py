@@ -45,12 +45,27 @@ class SQLConnection():
         query.exec_()
         return query
 
-    def report_invoices(self):
+    def report_invoices_old(self):
         query = QSqlQuery()
         query.prepare("""select * from Invoice where WasInvoicePaid = 'No'""")
         query.exec_()
         return query
 
+    def report_invoices(self):
+        query = QSqlQuery()
+        query.prepare("""SELECT
+                         Invoice.InvoiceID,
+                         Parent.ParentFirstName,
+                         Parent.ParentLastName,
+                         Invoice.PriceID,
+                         Invoice.WasInvoicePaid,
+                         Invoice.DateInvoiceWasSent
+                         FROM Invoice
+                         INNER JOIN Parent
+                         ON Invoice.ParentID=Parent.ParentID
+                         WHERE WasInvoicePaid = 'No'""")
+        query.exec_()
+        return query
 
     def add_member_data(self):
         return "Working"

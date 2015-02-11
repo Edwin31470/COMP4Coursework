@@ -153,6 +153,10 @@ class Window(QMainWindow):
         self.main_layout = QVBoxLayout()
         self.main_widget = QWidget()
 
+        self.label = QLabel("Member Table")
+        self.label.setAlignment(Qt.AlignCenter)
+
+        self.main_layout.addWidget(self.label)
         self.main_layout.addWidget(self.search_widget)
         self.main_layout.addWidget(self.display_widget)
 
@@ -195,6 +199,10 @@ class Window(QMainWindow):
         self.main_layout = QVBoxLayout()
         self.main_widget = QWidget()
 
+        self.label = QLabel("Parent Table")
+        self.label.setAlignment(Qt.AlignCenter)
+
+        self.main_layout.addWidget(self.label)
         self.main_layout.addWidget(self.search_widget)
         self.main_layout.addWidget(self.display_widget)
 
@@ -234,6 +242,10 @@ class Window(QMainWindow):
         self.main_layout = QVBoxLayout()
         self.main_widget = QWidget()
 
+        self.label = QLabel("Invoice Table")
+        self.label.setAlignment(Qt.AlignCenter)
+
+        self.main_layout.addWidget(self.label)
         self.main_layout.addWidget(self.search_widget)
         self.main_layout.addWidget(self.display_widget)
 
