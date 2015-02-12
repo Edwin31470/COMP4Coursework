@@ -88,7 +88,7 @@ class Window(QMainWindow):
         #Create Connections
         self.display_member.triggered.connect(self.show_member)
         self.display_parent.triggered.connect(self.show_parent)
-        self.display_invoices.triggered.connect(self.show_invoice)
+        self.display_invoices.triggered.connect(self.show_invoice_relationships)
         self.add_member.triggered.connect(self.add_member_data)
         self.edit_member.triggered.connect(self.edit_member_data)
         self.delete_member.triggered.connect(self.delete_member_data)
@@ -130,11 +130,11 @@ class Window(QMainWindow):
             self.display_widget = DisplayWidget()
         self.display_widget.show_table("Invoice")
     
-    def show_invoice_query(self):
+    def show_invoice_relationships(self):
         if not hasattr(self,"display_widget"):
             self.display_widget = DisplayWidget()   
-        query = self.connection.show_invoices()
-        self.display_widget.show_results(query)
+        self.display_widget.show_relationship_invoice_table()
+        self.setCentralWidget(self.display_widget)
         
 
 
@@ -331,10 +331,6 @@ class Window(QMainWindow):
         self.main_widget = QWidget()
         self.main_widget.setLayout(self.layout)
         self.setCentralWidget(self.main_widget)
-
-    def delete_row_clicked(self):
-        row = self.display_widget.results_table.selectedIndexes()[0].row()
-        self.display_widget.model.removeRow(row)
         
     
     def add_parent_data(self):
@@ -397,7 +393,7 @@ class Window(QMainWindow):
         self.setCentralWidget(self.main_widget)
 
     def manage_invoice_data(self):
-        self.show_invoice_query()
+        self.show_invoice_relationships()
 
         self.display_widget_2 = DisplayWidget()
         self.display_widget_2.show_table("Parent")
@@ -431,7 +427,7 @@ class Window(QMainWindow):
         self.setCentralWidget(self.main_widget)
 
     def delete_invoice_data(self):
-        self.show_invoice_query()
+        self.show_invoice_relationships()
 
         self.search_dialog = SearchDialogParent()
         self.search_dialog.updatedData.connect(self.return_searched_data_parent)
@@ -449,8 +445,12 @@ class Window(QMainWindow):
         self.main_widget.setLayout(self.layout)
         self.setCentralWidget(self.main_widget)
 
+    def delete_row_clicked(self):
+        row = self.display_widget.results_table.selectedIndexes()[0].row()
+        self.display_widget.model.removeRow(row)
+
     def add_invoice_data(self):
-        self.show_invoice_query()
+        self.show_invoice_relationships()
 
         self.data_dialog = EnterInvoiceData()
         self.data_dialog.updatedData.connect(self.add_invoice_data)

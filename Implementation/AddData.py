@@ -99,26 +99,33 @@ class EnterMemberDataDialog(EnterDataDialog):
         
         #Creating DoB widget
         self.dob_label = QLabel("Date of birth:")
-        self.add_dob_day_button = QComboBox()
-        self.add_dob_month_button = QComboBox()
-        self.add_dob_year_button = QComboBox()
+        self.add_dob_day = QComboBox()
+        self.add_dob_month = QComboBox()
+        self.add_dob_year = QComboBox()
+        self.spacer = QLabel()
+
+        self.dob_label.setFixedWidth(80)
+        self.add_dob_day.setFixedWidth(100)
+        self.add_dob_month.setFixedWidth(100)
+        self.add_dob_year.setFixedWidth(100)
 
         currentYear = int(datetime.date.today().strftime("%Y"))
         print(currentYear)
 
         for count in range(1,32):
-            self.add_dob_day_button.addItem(str(count))
+            self.add_dob_day.addItem(str(count))
         for count in range(1,13):
-            self.add_dob_month_button.addItem(str(count))
+            self.add_dob_month.addItem(str(count))
         for count in range(currentYear - 16,currentYear - 8):
-            self.add_dob_year_button.addItem(str(count))
+            self.add_dob_year.addItem(str(count))
         
         self.dob_layout = QHBoxLayout()
         self.dob_widget = QWidget()
         self.dob_layout.addWidget(self.dob_label)
-        self.dob_layout.addWidget(self.add_dob_day_button)
-        self.dob_layout.addWidget(self.add_dob_month_button)
-        self.dob_layout.addWidget(self.add_dob_year_button)
+        self.dob_layout.addWidget(self.add_dob_day)
+        self.dob_layout.addWidget(self.add_dob_month)
+        self.dob_layout.addWidget(self.add_dob_year)
+        self.dob_layout.addWidget(self.spacer)
         self.dob_widget.setLayout(self.dob_layout)
 
         self.dialog_layout.insertWidget(5,self.dob_widget)
@@ -128,9 +135,9 @@ class EnterMemberDataDialog(EnterDataDialog):
 
 
     def insert_member(self):
-        day = self.add_dob_day_button.itemText(self.add_dob_day_button.currentIndex()) 
-        month = self.add_dob_month_button.itemText(self.add_dob_month_button.currentIndex())
-        year = self.add_dob_year_button.itemText(self.add_dob_year_button.currentIndex())
+        day = self.add_dob_day.itemText(self.add_dob_day.currentIndex()) 
+        month = self.add_dob_month.itemText(self.add_dob_month.currentIndex())
+        year = self.add_dob_year.itemText(self.add_dob_year.currentIndex())
         
         if int(day) in range(1,10):
             day = "0" + day

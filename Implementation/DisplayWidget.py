@@ -40,6 +40,17 @@ class DisplayWidget(QWidget):
         self.results_table.resizeColumnsToContents()
         self.results_table.show()
 
+    def show_relationship_invoice_table(self):
+        if not self.model or not isinstance(self.model,QSqlTableModel):
+            self.model = QSqlTableModel()
+        self.model.setTable("Invoice")
+        self.index = QModelIndex
+        self.model.insertColumns(1,1,"Parent")
+        self.model.select()
+        self.results_table.setModel(self.model)
+        self.results_table.resizeColumnsToContents()
+        self.results_table.show()
+
     def search_table(self,tableName,sqlFilter):
         if not self.model or not isinstance(self.model,QSqlTableModel):
             self.model = QSqlTableModel()

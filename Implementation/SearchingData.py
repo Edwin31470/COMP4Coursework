@@ -36,4 +36,4 @@ class SearchDialogParent(SearchDialog):
     def __init__(self):
         super().__init__()
 
-        self.label = QLabel("Search for a parent:")
+        self.label.setText("Search for a parent:")

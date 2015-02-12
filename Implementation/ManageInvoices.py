@@ -32,25 +32,32 @@ class EnterInvoiceData(ManageInvoiceData):
 
         #Creating date widget
         self.date_label = QLabel("Date sent:")
-        self.add_date_day_button = QComboBox()
-        self.add_date_month_button = QComboBox()
-        self.add_date_year_button = QComboBox()
+        self.add_date_day = QComboBox()
+        self.add_date_month = QComboBox()
+        self.add_date_year = QComboBox()
+        self.spacer = QLabel()
 
+        self.date_label.setFixedWidth(80)
+        self.add_date_day.setFixedWidth(100)
+        self.add_date_month.setFixedWidth(100)
+        self.add_date_year.setFixedWidth(100)
+        
         currentYear = int(datetime.date.today().strftime("%Y"))
 
         for count in range(1,32):
-            self.add_date_day_button.addItem(str(count))
+            self.add_date_day.addItem(str(count))
         for count in range(1,13):
-            self.add_date_month_button.addItem(str(count))
-        for count in range(currentYear - 16,currentYear - 8):
-            self.add_date_year_button.addItem(str(count))
+            self.add_date_month.addItem(str(count))
+        for count in range(currentYear - 8,currentYear):
+            self.add_date_year.addItem(str(count))
         
         self.date_layout = QHBoxLayout()
         self.date_widget = QWidget()
         self.date_layout.addWidget(self.date_label)
-        self.date_layout.addWidget(self.add_date_day_button)
-        self.date_layout.addWidget(self.add_date_month_button)
-        self.date_layout.addWidget(self.add_date_year_button)
+        self.date_layout.addWidget(self.add_date_day)
+        self.date_layout.addWidget(self.add_date_month)
+        self.date_layout.addWidget(self.add_date_year)
+        self.date_layout.addWidget(self.spacer)
         self.date_widget.setLayout(self.date_layout)
 
         self.dialog_layout.addWidget(self.add_parentID_button)
@@ -63,9 +70,9 @@ class EnterInvoiceData(ManageInvoiceData):
 
 
     def insert_invoice(self):
-        day = self.add_date_day_button.itemText(self.add_date_day_button.currentIndex()) 
-        month = self.add_date_month_button.itemText(self.add_date_month_button.currentIndex())
-        year = self.add_date_year_button.itemText(self.add_date_year_button.currentIndex())
+        day = self.add_date_day.itemText(self.add_date_day.currentIndex()) 
+        month = self.add_date_month.itemText(self.add_date_month.currentIndex())
+        year = self.add_date_year.itemText(self.add_date_year.currentIndex())
         
         if int(day) in range(1,10):
             day = "0" + day
