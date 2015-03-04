@@ -12,11 +12,15 @@ from ManageInvoices import *
 from SendInvoices import *
 from SortingTable import *
 from SearchingData import *
+from LoginBox import *
+from StyleSheet import *
 
 class Window(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Database Program")
+
+        self.setStyleSheet(css)
         
         #Create Actions
         self.display_member = QAction("Display Member",self)
@@ -88,7 +92,7 @@ class Window(QMainWindow):
         #Create Connections
         self.display_member.triggered.connect(self.show_member)
         self.display_parent.triggered.connect(self.show_parent)
-        self.display_invoices.triggered.connect(self.show_invoice_relationships)
+        self.display_invoices.triggered.connect(self.show_invoice)
         self.add_member.triggered.connect(self.add_member_data)
         self.edit_member.triggered.connect(self.edit_member_data)
         self.delete_member.triggered.connect(self.delete_member_data)
@@ -107,6 +111,33 @@ class Window(QMainWindow):
         self.open_database()
         self.show_member()
 
+        #self.show_login()
+        self.show()
+        self.raise_()
+        
+    def show_login(self):
+        self.loginscreen = LoginScreen()
+        self.loginscreen.show()
+
+        self.loginscreen.accept_button.clicked.connect(self.login)
+
+    def login(self):
+        
+        if self.loginscreen.username.text() == "Edwin" and self.loginscreen.password.text() == "Password":
+            print("Valid")
+            window.show()
+            window.raise_()
+            self.loginscreen.close()
+        elif self.loginscreen.username.text() == "Edwin" and self.loginscreen.password.text() != "Password":
+            self.incorrect_screen = IncorrectDetails()
+            self.incorrect_screen.incorrect_password()
+        elif self.loginscreen.username.text() != "Edwin" and self.loginscreen.password.text() == "Password":
+            self.incorrect_screen = IncorrectDetails()
+            self.incorrect_screen.incorrect_username()
+        else:
+            self.incorrect_screen = IncorrectDetails()
+            self.incorrect_screen.incorrect_username_and_password()
+        
     def open_database(self):
         path = "scout_database.db"
         print("Path: ",path)
@@ -129,6 +160,12 @@ class Window(QMainWindow):
         if not hasattr(self,"display_widget"):
             self.display_widget = DisplayWidget()
         self.display_widget.show_table("Invoice")
+
+    def show_invoice_query(self):
+        if not hasattr(self,"display_widget"):
+            self.display_widget = DisplayWidget()
+        query = self.connection.show_invoices()
+        self.display_widget.show_results(query)
     
     def show_invoice_relationships(self):
         if not hasattr(self,"display_widget"):
@@ -153,10 +190,11 @@ class Window(QMainWindow):
         self.main_layout = QVBoxLayout()
         self.main_widget = QWidget()
 
-        self.label = QLabel("Member Table")
-        self.label.setAlignment(Qt.AlignCenter)
+        self.title = QLabel("Member Table")
+        self.title.setAlignment(Qt.AlignCenter)
+        self.title.setObjectName('title')
 
-        self.main_layout.addWidget(self.label)
+        self.main_layout.addWidget(self.title)
         self.main_layout.addWidget(self.search_widget)
         self.main_layout.addWidget(self.display_widget)
 
@@ -199,10 +237,11 @@ class Window(QMainWindow):
         self.main_layout = QVBoxLayout()
         self.main_widget = QWidget()
 
-        self.label = QLabel("Parent Table")
-        self.label.setAlignment(Qt.AlignCenter)
+        self.title = QLabel("Parent Table")
+        self.title.setAlignment(Qt.AlignCenter)
+        self.title.setObjectName('title')
 
-        self.main_layout.addWidget(self.label)
+        self.main_layout.addWidget(self.title)
         self.main_layout.addWidget(self.search_widget)
         self.main_layout.addWidget(self.display_widget)
 
@@ -242,10 +281,11 @@ class Window(QMainWindow):
         self.main_layout = QVBoxLayout()
         self.main_widget = QWidget()
 
-        self.label = QLabel("Invoice Table")
-        self.label.setAlignment(Qt.AlignCenter)
+        self.title = QLabel("Invoice Table")
+        self.title.setAlignment(Qt.AlignCenter)
+        self.title.setObjectName('title')
 
-        self.main_layout.addWidget(self.label)
+        self.main_layout.addWidget(self.title)
         self.main_layout.addWidget(self.search_widget)
         self.main_layout.addWidget(self.display_widget)
 
@@ -393,7 +433,7 @@ class Window(QMainWindow):
         self.setCentralWidget(self.main_widget)
 
     def manage_invoice_data(self):
-        self.show_invoice_relationships()
+        self.show_invoice_table()
 
         self.display_widget_2 = DisplayWidget()
         self.display_widget_2.show_table("Parent")
@@ -427,7 +467,7 @@ class Window(QMainWindow):
         self.setCentralWidget(self.main_widget)
 
     def delete_invoice_data(self):
-        self.show_invoice_relationships()
+        self.show_invoice_query()
 
         self.search_dialog = SearchDialogParent()
         self.search_dialog.updatedData.connect(self.return_searched_data_parent)
@@ -450,7 +490,7 @@ class Window(QMainWindow):
         self.display_widget.model.removeRow(row)
 
     def add_invoice_data(self):
-        self.show_invoice_relationships()
+        self.show_invoice_table()
 
         self.data_dialog = EnterInvoiceData()
         self.data_dialog.updatedData.connect(self.add_invoice_data)
@@ -489,8 +529,6 @@ class Window(QMainWindow):
 if __name__ == "__main__":
     application = QApplication(sys.argv)
     window = Window()
-    window.show()
-    window.raise_()
     application.exec()
 
 

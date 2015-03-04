@@ -208,7 +208,7 @@ class EnterParentDataDialog(EnterDataDialog):
 
     def validate_email(self):
         text = self.add_email.text()
-        valid = self.validate("^[A-Z1-9-]{1,20}[@][A-Z1-9.]{1,20}$",text)
+        valid = self.validate("^[A-Z1-9-]{1,20}[@][A-Z1-9.]{0,20}$",text)
         if valid:
             self.add_email.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
         elif '@' not in text:
@@ -219,10 +219,10 @@ class EnterParentDataDialog(EnterDataDialog):
 
     def validate_phone_number(self):
         text = self.add_phone_number.text()
-        valid = self.validate("^[0-9]{11}$",text)
-        if valid:
-            self.add_phone_number.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
-        elif not valid and len(text) > 11:
-            self.add_phone_number.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
-        else:
+        valid = self.validate("^[0-9]*$",text)
+        if valid and len(text) < 11:
             self.add_phone_number.setStyleSheet("QLineEdit { background-color : rgb(255,194,0);}")
+        elif valid and len(text) == 11:
+            self.add_phone_number.setStyleSheet("QLineEdit { background-color : rgb(170,255,150);}")
+        else:
+            self.add_phone_number.setStyleSheet("QLineEdit { background-color : rgb(255,70,70);}")
