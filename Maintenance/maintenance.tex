@@ -19,13 +19,13 @@ The software and modules I used to implement the program:
 \begin{center}
 	\begin{tabular}{|p{2cm}|p{2cm}|}
 		\hline
-		\textbf{Software}   & \textbf{Explaination for use of software} \\ \hline
-		Python 3 & I know this language well and python is a relatively powerful language. Python allows bug finding and fixing to be incredibly easy as the program can be compiled quickly as you write it instead of using a seperate compiler. Python is free and is object orientated. \\ \hline
-		IDLE &  I used this python environment as it comes with the basic installtion of python and is the only editor installed on school computers.
-		PyQt4 & PyQt allows for the easy creation of a GUI
-		SQLite3 & Used for database creation and editing as I have been taught this and SQL allows for easy database manipulation
-		Notepad++ & Used for the creation of HTML files as I know how to use it and HTML files can be run from the program
-		SQLiteInspector & I used this program that my teacher created to test SQL queries and to check data is added to the database properly.
+		\textbf{Software}   & \textbf{Explanation for use of software} \\ \hline
+		Python 3 & I know this language well and python is a relatively powerful language. Python allows bug finding and fixing to be incredibly easy as the program can be compiled quickly as you write it instead of using a separate compiler. Python is free and is object orientated. \\ \hline
+		IDLE &  I used this python environment as it comes with the basic installation of python and is the only editor installed on school computers. \\ \hline
+		PyQt4 & PyQt allows for the easy creation of a GUI. \\ \hline
+		SQLite3 & Used for database creation and editing as I have been taught this and SQL allows for easy database manipulation. \\ \hline
+		Notepad++ & Used for the creation of HTML files as I know how to use it and HTML files can be run from the program. \\ \hline
+		SQLiteInspector & I used this program that my teacher created to test SQL queries and to check data is added to the database properly. \\ \hline
 	\end{tabular}
 \end{center}
 
@@ -36,11 +36,11 @@ The software and modules I used to implement the program:
 		\hline
 		\textbf{Software}   & \textbf{Features used} \\ \hline
 		Python 3 & Python allowed me to create a basic CLI program to make sure my logic and usability was good before creating a GUI program. Python is object orientated and has many modules pre-installed.\\ \hline
-		IDLE &  IDLE displays python code in colour showining where mistakes have been made and makes it easier to code. Allows the program to be run and compiled easily.
-		PyQt4 & PyQt is easy to install
-		SQLite3 & Used for database creation and editing as I have been taught this and SQL allows for easy database manipulation
-		Notepad++ & Used for the creation of HTML files as I know how to use it and HTML files can be run from the program
-		SQLiteInspector & Viewing databases and 
+		IDLE &  IDLE displays python code in colour showing where mistakes have been made and makes it easier to code. Allows the program to be run and compiled easily. \\ \hline
+		PyQt4 & PyQt is easy to install. \\ \hline
+		SQLite3 & Used for database creation and editing as I have been taught this and SQL allows for easy database manipulation. \\ \hline
+		Notepad++ & Used for the creation of HTML files as I know how to use it and HTML files can be run from the program. \\ \hline
+		SQLiteInspector & Viewing databases and \\ \hline
 	\end{tabular}
 \end{center}
 
@@ -48,22 +48,92 @@ The software and modules I used to implement the program:
 \section{System Overview}
 
 %use as many subsections as necessary for the system components
-\subsection{Logging in}
-The login screen has the purpose of protecting sensitive data and adding an extra layer of security. The user must supply a username and a password, both of which are stored on an encrypted file 
+\subsection{Logging In}
+The login screen has the purpose of protecting sensitive data and adding an extra layer of security. The user must supply a username and a password. When the accept button is clicked the program compares the username and password the user supplied with those stored on an encrypted binary file. The username and password are hard-coded and cannot be changed due to the fact there is only one user.
+
+\subsection{Graphical User Interface}
+The GUI uses a simple design that should make the usage of the program easy to comprehend and visualise. The program is easily navigable via the menu bar and the task bar. Data is input using combo boxes and line edits or directly edited via the table display. All buttons are properly labeled and all functions can be accessed from the taskbar.
+
+\subsection{Viewing Data}
+The program displays all the data in the table selected which can then be searched or sorted. Almost all the windows of the GUI display the table of the data type.
+
+\subsection{Adding Data}
+Data is added to the database via line edits and combo boxes. The line edits are validated by the box being green if valid, red if invalid or amber if incomplete but still valid. Any data added via the combo-boxes will always be valid as only valid dates can be selected. An accept button must be pressed before the data is actually added to the database.
+
+\subsection{Editing Data}
+Data is edited directly in the table that is displayed. Single click on the field being edited and input the new data, then press Enter when done and the database will be changed. The table can be sorted in the editing screen to locate the entities that need to be edited.
+
+\subsection{Deleting Data}
+The table in the deleting windows can be sorted to find the correct entities. Double clicking on a row will delete the entity that row corresponds to.
+
+\subsection{Printing Invoices}
+Clicking on the print invoices button will bring up a window with the ability to select a date to print all the invoices from.
+
 
 \section{Code Structure}
 
 %use as many subsections as necessary for the code sections
-\subsection{Particular Code Section}
-%the code below can be uncommented and used to get a code section from a particular file
-\begin{comment}
-\begin{figure}[H]
-    \pythonfile[firstline=5,lastline=10]{./tex/function_programs/print_function.py}
-    \caption{The print() function} \label{fig:print_function}
-\end{figure}
-\end{comment}
+\subsection{Overview}
+My program utilises object orientated programing not only because this is the way PyQt operates but because OOP allows code to be reused or to be used more efficiently.
+
+
+\subsection{Adding Data}
+
+\pythonfile{./Implementation/AddData.py}
+
+The AddData class is used to create a widget that is inserted into the central widget. The widget displays the table of the data type being added (Member, Parent or Invoice) and several line edits and combo-boxes for adding data. It also contains an accept button that needs to be pressed for the data in the line edits and combo-boxes to be added to the database.
+
+
+\subsection{Editing Data}
+
+\pythonfile{./Implementation/EditData.py}
+
+The EditData class is used to create a widget that is inserted into the central widget. The widget displays the table of the data type being edited (Member, Parent or Invoice). This table can be searched via entering text into the line edit above the table and clicking on a field and typing will enter new data into that field replacing the old one.
+
+
+\subsection{Deleting Data}
+
+\pythonfile{./Implementation/DeleteData.py}
+
+The DeleteData class is used to create a widget that is inserted into the central widget. The widget displays the table of the data type being deleted (Member, Parent or Invoice). This table can be searched via entering text into the line edit above the table and double clicking on the row to be deleted will delete it.
+
+
+\subsection{Validation}
+
+\pythonfile[firstline=220,lastline=228]{./Implementation/AddData.py}
+
+\pythonfile[firstline=44,lastline=47]{./Implementation/AddData.py}
+
+This is an example of a validation function to validate the line edit add\_first\_name. The text is received from the line edit and if the data is text it is returned to the line edit capitalised so the text is all in the same format. Then the text is compared to a regular expression and if valid a True signal is returned. Then if the signal is true but the length of the text is under 11 (The length of a phone number) the line edit is set to amber, if it is true and long enough it is set to green and if untrue regardless of length then it is set to red.
+
+
+\subsection{Login Box}
+
+\pythonfile[firstline=1][lastline=35]{./Implementation/LoginBox.py}
+
+The LoginBox class creates a popup-window with two line edits for a username and a password and a push button to check the data is correct.
+
+
+\section{Main Function}
+
+\pythonfile[firstline=540][lastline=543]{./Implementation/main_window.py}
+
+This function initialises the application if the class is run as the main class.
+
+
+
 
 \section{Variable Listing}
+\begin{center}
+	\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|l}
+		\hline
+		\textbf{Variable}  &  \textbf{Use}  &  \textbf{Figure}  &  \textbf{Line Number} \\ \hline
+		Python 3 & Python allowed me to create a basic CLI program to make sure my logic and usability was good before creating a GUI program. Python is object orientated and has many modules pre-installed.\\ \hline
+	\end{tabular}
+\end{center}
+
+
+
 
 \section{System Evidence}
 
@@ -83,7 +153,15 @@ The login screen has the purpose of protecting sensitive data and adding an extr
 
 \subsection{Known Issues}
 
+
 \section{Code Explanations}
+\begin{comment}
+\begin{figure}[H]
+    \pythonfile[firstline=5,lastline=5]{./tex/function_programs/print_function.py}
+    \caption{The print() function} \label{fig:print_function}
+\end{figure}
+\end{comment}
+
 
 \subsection{Difficult Sections}
 

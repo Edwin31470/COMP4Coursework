@@ -1,4 +1,4 @@
-import sys, pickle
+import sys
 
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -14,7 +14,6 @@ from SortingTable import *
 from SearchingData import *
 from LoginBox import *
 from StyleSheet import *
-from Password import *
 
 class Window(QMainWindow):
     def __init__(self):
@@ -112,10 +111,9 @@ class Window(QMainWindow):
         self.open_database()
         self.show_member()
 
-        self.show_login()
-        #self.create_file()
-        #self.show()
-        #self.raise_()
+        #self.show_login()
+        self.show()
+        self.raise_()
         
     def show_login(self):
         self.loginscreen = LoginScreen()
@@ -123,26 +121,17 @@ class Window(QMainWindow):
 
         self.loginscreen.accept_button.clicked.connect(self.login)
 
-    def create_file(self):
-        user = User()
-        user.username = "User"
-        user.password = "Password"
-        with open("user.dat",mode="wb") as my_file:
-            pickle.dump(user,my_file)
-    
     def login(self):
-        with open("user.dat",mode="rb") as my_file:
-            user = pickle.load(my_file)
-            
-        if self.loginscreen.username.text() == user.username and self.loginscreen.password.text() == user.password:
+        
+        if self.loginscreen.username.text() == "Edwin" and self.loginscreen.password.text() == "Password":
             print("Valid")
             window.show()
             window.raise_()
             self.loginscreen.close()
-        elif self.loginscreen.username.text() == user.username and self.loginscreen.password.text() != user.password:
+        elif self.loginscreen.username.text() == "Edwin" and self.loginscreen.password.text() != "Password":
             self.incorrect_screen = IncorrectDetails()
             self.incorrect_screen.incorrect_password()
-        elif self.loginscreen.username.text() != user.username and self.loginscreen.password.text() == user.password:
+        elif self.loginscreen.username.text() != "Edwin" and self.loginscreen.password.text() == "Password":
             self.incorrect_screen = IncorrectDetails()
             self.incorrect_screen.incorrect_username()
         else:
@@ -519,8 +508,9 @@ class Window(QMainWindow):
         self.setCentralWidget(self.main_widget)
 
     def print_invoice_data(self):
-        invoice = SendInvoiceData()
-        invoice.print_preview()
+        invoice = PrintInvoice()
+        name = "Sarah Smith"
+        invoice.print_preview(name)
 
     def report_invoice_data(self):
         if not hasattr(self,"display_widget"):

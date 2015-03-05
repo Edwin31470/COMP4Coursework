@@ -42,8 +42,8 @@ class EnterDataDialog(QWidget):
 
         
     def validate(self, regularExpression, text):
-        pattern = re.compile(regularExpression)
-        valid = pattern.match(text.upper())
+        self.pattern = re.compile(regularExpression)
+        valid = self.pattern.match(text.upper())
         return valid
     
     def validate_first_name(self):
@@ -104,7 +104,7 @@ class EnterMemberDataDialog(EnterDataDialog):
         self.add_dob_year = QComboBox()
         self.spacer = QLabel()
 
-        self.dob_label.setFixedWidth(80)
+        self.dob_label.setFixedWidth(100)
         self.add_dob_day.setFixedWidth(100)
         self.add_dob_month.setFixedWidth(100)
         self.add_dob_year.setFixedWidth(100)
