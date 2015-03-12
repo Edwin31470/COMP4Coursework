@@ -30,19 +30,6 @@ class DeleteMemberDataDialog(DeleteDataDialog):
         self.accept_button.clicked.connect(self.delete_member)
         
 
-    def delete_member(self):
-        values = (self.memberID_button.text(),)
-
-        with sqlite3.connect("scout_database.db") as db:
-            cursor = db.cursor()
-            sql = "delete from Member where MemberID = ?"
-            cursor.execute(sql,values)
-            db.commit()
-
-        self.updatedData.emit()
-
-        self.memberID_button.setText("")
-
 class DeleteParentDataDialog(DeleteDataDialog):
     """this class provides a dialog for editing member data"""
     def __init__(self):
@@ -58,15 +45,3 @@ class DeleteParentDataDialog(DeleteDataDialog):
 
         self.accept_button.clicked.connect(self.delete_parent)
 
-    def delete_parent(self):
-        values = (self.parentID_button.text(),)
-
-        with sqlite3.connect("scout_database.db") as db:
-            cursor = db.cursor()
-            sql = "delete from Parent where ParentID = ?"
-            cursor.execute(sql,values)
-            db.commit()
-
-        self.updatedData.emit()
-
-        self.parentID_button.setText("")

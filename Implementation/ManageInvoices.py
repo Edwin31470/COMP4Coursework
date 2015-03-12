@@ -15,7 +15,6 @@ class ManageInvoiceData(QWidget):
 
 
 
-
 class EnterInvoiceData(ManageInvoiceData):
     """this class provides a dialog for entering member data"""
     def __init__(self):

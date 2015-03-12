@@ -10,9 +10,8 @@ class SearchWidget(QWidget):
         self.main_layout = QHBoxLayout()
 
         self.label = QLabel("Order by:")
-        self.label.setFixedWidth(50)
+        self.label.setFixedWidth(70)
         self.order_combobox = QComboBox()
-        #self.order_combobox.setFixedWidth(150)
 
         self.blank_widget = QWidget()
         self.blank_widget.setFixedWidth(1000)

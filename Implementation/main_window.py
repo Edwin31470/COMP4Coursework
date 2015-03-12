@@ -16,6 +16,7 @@ from LoginBox import *
 from StyleSheet import *
 from Password import *
 
+
 class Window(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -119,9 +120,11 @@ class Window(QMainWindow):
         
     def show_login(self):
         self.loginscreen = LoginScreen()
+        self.loginscreen.setObjectName('login')
         self.loginscreen.show()
 
         self.loginscreen.accept_button.clicked.connect(self.login)
+
 
     def create_file(self):
         user = User()
@@ -153,9 +156,8 @@ class Window(QMainWindow):
         path = "scout_database.db"
         print("Path: ",path)
         self.connection = SQLConnection(path)
-        ok = self.connection.open_database()
-        print("Opened Ok: ",ok)
-
+        self.connection.open_database()
+        
 
     def show_member_table(self):
         if not hasattr(self,"display_widget"):
@@ -182,11 +184,11 @@ class Window(QMainWindow):
         if not hasattr(self,"display_widget"):
             self.display_widget = DisplayWidget()   
         self.display_widget.show_relationship_invoice_table()
-        self.setCentralWidget(self.display_widget)
-        
+        self.setCentralWidget(self.display_widget)    
 
-
-
+    def show_member(self):
+        if not hasattr(self,"display_widget"):
+            self.display_widget = DisplayWidget()
 
     def show_member(self):
         if not hasattr(self,"display_widget"):
@@ -519,8 +521,10 @@ class Window(QMainWindow):
         self.setCentralWidget(self.main_widget)
 
     def print_invoice_data(self):
-        invoice = SendInvoiceData()
-        invoice.print_preview()
+        invoice = PrintInvoice()
+        name = "Sarah Smith"
+        #invoice.print_preview(name)
+        invoice.print_invoice()
 
     def report_invoice_data(self):
         if not hasattr(self,"display_widget"):
@@ -541,8 +545,6 @@ if __name__ == "__main__":
     application = QApplication(sys.argv)
     window = Window()
     application.exec()
-
-
 
 
     

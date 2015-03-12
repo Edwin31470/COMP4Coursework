@@ -1,4 +1,4 @@
-import sqlite3, smtplib
+import sqlite3
 
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
@@ -19,9 +19,8 @@ class PrintInvoice(QDialog):
         super().__init__()
 
         
-
-
     def create_html(self):
+        name = "Mr. Smith"
         html = ""
         html += """<html>
 <head>
@@ -42,7 +41,7 @@ class PrintInvoice(QDialog):
 
 <body>"""
 
-        html += """<h1>Invoice to: {0}</h1>""".format("John Smith")
+        html += """<h1>Invoice to: {0}</h1>""".format(name)
 
         html += """<h2>Test</h2>
 
@@ -69,10 +68,11 @@ class PrintInvoice(QDialog):
 </body>
 
 </html>"""
+        
         return html
     
-    def print_preview(self):
-        html = self.create_html()
+    def print_preview(self,name):
+        html = self.create_html(name)
         document = QTextDocument()
         document.setHtml(html)
         print(html)
@@ -82,7 +82,16 @@ class PrintInvoice(QDialog):
         PrintPreview.resize(1600,1000)
         PrintPreview.exec()
 
+    def print_invoice(self):
+        html = self.create_html()
 
+        self.printer = QPrinter()
+        dialog = QPrintDialog(self.printer, self)
+        if dialog.exec_():
+            document = QTextDocument()
+            document.setHtml(html)
+            document.print_(self.printer)
+    
 class EmailInvoice(QDialog):
     """This class provides a dialog box to email invoices"""
     def __init__(self):

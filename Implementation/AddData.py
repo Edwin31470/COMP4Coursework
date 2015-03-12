@@ -104,7 +104,9 @@ class EnterMemberDataDialog(EnterDataDialog):
         self.add_dob_year = QComboBox()
         self.spacer = QLabel()
 
+        self.dob_label.setFixedWidth(100)
         self.dob_label.setFixedWidth(80)
+
         self.add_dob_day.setFixedWidth(100)
         self.add_dob_month.setFixedWidth(100)
         self.add_dob_year.setFixedWidth(100)

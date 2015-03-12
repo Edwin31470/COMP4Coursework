@@ -82,7 +82,6 @@ class SQLConnection():
     def order_member_data(self,column,order):
         query = QSqlQuery()
         query.prepare("""select * from Member order by {0} {1}""".format(column,order))
-        #query.prepare("""select * from Member order by MemberDateOfBirth ASC""")
         query.exec_()
         return query
 

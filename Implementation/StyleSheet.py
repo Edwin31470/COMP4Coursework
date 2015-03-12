@@ -35,7 +35,7 @@ css = """QMainWindow{
                    selection-background-color: rgb(100,100,100);}
                    selection-color: rgb(70,70,70);}
 
-         QHeaderView:section{
+        QHeaderView:section{
                    background: white ;
                    font-family: Segoe UI;
                    font-size: 12pt;
@@ -44,17 +44,32 @@ css = """QMainWindow{
                    border-color: rgb(200,200,200);
                    color: rgb(70,70,70);
                    height: 30px;}
+
+        QWidget#login{
+                    background: white;
+                    border-style: solid;
+                    border-width: 2px;
+                    border-color: rgb(180,180,180);
+                    font-family: Courier New Bold;
+                    font-size: 8pt;}
    
     """
 
+css_login = """QMainWindow{
+                    background-color: white;
+                    border-style: solid;
+                    border-width: 2px;
+                    border-color: rgb(180,180,180);
+                    font-family: Courier New Bold;
+                    font-size: 8pt;}
 
+        QLabel{
+                    font-family: Courier New Bold;
+                    font-size: 12pt;}
+                    
+                    
+        QLineEdit{
+                    font-family: Courier New Bold;
+                    font-size: 12pt;}
 
-
-
-
-
-
-
-
-
-
+    """

@@ -17,7 +17,7 @@ The software and modules I used to implement the program:
 
 \subsection{Usage Explanation}
 \begin{center}
-	\begin{tabular}{|p{2cm}|p{2cm}|}
+	\begin{tabular}{|p{3cm}|p{6cm}|}
 		\hline
 		\textbf{Software}   & \textbf{Explanation for use of software} \\ \hline
 		Python 3 & I know this language well and python is a relatively powerful language. Python allows bug finding and fixing to be incredibly easy as the program can be compiled quickly as you write it instead of using a separate compiler. Python is free and is object orientated. \\ \hline
@@ -32,7 +32,7 @@ The software and modules I used to implement the program:
 
 \subsection{Features Used}
 \begin{center}
-	\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|l}
+	\begin{tabular}{|p{3cm}|p{6cm}|}
 		\hline
 		\textbf{Software}   & \textbf{Features used} \\ \hline
 		Python 3 & Python allowed me to create a basic CLI program to make sure my logic and usability was good before creating a GUI program. Python is object orientated and has many modules pre-installed.\\ \hline
@@ -109,26 +109,115 @@ This is an example of a validation function to validate the line edit add\_first
 
 \subsection{Login Box}
 
-\pythonfile[firstline=1][lastline=35]{./Implementation/LoginBox.py}
+\pythonfile[firstline=1,lastline=40]{./Implementation/LoginBox.py}
 
 The LoginBox class creates a popup-window with two line edits for a username and a password and a push button to check the data is correct.
 
 
 \section{Main Function}
 
-\pythonfile[firstline=540][lastline=543]{./Implementation/main_window.py}
+\pythonfile[firstline=544,lastline=547]{./Implementation/main_window.py}
 
 This function initialises the application if the class is run as the main class.
 
 
-
-
 \section{Variable Listing}
+My orginal data dictionary:
+
+\begin{center}
+	\begin{tabular}{|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|l}
+		\hline
+		\textbf{Name}                    & \textbf{Data Type}    & \textbf{Length}                  & \textbf{Validation} \\ \hline
+		MemberID                           & String            & 4 digits                & Numbers only \\ \hline
+		ParentID                             & String            & 4 digits                & Numbers only \\ \hline
+		Member first name              & String            & 1-20 characters   & Letters only \\ \hline
+		Member last name               & String           &1-20 characters &  Letters only \\ \hline
+		Parents first name               & String           & 1-20 characters &  Letters only \\ \hline
+		Parent last name                 & String           & 1-20 characters &  Letters only \\ \hline
+		Member town name                 & String           & 1-20 characters &  Letters only \\ \hline
+		Member street name                 & String           & 1-20 characters &  Letters only \\ \hline
+		Member house name/number & String              & 1-20 characters &  Letters only \\ \hline
+		Parent town name                 & String           & 1-20 characters &  Letters only \\ \hline
+		Parent street name                 & String           & 1-20 characters &  Letters only \\ \hline
+		Parent house name/number & String                 & 1-20 characters &  Letters only \\ \hline
+		Parent phone number         & Integer        & 12 digits & Numbers only, correct format and a valid phone number \\ \hline
+		Parent email                        & String          & 1-30 characters &  Letters only \\ \hline
+		Member date of birth          & Datetime       & 6 digits & Numbers only (dd/mm/yy) \\ \hline
+		Invoice ID                           & Integer       & 4 digits & Numbers only \\ \hline
+		Was invoice paid                 & Integer       & 4-6 digits & Numbers only, correct format and a valid date \\ \hline
+		Date invoice was sent        & Datetime       & 6 digits & Numbers only (dd/mm/yy) \\ \hline
+	\end{tabular}
+\end{center}
+
+My variable listing:
+
 \begin{center}
 	\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|l}
 		\hline
 		\textbf{Variable}  &  \textbf{Use}  &  \textbf{Figure}  &  \textbf{Line Number} \\ \hline
-		Python 3 & Python allowed me to create a basic CLI program to make sure my logic and usability was good before creating a GUI program. Python is object orientated and has many modules pre-installed.\\ \hline
+		%Main Window
+		username & Stores the username input from the user & & \\ \hline
+		password & Stores the password input from the user & & \\ \hline
+		path & Stores the path of where the database is & & \\ \hline
+		query & Stores a query to be used in a QSqlQueryModel & & \\ \hline
+		index & Stores the index of the statement chosen in the ordering combobox & & \\ \hline
+		text & Stores text in the search box & & \\ \hline
+		filter\_query & Stores the sql filter to be added to a QSqlTableModel & & \\ \hline
+		row & Stores the row that has been double clicked & & \\ \hline
+		values & Stores the values of from a function & & \\ \hline
+		%AddData
+		updatedData & Stores a signal to be sent  & & \\ \hline
+		pattern & & & \\ \hline
+		valid & Used to store the results of comparison of the text and the pattern & AddData & 46 \\ \hline
+		text & & & \\ \hline
+		valid & Stores the return value of the boolean result returned from the validate function & AddData & 52 \\ \hline
+		currentYear & Stores the current year & & \\ \hline
+		count & Starts at 0 and has 1 added to it each time the loop ends & & \\ \hline
+		day & Stores the day selected & & \\ \hline
+		month & Stores the month selected & & \\ \hline
+		year & Stores the year selected & & \\ \hline
+		dob & Stores a list of the day, month and year & & \\ \hline
+		values & & & \\ \hline
+		cursor & Stores the cursor & & \\ \hline
+		sql & Stores an sql statement & & \\ \hline
+		%DeleteData
+		updatedData & & & \\ \hline
+		values & & & \\ \hline
+		cursor & & & \\ \hline
+		sql & & & \\ \hline
+		%Create Database
+		db\_name & Stores the name of the databse & & \\ \hline
+		table\_name & Stores the name of the table being affected & & \\ \hline
+		sql & & & \\ \hline
+		cursor & & & \\ \hline
+		keep\_table & Stores a boolean of whethere the user wants to keep the table or not & & \\ \hline
+		response & Stores an input of y or n from the user & & \\ \hline
+		termPrice & Stores the price of a term & & \\ \hline
+		siblingDiscountAmount & Stores the discount a sibling gets & \\ \hline
+		values & & & \\ \hline
+		%Login Box
+		username & & & \\ \hline
+		password & & & \\ \hline
+		%ManageInvoices
+		updatedData & & & \\ \hline
+		currentYear & & & \\ \hline
+		count & & & \\ \hline
+		day & & & \\ \hline
+		month & & & \\ \hline
+		year & & & \\ \hline
+		values & & & \\ \hline
+		sql & & & \\ \hline
+		cursor & & & \\ \hline
+		addData & Stores a signal to be sent  & & \\ \hline
+		deleteData & Stores a signal to be sent  & & \\ \hline
+		%SendInvoices
+		name & Stores an input from the user for a name & & \\ \hline
+		html & Stores a large string that a html file will be created from & & \\ \hline
+		values & & & \\ \hline
+		%SortingTable
+		items & Stores a list of items to be added to a combo-box & & \\ \hline
+		%StyleSheet
+		css & Stores a large string of a cascading style sheet & & \\ \hline
 	\end{tabular}
 \end{center}
 
@@ -139,44 +228,351 @@ This function initialises the application if the class is run as the main class.
 
 \subsection{User Interface}
 
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Maintenance/Images/LoginScreen.png}
+    \caption{Login Screen} \label{fig:login_screen}
+\end{figure}
+
+Displays when the program is run. The login pop-up contains two line edits to input the username and password, two labels labeling the line edits, a label desciping the purpose of the login pop-up and an enter button. When the correct username and password are entered the main program shows.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Maintenance/Images/LoginScreenIncorrect.png}
+    \caption{Pop-up when login details are incorrect} \label{fig:login_screen_incorrect}
+\end{figure}
+
+Displays when the username and password are incorrect. Contains a label with information and a button to close the window.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Maintenance/Images/DisplayMember.png}
+    \caption{Displaying Member} \label{fig:display_member}
+\end{figure}
+
+Displays after the login screen and when Display Member is clicked. Contains a label descriping the function of the screen, a table view displaying the Member table and a combobox to order the table.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Maintenance/Images/DisplayParent.png}
+    \caption{Displaying Parent} \label{fig:display_parent}
+\end{figure}
+
+Displays when Display Parent is clicked. Contains a label descriping the function of the screen, a table view displaying the Parent table and a combobox to order the table.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Maintenance/Images/DisplayInvoice.png}
+    \caption{Displaying Invoice} \label{fig:display_invoice}
+\end{figure}
+
+Displays when Display Invoice is clicked. Contains a label descriping the function of the screen, a table view displaying the Invoice table and a combobox to order the table.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Maintenance/Images/AddMember.png}
+    \caption{Adding Member} \label{fig:add_member}
+\end{figure}
+
+Displays when Add Member is clicked. Contains a table view displaying the Member table and a series of linedits and comboboxes for the input of data into the table.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Maintenance/Images/AddParent.png}
+    \caption{Adding Parent} \label{fig:add_parent}
+\end{figure}
+
+Displays when Add Parent is clicked. Contains a table view displaying the Parent table and a series of linedits and comboboxes for the input of data into the table.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Maintenance/Images/EditMember.png}
+    \caption{Editing Member} \label{fig:edit_member}
+\end{figure}
+
+Displays when Edit Member is clicked. Contains an editable table view displaying the Member table and a linedit to search the table.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Maintenance/Images/EditParent.png}
+    \caption{Editing Parent} \label{fig:edit_parent}
+\end{figure}
+
+Displays when Edit Parent is clicked. Contains an editable table view displaying the Parent table and a linedit to search the table.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Maintenance/Images/DeleteMember.png}
+    \caption{Deleting Member} \label{fig:delete_member}
+\end{figure}
+
+Displays when Delete Member is clicked. Contains a table view displaying the Member table and a linedit to search the table.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Maintenance/Images/DeleteParent.png}
+    \caption{Deleting Parent} \label{fig:delete_parent}
+\end{figure}
+
+Displays when Delete Parent is clicked. Contains a table view displaying the Parent table and a linedit to search the table.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Maintenance/Images/ManageInvoice.png}
+    \caption{Managing Invoices} \label{fig:manage_invoice}
+\end{figure}
+
+Displays when Manage Invoices is clicked. Contains two tables, one showing the Parent table and one showing the Invoice table. Also contains two buttons, one to add an invoice one to delete invoices.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Maintenance/Images/AddInvoice.png}
+    \caption{Adding Invoice} \label{fig:add_invoice}
+\end{figure}
+
+Displays when Add is clicked. Contains a table view displaying the Invoice table and a series of linedits and comboboxes for the input of data into the table.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Maintenance/Images/DeleteInvoice.png}
+    \caption{Deleting Invoice} \label{fig:delete_invoice}
+\end{figure}
+
+Displays when Delete is clicked. Contains a table view displaying the Member table and a linedit to search the table.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Maintenance/Images/ReportInvoice.png}
+    \caption{Reporting Invoice} \label{fig:report_invoice}
+\end{figure}
+
+Displays when Report Invoice is clicked. Contains a table view displaying the Invoices that have not been paid.
+
 \subsection{ER Diagram}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Design/images/ER_diagram_design.pdf}
+    \caption{ER diagram} \label{fig:ER_diagram}
+\end{figure}
 
 \subsection{Database Table Views}
 
 \subsection{Database SQL}
 
+\pythonfile[firstline=58,lastline=67]{./Implementation/database_create.py}
+
+This SQL query and similar queries are in database\_create and are used to create the initial database. It creates a table of  Invoice that has the columns InvoiceID,ParentID,PriceID,WasInvoicePaid and DateInvoiceWasSent, while describing what data they can hold and what the primary key is, in this case InvoiceID. Line 8 and 9 set foreign keys of the columsn ParentID and MemberID while describing where they are located.
+
 \subsection{SQL Queries}
+
+From SQLConnection:
+
+\pythonfile[firstline=56,lastline=66]{./Implementation/SQLConnection.py}
+
+This SQL statement displays a table that shows the normal Invoice table but with the `ParentID' column replaced by the `ParentFirstName' and `ParentLastName' columns from the Parent table. Additionally, the data is filtered so only those where WasInvoicePaid is equal to `No' are displayed.
+
+\pythonfile[firstline=84,lastline=84]{./Implementation/SQLConnection.py}
+
+This SQL statement is used to select all the data from Member ordered by the column name, for example MemberFirstName and the type of order, for example ascending or desending.
 
 \section{Testing}
 
 \subsection{Summary of Results}
+Rigourous testing reveals that although my system has a few flaws, it does mostly do what I intended it to do. However, while doing the testing I have noticed many area that could easy be made more effiencent or more user friendly, and ways to make my code cleaner and more sensical. Additionally, I have noticed many ways I could improve my program to a more professional standard and ways to have a more standard way of adding, editing and removing data.
+
+The system meets many of the requirements from my client, although I did not have time to implement a way to print invoices effectively or a way to email invoices. However, emailing invoices was never part of my design specification.
+
+Below are my results from my testing:
+
+\begin{center}
+    \begin{longtable}{|p{2cm}|p{5cm}|p{8cm}|}
+        \hline
+        \textbf{Test Series} & \textbf{Test Data} & \textbf{Expected Result}\\ \hline
+        1.10 & John & Yes \\ \hline
+        1.11 & 12345 & Yes \\ \hline
+        1.12 & John19 & Yes \\ \hline
+        1.13 & J & Yes \\ \hline
+        1.14 & John Smith & No, the field is green \\ \hline
+        
+        1.20 & Smith & Yes \\ \hline
+        1.21 & 12345 &  Yes \\ \hline
+        1.22 & Smith19 & Yes \\ \hline
+        1.23 & S & Yes \\ \hline
+        1.24 & John Smith & No, the field is green \\ \hline
+        
+        1.30 & Fordham & Yes  \\ \hline
+        1.31 & Walton-on-the-Naze & Yes \\ \hline
+        1.32 & Bury St Edmunds & Yes \\ \hline
+        1.33 & Soham19 & Yes \\ \hline
+
+        1.40 & Market-Street & Yes \\ \hline
+        1.41 & Feast Close & Yes \\ \hline
+        1.42 & Church Street19 & Yes \\ \hline
+        
+        1.50 & Swan & Yes \\ \hline
+        1.51 & Swan House & Yes \\ \hline
+        1.52 & 4 & Yes \\ \hline
+        1.53 & Swan 4 & Yes \\ \hline
+        
+        \rowcolor{darkgrey} 1.60 & 15th November &  \\ \hline
+        \rowcolor{darkgrey} 1.61 & 15/11/96 & \\ \hline
+        \rowcolor{darkgrey} 1.62 & 15/11/1996 &  \\ \hline
+        \rowcolor{darkgrey} 1.63 & 15.11.96 & \\ \hline
+        
+        \rowcolor{darkgrey} 1.70 & 1st January &  \\ \hline
+        \rowcolor{darkgrey} 1.71 & 01/01/11 &  \\ \hline
+        \rowcolor{darkgrey} 1.72 & 01/01/2011 &  \\ \hline
+        \rowcolor{darkgrey} 1.73 & 05.01.11 & \\ \hline
+        
+        2.10 & Sarah & Yes \\ \hline
+        2.11 & 12345 & Yes \\ \hline
+        2.12 & Sarah19 & Yes\\ \hline
+        2.13 & S & Yes\\ \hline
+        2.14 & Sarah Smith &  No, the field is green\\ \hline
+        
+        2.20 & Smith & Yes \\ \hline
+        2.21 & 12345 & Yes \\ \hline
+        2.22 & Smith19 & Yes \\ \hline
+        2.23 & S & Yes \\ \hline
+        2.24 & Sarah Smith & No, the field is green \\ \hline
+        
+        2.30 & Fordham & Yes \\ \hline
+        2.31 & Walton-on-the-Naze & Yes \\ \hline
+        2.32 & Bury St Edmunds & Yes \\ \hline
+        2.33 & Soham19 & Yes\\ \hline
+
+        2.40 & Market-Street & Yes \\ \hline
+        2.41 & Feast Close & Yes \\ \hline
+        2.42 & Church Street19 & Yes \\ \hline
+        
+        2.50 & Swan & Yes \\ \hline
+        2.51 & Swan House & Yes \\ \hline
+        2.52 & 4 & Yes\\ \hline
+        2.53 & Swan 4 & Yes \\ \hline
+        
+        2.60 & 01234 & Yes \\ \hline
+        2.61 & 01234567891 & Yes \\ \hline
+        2.62 & one two three & Yes \\ \hline
+       
+        2.70 & johnsmith.co.uk & No, field is amber \\ \hline
+        2.71 & johnsmith@longroad.ac.uk & Yes \\ \hline
+        2.72 & johnsmithatlongroad.ac.uk & No, field is amber \\ \hline
+        
+        3.10 & John & Yes \\ \hline
+        3.11 & Smith & Yes \\ \hline
+        3.12 & John Smith &  Yes \\ \hline
+        3.13 & 11 & Yes \\ \hline
+        
+        4.10 & Click Accept button & Yes \\ \hline
+        
+        4.20 & Click Accept button & Yes \\ \hline
+        
+        5.10 & Left-click Display Member button & Yes \\ \hline
+        5.11 & Left-click Add Member button & Yes \\ \hline
+        \rowcolor{darkgrey} 5.12 & Left-click Print Invoices button & \\ \hline
+        5.13 & Right-click Display Member button & Yes \\ \hline
+        
+        6.10 & Resize the main window & Yes \\ \hline
+        6.11 & Resize a pop-up window & No, the window is resizable\\ \hline
+        
+        6.20 & Check data in the tables is displayed correctly & Yes \\ \hline
+
+       \rowcolor{lightgrey} 7.10 & Double click a member to delete & Yes \\ \hline
+       \rowcolor{lightgrey} 7.11 & Single click a member to delete & Yes \\ \hline
+       \rowcolor{lightgrey} 7.12 & Double click outside of the table & Yes \\ \hline
+
+       \rowcolor{lightgrey} 7.20 & Double click a parent to delete & Yes \\ \hline
+       \rowcolor{lightgrey} 7.21 & Single click a parent to delete & Yes\\ \hline
+       \rowcolor{lightgrey} 7.22 & Double click outside of the table & Yes \\ \hline
+        
+       \rowcolor{lightgrey} 8.10 & Single click a field and type new data & Yes \\ \hline
+       \rowcolor{lightgrey} 8.11 & Double click a field and type new data & No, field is deleted \\ \hline
+       \rowcolor{lightgrey} 8.12 & Single click outside of the table & No, the field that was last clicked will be edited \\ \hline
+        
+       \rowcolor{lightgrey} 8.20 & Single click a field and type new data & Yes \\ \hline
+       \rowcolor{lightgrey} 8.21 & Double click a field and type new data &No, field is deleted \\ \hline
+       \rowcolor{lightgrey} 8.22 & Single click outside of the table & No, the field that was last clicked will be edited \\ \hline
+
+       \rowcolor{lightgrey} 9.10 & Left click report invoices button & Yes \\ \hline
+       \rowcolor{lightgrey} 9.11 & Right click report invoices button & No effect \\ \hline
+    \end{longtable}
+\end{center}
+
 
 \subsection{Known Issues}
-
+My testing highlighted some flaws in my program. Included in these flaws is the fact that data can be deleted from almost anywhere with no warning when a row is double clicked, when data should only be deletable from the DeleteMember, DeleteParent and DeleteInvoice screens. Additionally, I had some minor issues with validation but these will not impact the reilabilty of the program, however data is more likely to be entered incorrectly.
 
 \section{Code Explanations}
-\begin{comment}
-\begin{figure}[H]
-    \pythonfile[firstline=5,lastline=5]{./tex/function_programs/print_function.py}
-    \caption{The print() function} \label{fig:print_function}
-\end{figure}
-\end{comment}
-
 
 \subsection{Difficult Sections}
+
+Deleting data:
+\pythonfile[firstline=84,lastline=84]{./Implementation/main_window.py}
+
+While a very small piece of code, this allows a very intuitive way to delete data and an easy way to delete large quantities of data. With a small amount of extra code it could easily be made less llikely to wrongfully delete data.
+
+Creating a table in a database:
+\pythonfile[firstline=3,lastline=22]{./Implementation/database_create.py}
+
+A combination of sql and python code, this function attempts to create a new table. It opens a database as `db', and if the table being created already exists the user will be asked whether they want to overwrite the table. If the answer is yes or the table does not already exist then a new table is created. 
+
+Creating a table:
+\pythonfile[firstline=34,lastline=41]{./Implementation/DisplayWidget.py}
+
+This function creates a new QSqlTableModel as long as the current model is not also a QSqlTableModel. Then, it sets the table to the table passed into the function in the variable tableName, which is a string. Then the model is set to results\_table, the columns are resized to the contents of the table so all data is visible and the table is shown.
+
+Printing an invoice:
+\pythonfile[firstline=85,lastline=93]{./Implementation/SendInvoices.py}
+
+This function first gets the invoice template as a html. The QPrinter is created and the QPrintDialog is created with the printer.  Then, when the print dialog is executed the document is created with the html and the document is printed.
 
 \subsection{Self-created Algorithms}
 
 \section{Settings}
 
+Python, PyQt and SQL must be installed on the user's computer. The username and password will be set when the program is run for the first time, so care must be taken to make them both memorable.
+
 \section{Acknowledgements}
+
+I have no acknowledgements, all code and information is my own, that I am aware of.
 
 \section{Code Listing}
 \begin{landscape}
 %include as many subsections as you have modules
-\subsection{Module 1}
-%the code below can be uncommented and used to get a code section from a particular file
-\begin{comment}
-\pythonfile[firstline=5]{./tex/function_programs/print_function.py}
-\end{comment}
+\subsection{main\_window}
+
+\pythonfile{./Implementation/main_window.py}
+
+\subsection{database\_create}
+
+\pythonfile{./Implementation/database_create.py}
+
+\subsection{DisplayWidget}
+
+\pythonfile{./Implementation/DisplayWidget.py}
+
+\subsection{SQLConnection}
+
+\pythonfile{./Implementation/SQLConnection.py}
+
+\subsection{AddData}
+
+\pythonfile{./Implementation/AddData.py}
+
+\subsection{EditData}
+
+\pythonfile{./Implementation/EditData.py}
+
+\subsection{DeleteData}
+
+\pythonfile{./Implementation/DeleteData.py}
+
+\subsection{ManageInvoices}
+
+\pythonfile{./Implementation/ManageInvoices.py}
+
+\subsection{LoginBox}
+
+\pythonfile{./Implementation/LoginBox.py}
+
+\subsection{Password}
+
+\pythonfile{./Implementation/Password.py}
+
+\subsection{SearchingData}
+
+\pythonfile{./Implementation/SearchingData.py}
+
+\subsection{SortingTable}
+
+\pythonfile{./Implementation/SortingTable.py}
+
+\subsection{StyleSheet}
+
+\pythonfile{./Implementation/StyleSheet.py}
+
 \end{landscape}

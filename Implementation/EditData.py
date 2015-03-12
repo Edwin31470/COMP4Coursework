@@ -40,18 +40,6 @@ class EditMemberDataDialog(EditDataDialog):
 
         self.accept_button.clicked.connect(self.edit_member)
 
-    def edit_member(self):
-        values = (self.data_to_add_button.text(),
-                  self.memberID_button.text())
-        field = self.field_to_edit.text()
-            
-        with sqlite3.connect("scout_database.db") as db:
-            cursor = db.cursor()
-            sql = "update Member set {0}=? where MemberID=?".format(field)
-            cursor.execute(sql,values)
-            db.commit()
-
-        self.updatedData.emit()
 
 class EditParentDataDialog(EditDataDialog):
     """this class provides a dialog for editing member data"""
@@ -73,16 +61,3 @@ class EditParentDataDialog(EditDataDialog):
         self.dialog_layout.addWidget(self.accept_button)
 
         self.accept_button.clicked.connect(self.edit_parent)
-
-    def edit_parent(self):
-        values = (self.data_to_add_button.text(),
-                  self.parentID_button.text())
-        field = self.field_to_edit.text()
-            
-        with sqlite3.connect("scout_database.db") as db:
-            cursor = db.cursor()
-            sql = "update Parent set {0}=? where ParentID=?".format(field)
-            cursor.execute(sql,values)
-            db.commit()
-
-        self.updatedData.emit()

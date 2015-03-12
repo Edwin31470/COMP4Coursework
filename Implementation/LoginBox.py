@@ -2,16 +2,20 @@ import sqlite3
 
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
+from StyleSheet import *
 
 
-class LoginScreen(QWidget):
+class LoginScreen(QDialog):
     """this class provides a dialog for logging in"""
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Login Screen")
+        self.setStyleSheet(css_login)
         
         self.username = QLineEdit()
         self.password = QLineEdit()
+        self.usernameLabel = QLabel("Username:")
+        self.passwordLabel = QLabel("Password:")
         self.accept_button = QPushButton("Enter")
         self.label = QLabel("Please enter the username and password")
 
@@ -21,9 +25,11 @@ class LoginScreen(QWidget):
 
         self.login_layout = QGridLayout()
 
-        self.login_layout.addWidget(self.username, 0, 0)
-        self.login_layout.addWidget(self.password, 1, 0)
-        self.login_layout.addWidget(self.accept_button, 1, 1)
+        self.login_layout.addWidget(self.usernameLabel, 0, 0)
+        self.login_layout.addWidget(self.passwordLabel, 1, 0)
+        self.login_layout.addWidget(self.username, 0, 1)
+        self.login_layout.addWidget(self.password, 1, 1)
+        self.login_layout.addWidget(self.accept_button, 1, 2)
         self.login_widget = QWidget()
         self.login_widget.setLayout(self.login_layout)
 
@@ -34,11 +40,12 @@ class LoginScreen(QWidget):
         
         self.setLayout(self.layout)
 
-class IncorrectDetails(QWidget):
+class IncorrectDetails(QDialog):
     """this class provides feedback to the user's username and password"""
     def __init__(self):
         super().__init__()
         self.setWindowTitle(" ")
+        self.setStyleSheet(css_login)
 
         self.close_button = QPushButton("Close")
         self.blank_label = QLabel()
@@ -88,5 +95,3 @@ class IncorrectDetails(QWidget):
         
         self.setLayout(self.layout)
         self.show()
-
-        
