@@ -11,8 +11,6 @@ The software and modules I used to implement the program:
 	\item SQLite3
 	\item Notepad++
 	\item SQLiteInspecter
-	\item 
-	\item 
 \end{itemize}
 
 \subsection{Usage Explanation}
@@ -125,7 +123,7 @@ This function initialises the application if the class is run as the main class.
 My orginal data dictionary:
 
 \begin{center}
-	\begin{tabular}{|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|l}
+	\begin{longtable}{|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|l}
 		\hline
 		\textbf{Name}                    & \textbf{Data Type}    & \textbf{Length}                  & \textbf{Validation} \\ \hline
 		MemberID                           & String            & 4 digits                & Numbers only \\ \hline
@@ -146,79 +144,79 @@ My orginal data dictionary:
 		Invoice ID                           & Integer       & 4 digits & Numbers only \\ \hline
 		Was invoice paid                 & Integer       & 4-6 digits & Numbers only, correct format and a valid date \\ \hline
 		Date invoice was sent        & Datetime       & 6 digits & Numbers only (dd/mm/yy) \\ \hline
-	\end{tabular}
+	\end{longtable}
 \end{center}
 
 My variable listing:
 
 \begin{center}
-	\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|l}
+	\begin{longtable}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|l}
 		\hline
 		\textbf{Variable}  &  \textbf{Use}  &  \textbf{Figure}  &  \textbf{Line Number} \\ \hline
 		%Main Window
-		username & Stores the username input from the user & & \\ \hline
-		password & Stores the password input from the user & & \\ \hline
-		path & Stores the path of where the database is & & \\ \hline
-		query & Stores a query to be used in a QSqlQueryModel & & \\ \hline
-		index & Stores the index of the statement chosen in the ordering combobox & & \\ \hline
-		text & Stores text in the search box & & \\ \hline
-		filter\_query & Stores the sql filter to be added to a QSqlTableModel & & \\ \hline
-		row & Stores the row that has been double clicked & & \\ \hline
-		values & Stores the values of from a function & & \\ \hline
+		username & Stores the username input from the user & \ref{main_window} & \\ \hline
+		password & Stores the password input from the user &  \ref{main_window} & \\ \hline
+		path & Stores the path of where the database is & \ref{main_window} & \\ \hline
+		query & Stores a query to be used in a QSqlQueryModel & \ref{main_window} & \\ \hline
+		index & Stores the index of the statement chosen in the ordering combobox & \ref{main_window} & \\ \hline
+		text & Stores text in the search box & \ref{main_window} & \\ \hline
+		filter\_query & Stores the sql filter to be added to a QSqlTableModel & \ref{main_window} & \\ \hline
+		row & Stores the row that has been double clicked & \ref{main_window} & \\ \hline
+		values & Stores the values of from a function & \ref{main_window} & \\ \hline
 		%AddData
-		updatedData & Stores a signal to be sent  & & \\ \hline
-		pattern & & & \\ \hline
-		valid & Used to store the results of comparison of the text and the pattern & AddData & 46 \\ \hline
-		text & & & \\ \hline
-		valid & Stores the return value of the boolean result returned from the validate function & AddData & 52 \\ \hline
-		currentYear & Stores the current year & & \\ \hline
-		count & Starts at 0 and has 1 added to it each time the loop ends & & \\ \hline
-		day & Stores the day selected & & \\ \hline
-		month & Stores the month selected & & \\ \hline
-		year & Stores the year selected & & \\ \hline
-		dob & Stores a list of the day, month and year & & \\ \hline
-		values & & & \\ \hline
-		cursor & Stores the cursor & & \\ \hline
-		sql & Stores an sql statement & & \\ \hline
+		updatedData & Stores a signal to be sent & \ref{add_data} & \\ \hline
+		pattern & Used to store a regular expression to compare to the text in a line edit & \ref{add_data} & \\ \hline
+		valid & Used to store the results of comparison of the text and the pattern & \ref{add_data} & 46 \\ \hline
+		text & Stores text in the search box & \ref{add_data} & \\ \hline
+		valid & Stores the return value of the boolean result returned from the validate function & \ref{add_data} & 52 \\ \hline
+		currentYear & Stores the current year & \ref{add_data} & \\ \hline
+		count & Starts at 0 and has 1 added to it each time the loop ends & \ref{add_data} & \\ \hline
+		day & Stores the day selected & \ref{add_data} & \\ \hline
+		month & Stores the month selected & \ref{add_data} & \\ \hline
+		year & Stores the year selected & \ref{add_data} & \\ \hline
+		dob & Stores a list of the day, month and year & \ref{add_data} & \\ \hline
+		values & Stores the values of from a function & \ref{add_data} & \\ \hline
+		cursor & Stores the cursor & \ref{add_data} & \\ \hline
+		sql & Stores an sql statement & \ref{add_data} & \\ \hline
 		%DeleteData
-		updatedData & & & \\ \hline
-		values & & & \\ \hline
-		cursor & & & \\ \hline
-		sql & & & \\ \hline
+		updatedData & Stores a signal to be sent & \ref{delete_data} & \\ \hline
+		values & Stores the values of from a function & \ref{delete_data} & \\ \hline
+		cursor & Stores the cursor & \ref{delete_data} & \\ \hline
+		sql & Stores an sql statement & \ref{delete_data} & \\ \hline
 		%Create Database
-		db\_name & Stores the name of the databse & & \\ \hline
-		table\_name & Stores the name of the table being affected & & \\ \hline
-		sql & & & \\ \hline
-		cursor & & & \\ \hline
-		keep\_table & Stores a boolean of whethere the user wants to keep the table or not & & \\ \hline
-		response & Stores an input of y or n from the user & & \\ \hline
-		termPrice & Stores the price of a term & & \\ \hline
-		siblingDiscountAmount & Stores the discount a sibling gets & \\ \hline
-		values & & & \\ \hline
+		db\_name & Stores the name of the databse & \ref{create_database} & \\ \hline
+		table\_name & Stores the name of the table being affected & \ref{create_database} & \\ \hline
+		cursor & Stores the cursor & \ref{create_database} & \\ \hline
+		sql & Stores an sql statement & \ref{create_database} & \\ \hline
+		keep\_table & Stores a boolean of whethere the user wants to keep the table or not & \ref{create_database} & \\ \hline
+		response & Stores an input of y or n from the user & \ref{create_database} & \\ \hline
+		termPrice & Stores the price of a term & \ref{create_database} & \\ \hline
+		siblingDiscountAmount & Stores the discount a sibling gets & \ref{create_database} & \\ \hline
+		values & Stores the values of from a function & \ref{create_database} & \\ \hline
 		%Login Box
-		username & & & \\ \hline
-		password & & & \\ \hline
+		username & Stores the username input from the user & \ref{login_box} & \\ \hline
+		password & Stores the password input from the user &  \ref{login_box} & \\ \hline
 		%ManageInvoices
-		updatedData & & & \\ \hline
-		currentYear & & & \\ \hline
-		count & & & \\ \hline
-		day & & & \\ \hline
-		month & & & \\ \hline
-		year & & & \\ \hline
-		values & & & \\ \hline
-		sql & & & \\ \hline
-		cursor & & & \\ \hline
-		addData & Stores a signal to be sent  & & \\ \hline
-		deleteData & Stores a signal to be sent  & & \\ \hline
+		updatedData & Stores a signal to be sent & \ref{manage_invoices} & \\ \hline
+		currentYear & Stores the current year & \ref{manage_invoices} & \\ \hline
+		count & Starts at 0 and has 1 added to it each time the loop ends & \ref{manage_invoices} & \\ \hline
+		day & Stores the day selected & \ref{manage_invoices} & \\ \hline
+		month & Stores the month selected & \ref{manage_invoices} & \\ \hline
+		year & Stores the year selected & \ref{manage_invoices} & \\ \hline
+		values & Stores the values of from a function & \ref{manage_invoices} & \\ \hline
+		cursor & Stores the cursor & \ref{manage_invoices} & \\ \hline
+		sql & Stores an sql statement & \ref{manage_invoices} & \\ \hline
+		addData & Stores a signal to be sent  & \ref{manage_invoices} & \\ \hline
+		deleteData & Stores a signal to be sent  & \ref{manage_invoices} & \\ \hline
 		%SendInvoices
-		name & Stores an input from the user for a name & & \\ \hline
-		html & Stores a large string that a html file will be created from & & \\ \hline
-		values & & & \\ \hline
+		name & Stores an input from the user for a name & \ref{send_invoices} & \\ \hline
+		html & Stores a large string that a html file will be created from & \ref{send_invoices} & \\ \hline
+		values & Stores the values of from a function & \ref{send_invoices} & \\ \hline
 		%SortingTable
-		items & Stores a list of items to be added to a combo-box & & \\ \hline
+		items & Stores a list of items to be added to a combo-box & \ref{sorting_table} & \\ \hline
 		%StyleSheet
-		css & Stores a large string of a cascading style sheet & & \\ \hline
-	\end{tabular}
+		css & Stores a large string of a cascading style sheet & \ref{style_sheet} & \\ \hline
+	\end{longtable}
 \end{center}
 
 
@@ -228,6 +226,7 @@ My variable listing:
 
 \subsection{User Interface}
 
+\subsubsection{Login Screen}
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{./Maintenance/Images/LoginScreen.png}
     \caption{Login Screen} \label{fig:login_screen}
@@ -242,6 +241,7 @@ Displays when the program is run. The login pop-up contains two line edits to in
 
 Displays when the username and password are incorrect. Contains a label with information and a button to close the window.
 
+\subsubsection{Displaying Tables}
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{./Maintenance/Images/DisplayMember.png}
     \caption{Displaying Member} \label{fig:display_member}
@@ -263,6 +263,7 @@ Displays when Display Parent is clicked. Contains a label descriping the functio
 
 Displays when Display Invoice is clicked. Contains a label descriping the function of the screen, a table view displaying the Invoice table and a combobox to order the table.
 
+\subsubsection{Adding Data}
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{./Maintenance/Images/AddMember.png}
     \caption{Adding Member} \label{fig:add_member}
@@ -277,6 +278,7 @@ Displays when Add Member is clicked. Contains a table view displaying the Member
 
 Displays when Add Parent is clicked. Contains a table view displaying the Parent table and a series of linedits and comboboxes for the input of data into the table.
 
+\subsubsection{Editing Data}
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{./Maintenance/Images/EditMember.png}
     \caption{Editing Member} \label{fig:edit_member}
@@ -291,6 +293,7 @@ Displays when Edit Member is clicked. Contains an editable table view displaying
 
 Displays when Edit Parent is clicked. Contains an editable table view displaying the Parent table and a linedit to search the table.
 
+\subsubsection{Deleting Data}
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{./Maintenance/Images/DeleteMember.png}
     \caption{Deleting Member} \label{fig:delete_member}
@@ -305,6 +308,7 @@ Displays when Delete Member is clicked. Contains a table view displaying the Mem
 
 Displays when Delete Parent is clicked. Contains a table view displaying the Parent table and a linedit to search the table.
 
+\subsubsection{Managing Invoices}
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{./Maintenance/Images/ManageInvoice.png}
     \caption{Managing Invoices} \label{fig:manage_invoice}
@@ -326,6 +330,7 @@ Displays when Add is clicked. Contains a table view displaying the Invoice table
 
 Displays when Delete is clicked. Contains a table view displaying the Member table and a linedit to search the table.
 
+\subsubsection{Reporting Invoices}
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{./Maintenance/Images/ReportInvoice.png}
     \caption{Reporting Invoice} \label{fig:report_invoice}
@@ -340,6 +345,38 @@ Displays when Report Invoice is clicked. Contains a table view displaying the In
 \end{figure}
 
 \subsection{Database Table Views}
+
+\subsubsection{Member Table}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Maintenance/Images/DatabaseMember.png}
+    \caption{Member Table} \label{fig:member_table}
+\end{figure}
+
+\subsubsection{Parent Table}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Maintenance/Images/DatabaseParent.png}
+    \caption{Parent Table} \label{fig:parent_table}
+\end{figure}
+
+\subsubsection{Invoice Table}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Maintenance/Images/DatabaseInvoice.png}
+    \caption{Invoice Table} \label{fig:invoice_table}
+\end{figure}
+
+\subsubsection{Price Table}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Maintenance/Images/DatabasePrice.png}
+    \caption{Price Table} \label{fig:price_table}
+\end{figure}
+
+\subsubsection{Connection Table}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{./Maintenance/Images/DatabaseParentMember.png}
+    \caption{Connection Table} \label{fig:connection_table}
+\end{figure}
+ 
+The connection table was unused in the final version of the program.
 
 \subsection{Database SQL}
 
@@ -371,32 +408,32 @@ Below are my results from my testing:
 \begin{center}
     \begin{longtable}{|p{2cm}|p{5cm}|p{8cm}|}
         \hline
-        \textbf{Test Series} & \textbf{Test Data} & \textbf{Expected Result}\\ \hline
-        1.10 & John & Yes \\ \hline
-        1.11 & 12345 & Yes \\ \hline
-        1.12 & John19 & Yes \\ \hline
-        1.13 & J & Yes \\ \hline
-        1.14 & John Smith & No, the field is green \\ \hline
+        \textbf{Test Series} & \textbf{Test Data} & \textbf{Actual Result}\\ \hline
+        1.10 & John & The field is green \\ \hline
+        1.11 & 12345 &  The field is red \\ \hline
+        1.12 & John19 &  The field is red \\ \hline
+        1.13 & J &  The field is green \\ \hline
+        1.14 & John Smith & The field is green \\ \hline
         
-        1.20 & Smith & Yes \\ \hline
-        1.21 & 12345 &  Yes \\ \hline
-        1.22 & Smith19 & Yes \\ \hline
-        1.23 & S & Yes \\ \hline
-        1.24 & John Smith & No, the field is green \\ \hline
+        1.20 & Smith &  The field is green \\ \hline
+        1.21 & 12345 &   The field is red \\ \hline
+        1.22 & Smith19 &  The field is red \\ \hline
+        1.23 & S &  The field is green \\ \hline
+        1.24 & John Smith & The field is green \\ \hline
         
-        1.30 & Fordham & Yes  \\ \hline
-        1.31 & Walton-on-the-Naze & Yes \\ \hline
-        1.32 & Bury St Edmunds & Yes \\ \hline
-        1.33 & Soham19 & Yes \\ \hline
+        1.30 & Fordham &  The field is green \\ \hline
+        1.31 & Walton-on-the-Naze &  The field is green \\ \hline
+        1.32 & Bury St Edmunds &  The field is green \\ \hline
+        1.33 & Soham19 &  The field is red \\ \hline
 
-        1.40 & Market-Street & Yes \\ \hline
-        1.41 & Feast Close & Yes \\ \hline
-        1.42 & Church Street19 & Yes \\ \hline
+        1.40 & Market-Street &  The field is green \\ \hline
+        1.41 & Feast Close & The field is green \\ \hline
+        1.42 & Church Street19 & The field is red \\ \hline
         
-        1.50 & Swan & Yes \\ \hline
-        1.51 & Swan House & Yes \\ \hline
-        1.52 & 4 & Yes \\ \hline
-        1.53 & Swan 4 & Yes \\ \hline
+        1.50 & Swan & The field is green \\ \hline
+        1.51 & Swan House & The field is green \\ \hline
+        1.52 & 4 & The field is green \\ \hline
+        1.53 & Swan 4 & The field is green \\ \hline
         
         \rowcolor{darkgrey} 1.60 & 15th November &  \\ \hline
         \rowcolor{darkgrey} 1.61 & 15/11/96 & \\ \hline
@@ -408,80 +445,81 @@ Below are my results from my testing:
         \rowcolor{darkgrey} 1.72 & 01/01/2011 &  \\ \hline
         \rowcolor{darkgrey} 1.73 & 05.01.11 & \\ \hline
         
-        2.10 & Sarah & Yes \\ \hline
-        2.11 & 12345 & Yes \\ \hline
-        2.12 & Sarah19 & Yes\\ \hline
-        2.13 & S & Yes\\ \hline
-        2.14 & Sarah Smith &  No, the field is green\\ \hline
+        2.10 & Sarah & The field is green \\ \hline
+        2.11 & 12345 & The field is red \\ \hline
+        2.12 & Sarah19 & The field is red\\ \hline
+        2.13 & S & The field is green\\ \hline
+        2.14 & Sarah Smith &  The field is green\\ \hline
         
-        2.20 & Smith & Yes \\ \hline
-        2.21 & 12345 & Yes \\ \hline
-        2.22 & Smith19 & Yes \\ \hline
-        2.23 & S & Yes \\ \hline
-        2.24 & Sarah Smith & No, the field is green \\ \hline
+        2.20 & Smith & The field is green \\ \hline
+        2.21 & 12345 & The field is red \\ \hline
+        2.22 & Smith19 & The field is red \\ \hline
+        2.23 & S & The field is green \\ \hline
+        2.24 & Sarah Smith & The field is green \\ \hline
         
-        2.30 & Fordham & Yes \\ \hline
-        2.31 & Walton-on-the-Naze & Yes \\ \hline
-        2.32 & Bury St Edmunds & Yes \\ \hline
-        2.33 & Soham19 & Yes\\ \hline
+        2.30 & Fordham & The field is green \\ \hline
+        2.31 & Walton-on-the-Naze & The field is green \\ \hline
+        2.32 & Bury St Edmunds & The field is green \\ \hline
+        2.33 & Soham19 & The field is red \\ \hline
 
-        2.40 & Market-Street & Yes \\ \hline
-        2.41 & Feast Close & Yes \\ \hline
-        2.42 & Church Street19 & Yes \\ \hline
+        2.40 & Market-Street & The field is green \\ \hline
+        2.41 & Feast Close & The field is green \\ \hline
+        2.42 & Church Street19 & The field is red \\ \hline
         
-        2.50 & Swan & Yes \\ \hline
-        2.51 & Swan House & Yes \\ \hline
-        2.52 & 4 & Yes\\ \hline
-        2.53 & Swan 4 & Yes \\ \hline
+        2.50 & Swan & The field is green \\ \hline
+        2.51 & Swan House & The field is green \\ \hline
+        2.52 & 4 & The field is green \\ \hline
+        2.53 & Swan 4 & The field is green \\ \hline
         
-        2.60 & 01234 & Yes \\ \hline
-        2.61 & 01234567891 & Yes \\ \hline
-        2.62 & one two three & Yes \\ \hline
+        2.60 & 01234 & The field is amber \\ \hline
+        2.61 & 01234567891 & The field is green \\ \hline
+        2.62 & one two three & The field is red \\ \hline
        
-        2.70 & johnsmith.co.uk & No, field is amber \\ \hline
-        2.71 & johnsmith@longroad.ac.uk & Yes \\ \hline
-        2.72 & johnsmithatlongroad.ac.uk & No, field is amber \\ \hline
+        2.70 & johnsmith.co.uk & The field is amber \\ \hline
+        2.71 & johnsmith@longroad.ac.uk & The field is green \\ \hline
+        2.72 & johnsmithatlongroad.ac.uk & The field is amber \\ \hline
         
-        3.10 & John & Yes \\ \hline
-        3.11 & Smith & Yes \\ \hline
-        3.12 & John Smith &  Yes \\ \hline
-        3.13 & 11 & Yes \\ \hline
+        3.10 & John & The correct entities are returned \\ \hline
+        3.11 & Smith & The correct entities are returned \\ \hline
+        3.12 & John Smith &  No entities are returned \\ \hline
+        3.13 & 11 & No entities are returned \\ \hline
         
-        4.10 & Click Accept button & Yes \\ \hline
+        4.10 & Click Accept button & The entity is added \\ \hline
         
-        4.20 & Click Accept button & Yes \\ \hline
+        4.20 & Click Accept button & The entity is added \\ \hline
         
-        5.10 & Left-click Display Member button & Yes \\ \hline
-        5.11 & Left-click Add Member button & Yes \\ \hline
-        \rowcolor{darkgrey} 5.12 & Left-click Print Invoices button & \\ \hline
-        5.13 & Right-click Display Member button & Yes \\ \hline
+        5.10 & Left-click Display Member button & The Display Member screen is shown \\ \hline
+        5.11 & Left-click Add Member button & The Add Member screen is shown \\ \hline
+        5.12 & Left-click Print Invoices button & Invoice can be chosen and printed \\ \hline
+        5.13 & Right-click Display Member button & No effect \\ \hline
         
-        6.10 & Resize the main window & Yes \\ \hline
-        6.11 & Resize a pop-up window & No, the window is resizable\\ \hline
+        6.10 & Resize the main window & The window is resizable \\ \hline
+        6.11 & Resize a pop-up window & The window is resizable\\ \hline
         
-        6.20 & Check data in the tables is displayed correctly & Yes \\ \hline
+        6.20 & Check data in the tables is displayed correctly & The data is displayed under the right columns \\ \hline
 
-       \rowcolor{lightgrey} 7.10 & Double click a member to delete & Yes \\ \hline
-       \rowcolor{lightgrey} 7.11 & Single click a member to delete & Yes \\ \hline
-       \rowcolor{lightgrey} 7.12 & Double click outside of the table & Yes \\ \hline
+       \rowcolor{lightgrey} 7.10 & Double click a member to delete & Entitiy is deleted \\ \hline
+       \rowcolor{lightgrey} 7.11 & Single click a member to delete & Entitiy is selected \\ \hline
+       \rowcolor{lightgrey} 7.12 & Double click outside of the table & No effect \\ \hline
 
-       \rowcolor{lightgrey} 7.20 & Double click a parent to delete & Yes \\ \hline
-       \rowcolor{lightgrey} 7.21 & Single click a parent to delete & Yes\\ \hline
-       \rowcolor{lightgrey} 7.22 & Double click outside of the table & Yes \\ \hline
+       \rowcolor{lightgrey} 7.20 & Double click a parent to delete & Entitiy is deleted \\ \hline
+       \rowcolor{lightgrey} 7.21 & Single click a parent to delete & Entitiy is selected\\ \hline
+       \rowcolor{lightgrey} 7.22 & Double click outside of the table & No effect \\ \hline
         
-       \rowcolor{lightgrey} 8.10 & Single click a field and type new data & Yes \\ \hline
-       \rowcolor{lightgrey} 8.11 & Double click a field and type new data & No, field is deleted \\ \hline
-       \rowcolor{lightgrey} 8.12 & Single click outside of the table & No, the field that was last clicked will be edited \\ \hline
+       \rowcolor{lightgrey} 8.10 & Single click a field and type new data & New data us inserted into field \\ \hline
+       \rowcolor{lightgrey} 8.11 & Double click a field and type new data & The entity is deleted \\ \hline
+       \rowcolor{lightgrey} 8.12 & Single click outside of the table & The field that was last clicked will be edited \\ \hline
         
-       \rowcolor{lightgrey} 8.20 & Single click a field and type new data & Yes \\ \hline
-       \rowcolor{lightgrey} 8.21 & Double click a field and type new data &No, field is deleted \\ \hline
-       \rowcolor{lightgrey} 8.22 & Single click outside of the table & No, the field that was last clicked will be edited \\ \hline
+       \rowcolor{lightgrey} 8.20 & Single click a field and type new data &  New data us inserted into field \\ \hline
+       \rowcolor{lightgrey} 8.21 & Double click a field and type new data & The entity is deleted \\ \hline
+       \rowcolor{lightgrey} 8.22 & Single click outside of the table & The field that was last clicked will be edited \\ \hline
 
-       \rowcolor{lightgrey} 9.10 & Left click report invoices button & Yes \\ \hline
+       \rowcolor{lightgrey} 9.10 & Left click report invoices button & The Report Invoices screen is shown \\ \hline
        \rowcolor{lightgrey} 9.11 & Right click report invoices button & No effect \\ \hline
     \end{longtable}
 \end{center}
 
+The orignal table can be found in my testing section on page \pageref{testing_section}
 
 \subsection{Known Issues}
 My testing highlighted some flaws in my program. Included in these flaws is the fact that data can be deleted from almost anywhere with no warning when a row is double clicked, when data should only be deletable from the DeleteMember, DeleteParent and DeleteInvoice screens. Additionally, I had some minor issues with validation but these will not impact the reilabilty of the program, however data is more likely to be entered incorrectly.
@@ -490,27 +528,28 @@ My testing highlighted some flaws in my program. Included in these flaws is the 
 
 \subsection{Difficult Sections}
 
-Deleting data:
-\pythonfile[firstline=84,lastline=84]{./Implementation/main_window.py}
-
-While a very small piece of code, this allows a very intuitive way to delete data and an easy way to delete large quantities of data. With a small amount of extra code it could easily be made less llikely to wrongfully delete data.
-
-Creating a table in a database:
+\subsubsection{Creating a table in a database}
 \pythonfile[firstline=3,lastline=22]{./Implementation/database_create.py}
 
 A combination of sql and python code, this function attempts to create a new table. It opens a database as `db', and if the table being created already exists the user will be asked whether they want to overwrite the table. If the answer is yes or the table does not already exist then a new table is created. 
 
-Creating a table:
+\subsubsection{Creating a table}
 \pythonfile[firstline=34,lastline=41]{./Implementation/DisplayWidget.py}
 
 This function creates a new QSqlTableModel as long as the current model is not also a QSqlTableModel. Then, it sets the table to the table passed into the function in the variable tableName, which is a string. Then the model is set to results\_table, the columns are resized to the contents of the table so all data is visible and the table is shown.
 
-Printing an invoice:
+\subsubsection{Printing an invoice}
 \pythonfile[firstline=85,lastline=93]{./Implementation/SendInvoices.py}
 
 This function first gets the invoice template as a html. The QPrinter is created and the QPrintDialog is created with the printer.  Then, when the print dialog is executed the document is created with the html and the document is printed.
 
 \subsection{Self-created Algorithms}
+
+\subsubsection{Deleting data}
+\pythonfile[firstline=501,lastline=503]{./Implementation/main_window.py}
+
+While a very small piece of code, this allows a very intuitive way to delete data and an easy way to delete large quantities of data. With a small amount of extra code it could easily be made less llikely to wrongfully delete data.
+
 
 \section{Settings}
 
@@ -525,54 +564,72 @@ I have no acknowledgements, all code and information is my own, that I am aware 
 %include as many subsections as you have modules
 \subsection{main\_window}
 
+\label{main_window}
 \pythonfile{./Implementation/main_window.py}
 
 \subsection{database\_create}
 
+\label{create_database}
 \pythonfile{./Implementation/database_create.py}
 
 \subsection{DisplayWidget}
 
+\label{display_widget}
 \pythonfile{./Implementation/DisplayWidget.py}
 
 \subsection{SQLConnection}
 
+\label{sql_connection}
 \pythonfile{./Implementation/SQLConnection.py}
 
 \subsection{AddData}
 
+\label{add_data}
 \pythonfile{./Implementation/AddData.py}
 
 \subsection{EditData}
 
+\label{edit_data}
 \pythonfile{./Implementation/EditData.py}
 
 \subsection{DeleteData}
 
+\label{delete_data}
 \pythonfile{./Implementation/DeleteData.py}
 
 \subsection{ManageInvoices}
 
+\label{manage_invoices}
 \pythonfile{./Implementation/ManageInvoices.py}
+
+\subsection{SendInvoices}
+
+\label{send_invoices}
+\pythonfile{./Implementation/SendInvoices.py}
 
 \subsection{LoginBox}
 
+\label{login_box}
 \pythonfile{./Implementation/LoginBox.py}
 
 \subsection{Password}
 
+\label{password}
 \pythonfile{./Implementation/Password.py}
 
 \subsection{SearchingData}
 
+\label{searching_data}
 \pythonfile{./Implementation/SearchingData.py}
 
 \subsection{SortingTable}
 
+\label{sorting_table}
 \pythonfile{./Implementation/SortingTable.py}
 
 \subsection{StyleSheet}
 
+\label{style_sheet}
 \pythonfile{./Implementation/StyleSheet.py}
 
 \end{landscape}
