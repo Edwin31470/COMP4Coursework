@@ -29,19 +29,58 @@ The software and modules I used to implement the program:
 
 
 \subsection{Features Used}
-\begin{center}
-	\begin{tabular}{|p{3cm}|p{6cm}|}
-		\hline
-		\textbf{Software}   & \textbf{Features used} \\ \hline
-		Python 3 & Python allowed me to create a basic CLI program to make sure my logic and usability was good before creating a GUI program. Python is object orientated and has many modules pre-installed.\\ \hline
-		IDLE &  IDLE displays python code in colour showing where mistakes have been made and makes it easier to code. Allows the program to be run and compiled easily. \\ \hline
-		PyQt4 & PyQt is easy to install. \\ \hline
-		SQLite3 & Used for database creation and editing as I have been taught this and SQL allows for easy database manipulation. \\ \hline
-		Notepad++ & Used for the creation of HTML files as I know how to use it and HTML files can be run from the program. \\ \hline
-		SQLiteInspector & Viewing databases and \\ \hline
-	\end{tabular}
-\end{center}
 
+\subsubsection{Python 3}
+
+\begin{itemize}
+	\item I could create a basic CLI program to make sure my logic and usability was good before creating a GUI program. 
+	\item Object orientated.
+	\item Many modules pre-installed and many that can be installed.
+	\item We have been learning this programing language for the majority of our school year.
+	\item The cx\_Freeze module can be used to create a .exe file.
+\end{itemize}
+
+\subsubsection{Idle}
+
+\begin{itemize}
+	\item IDLE displays python code in coloured syntax showing where mistakes have been made and makes it easier to fix errors quickly.
+	\item Is an interpreter so the program is run very quickly and errors can be located easily 
+	\item Useful shortcuts such as Ctrl+C for copy, F5 to run and Ctrl+F for find.
+	\item You can right click errors to locate and highlight the line causing the problem.
+\end{itemize}
+
+\subsubsection{PyQt4}
+
+\begin{itemize}
+	\item Easy to install.
+	\item Many types of widgets to use.
+	\item Can utilise SQLite3
+	\item Has good documentation on sourceforge.
+\end{itemize}
+
+\subsubsection{SQLite3}
+
+\begin{itemize}
+	\item Used for database creation and editing.
+	\item I have been taught this in class.
+	\item Allows for easy database manipulation.
+\end{itemize}
+
+\subsubsection{Notepad++}
+
+\begin{itemize}
+	\item Used for the creation of HTML files.
+	\item I know how to use it.
+	\item HTMl files can be compiled from the program.
+	\item Coloured syntax for HTML.
+\end{itemize}
+
+\subsubsection{SQLiteInspector}
+
+\begin{itemize}
+	\item Used for viewing databases and tables.
+	\item Used for testing queries that act on the database without having to run the python program.
+\end{itemize}
 
 \section{System Overview}
 
@@ -79,7 +118,9 @@ My program utilises object orientated programing not only because this is the wa
 
 \pythonfile{./Implementation/AddData.py}
 
-The AddData class is used to create a widget that is inserted into the central widget. The widget displays the table of the data type being added (Member, Parent or Invoice) and several line edits and combo-boxes for adding data. It also contains an accept button that needs to be pressed for the data in the line edits and combo-boxes to be added to the database.
+The AddData file contains a base EnterDataDialog class and two daughter classes for Parent and Member that extend and inherit from the base class. The base class contains common features between the two daughter classes such as many of the line edits. I have formatted the program this way so that more daughter classes that are similar to the base class can be created easily with no repeating code.
+
+The AddData class is used to create a widget that is inserted into the central widget. The widget displays the table of the data type being added (Member, Parent or Invoice) and several line edits and combo-boxes for adding data. It also contains an accept button that needs to be pressed for the data in the line edits and combo-boxes to be added to the database. 
 
 
 \subsection{Editing Data}
@@ -154,68 +195,68 @@ My variable listing:
 		\hline
 		\textbf{Variable}  &  \textbf{Use}  &  \textbf{Figure}  &  \textbf{Line Number} \\ \hline
 		%Main Window
-		username & Stores the username input from the user & \ref{main_window} & \\ \hline
-		password & Stores the password input from the user &  \ref{main_window} & \\ \hline
-		path & Stores the path of where the database is & \ref{main_window} & \\ \hline
-		query & Stores a query to be used in a QSqlQueryModel & \ref{main_window} & \\ \hline
-		index & Stores the index of the statement chosen in the ordering combobox & \ref{main_window} & \\ \hline
-		text & Stores text in the search box & \ref{main_window} & \\ \hline
-		filter\_query & Stores the sql filter to be added to a QSqlTableModel & \ref{main_window} & \\ \hline
-		row & Stores the row that has been double clicked & \ref{main_window} & \\ \hline
-		values & Stores the values of from a function & \ref{main_window} & \\ \hline
+		username & Stores the username input from the user & \ref{main_window} & 131 \\ \hline
+		password & Stores the password input from the user &  \ref{main_window} & 132 \\ \hline
+		path & Stores the path of where the database is & \ref{main_window} & 156 \\ \hline
+		query & Stores a query to be used in a QSqlQueryModel & \ref{main_window} & 244 \\ \hline
+		index & Stores the index of the statement chosen in the ordering combobox & \ref{main_window} & 266 \\ \hline
+		text & Stores text in the search box & \ref{main_window} & 362 \\ \hline
+		filter\_query & Stores the sql filter to be added to a QSqlTableModel & \ref{main_window} & 363 \\ \hline
+		row & Stores the row that has been double clicked & \ref{main_window} & 502 \\ \hline
+		values & Stores the values returned from a function & \ref{main_window} & 539 \\ \hline
 		%AddData
-		updatedData & Stores a signal to be sent & \ref{add_data} & \\ \hline
-		pattern & Used to store a regular expression to compare to the text in a line edit & \ref{add_data} & \\ \hline
+		updatedData & Stores a signal to be sent & \ref{add_data} & 9 \\ \hline
+		pattern & Used to store a regular expression to compare to the text in a line edit & \ref{add_data} & 45 \\ \hline
 		valid & Used to store the results of comparison of the text and the pattern & \ref{add_data} & 46 \\ \hline
-		text & Stores text in the search box & \ref{add_data} & \\ \hline
+		text & Stores text in the search box & \ref{add_data} & 50 \\ \hline
 		valid & Stores the return value of the boolean result returned from the validate function & \ref{add_data} & 52 \\ \hline
-		currentYear & Stores the current year & \ref{add_data} & \\ \hline
-		count & Starts at 0 and has 1 added to it each time the loop ends & \ref{add_data} & \\ \hline
-		day & Stores the day selected & \ref{add_data} & \\ \hline
-		month & Stores the month selected & \ref{add_data} & \\ \hline
-		year & Stores the year selected & \ref{add_data} & \\ \hline
-		dob & Stores a list of the day, month and year & \ref{add_data} & \\ \hline
-		values & Stores the values of from a function & \ref{add_data} & \\ \hline
-		cursor & Stores the cursor & \ref{add_data} & \\ \hline
-		sql & Stores an sql statement & \ref{add_data} & \\ \hline
+		currentYear & Stores the current year & \ref{add_data} & 114 \\ \hline
+		count & Starts at 0 and has 1 added to it each time the loop ends & \ref{add_data} & 117 \\ \hline
+		day & Stores the day selected & \ref{add_data} & 140 \\ \hline
+		month & Stores the month selected & \ref{add_data} & 141 \\ \hline
+		year & Stores the year selected & \ref{add_data} & 142 \\ \hline
+		dob & Stores a list of the day, month and year & \ref{add_data} & 149 \\ \hline
+		values & Stores the values returned from a function & \ref{add_data} & 151 \\ \hline
+		cursor & Stores the cursor & \ref{add_data} & 159 \\ \hline
+		sql & Stores an sql statement & \ref{add_data} & 161 \\ \hline
 		%DeleteData
-		updatedData & Stores a signal to be sent & \ref{delete_data} & \\ \hline
-		values & Stores the values of from a function & \ref{delete_data} & \\ \hline
-		cursor & Stores the cursor & \ref{delete_data} & \\ \hline
-		sql & Stores an sql statement & \ref{delete_data} & \\ \hline
+		updatedData & Stores a signal to be sent & \ref{delete_data} & 8 \\ \hline
+		values & Stores the values returned from a function & \ref{delete_data} &  \\ \hline
 		%Create Database
-		db\_name & Stores the name of the databse & \ref{create_database} & \\ \hline
-		table\_name & Stores the name of the table being affected & \ref{create_database} & \\ \hline
-		cursor & Stores the cursor & \ref{create_database} & \\ \hline
-		sql & Stores an sql statement & \ref{create_database} & \\ \hline
-		keep\_table & Stores a boolean of whethere the user wants to keep the table or not & \ref{create_database} & \\ \hline
-		response & Stores an input of y or n from the user & \ref{create_database} & \\ \hline
-		termPrice & Stores the price of a term & \ref{create_database} & \\ \hline
-		siblingDiscountAmount & Stores the discount a sibling gets & \ref{create_database} & \\ \hline
-		values & Stores the values of from a function & \ref{create_database} & \\ \hline
+		db\_name & Stores the name of the databse & \ref{create_database} & 3 \\ \hline
+		table\_name & Stores the name of the table being affected & \ref{create_database} & 3 \\ \hline
+		cursor & Stores the cursor & \ref{create_database} & 5 \\ \hline
+		sql & Stores an sql statement & \ref{create_database} & 25 \\ \hline
+		keep\_table & Stores a boolean of whether the user wants to keep the table or not & \ref{create_database} & 8 \\ \hline
+		response & Stores an input of y or n from the user & \ref{create_database} &  10 \\ \hline
+		termPrice & Stores the price of a term & \ref{create_database} & 81 \\ \hline
+		siblingDiscountAmount & Stores the discount a sibling gets & \ref{create_database} & 82 \\ \hline
+		values & Stores the values returned from a function & \ref{create_database} & 84 \\ \hline
 		%Login Box
-		username & Stores the username input from the user & \ref{login_box} & \\ \hline
-		password & Stores the password input from the user &  \ref{login_box} & \\ \hline
+		username & Stores the username input from the user & \ref{login_box} & 15 \\ \hline
+		password & Stores the password input from the user &  \ref{login_box} & 16 \\ \hline
 		%ManageInvoices
-		updatedData & Stores a signal to be sent & \ref{manage_invoices} & \\ \hline
-		currentYear & Stores the current year & \ref{manage_invoices} & \\ \hline
-		count & Starts at 0 and has 1 added to it each time the loop ends & \ref{manage_invoices} & \\ \hline
-		day & Stores the day selected & \ref{manage_invoices} & \\ \hline
-		month & Stores the month selected & \ref{manage_invoices} & \\ \hline
-		year & Stores the year selected & \ref{manage_invoices} & \\ \hline
-		values & Stores the values of from a function & \ref{manage_invoices} & \\ \hline
-		cursor & Stores the cursor & \ref{manage_invoices} & \\ \hline
-		sql & Stores an sql statement & \ref{manage_invoices} & \\ \hline
-		addData & Stores a signal to be sent  & \ref{manage_invoices} & \\ \hline
-		deleteData & Stores a signal to be sent  & \ref{manage_invoices} & \\ \hline
+		updatedData & Stores a signal to be sent & \ref{manage_invoices} & 8 \\ \hline
+		currentYear & Stores the current year & \ref{manage_invoices} & 44 \\ \hline
+		count & Starts at 0 and has 1 added to it each time the loop ends & \ref{manage_invoices} & 46 \\ \hline
+		day & Stores the day selected & \ref{manage_invoices} & 72 \\ \hline
+		month & Stores the month selected & \ref{manage_invoices} & 73 \\ \hline
+		year & Stores the year selected & \ref{manage_invoices} & 74 \\ \hline
+		date & Stores the year, month and day combined & \ref{manage_invoices} & 81
+		values & Stores the values returned from a function & \ref{manage_invoices} & 83 \\ \hline
+		cursor & Stores the cursor & \ref{manage_invoices} & 88 \\ \hline
+		sql & Stores an sql statement & \ref{manage_invoices} & 90 \\ \hline
+		addData & Stores a signal to be sent  & \ref{manage_invoices} & 124 \\ \hline
+		deleteData & Stores a signal to be sent  & \ref{manage_invoices} & 125\\ \hline
 		%SendInvoices
-		name & Stores an input from the user for a name & \ref{send_invoices} & \\ \hline
-		html & Stores a large string that a html file will be created from & \ref{send_invoices} & \\ \hline
-		values & Stores the values of from a function & \ref{send_invoices} & \\ \hline
+		name & Stores a name for the html file & \ref{send_invoices} & 23 \\ \hline
+		html & Stores a large string that a html file will be created from & \ref{send_invoices} & 25 \\ \hline
+		html & Stores a large string that a html file will be created from that has been returned from a function & \ref{send_invoices} & 75 \\ \hline
+		values & Stores the values returned from a function & \ref{send_invoices} & 125 \\ \hline
 		%SortingTable
-		items & Stores a list of items to be added to a combo-box & \ref{sorting_table} & \\ \hline
+		items & Stores a list of items to be added to a combo-box & \ref{sorting_table} & 33 \\ \hline
 		%StyleSheet
-		css & Stores a large string of a cascading style sheet & \ref{style_sheet} & \\ \hline
+		css & Stores a large string of a cascading style sheet & \ref{style_sheet} & 1 \\ \hline
 	\end{longtable}
 \end{center}
 
