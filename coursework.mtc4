@@ -1,72 +1,72 @@
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.1}Environment}{\reset@font\mtcSfont 83}{section.4.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.1.1}Software}{\reset@font\mtcSSfont 83}{subsection.4.1.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.1.2}Usage Explanation}{\reset@font\mtcSSfont 84}{subsection.4.1.2}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.1.3}Features Used}{\reset@font\mtcSSfont 84}{subsection.4.1.3}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Python 3}{\reset@font\mtcSSSfont 84}{section*.17}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Idle}{\reset@font\mtcSSSfont 85}{section*.18}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode PyQt4}{\reset@font\mtcSSSfont 85}{section*.19}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode SQLite3}{\reset@font\mtcSSSfont 85}{section*.20}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Notepad++}{\reset@font\mtcSSSfont 85}{section*.21}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode SQLiteInspector}{\reset@font\mtcSSSfont 85}{section*.22}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.2}System Overview}{\reset@font\mtcSfont 86}{section.4.2}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2.1}Logging In}{\reset@font\mtcSSfont 86}{subsection.4.2.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2.2}Graphical User Interface}{\reset@font\mtcSSfont 86}{subsection.4.2.2}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2.3}Viewing Data}{\reset@font\mtcSSfont 86}{subsection.4.2.3}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2.4}Adding Data}{\reset@font\mtcSSfont 86}{subsection.4.2.4}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2.5}Editing Data}{\reset@font\mtcSSfont 86}{subsection.4.2.5}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2.6}Deleting Data}{\reset@font\mtcSSfont 87}{subsection.4.2.6}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2.7}Printing Invoices}{\reset@font\mtcSSfont 87}{subsection.4.2.7}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.3}Code Structure}{\reset@font\mtcSfont 87}{section.4.3}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3.1}Overview}{\reset@font\mtcSSfont 87}{subsection.4.3.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3.2}Adding Data}{\reset@font\mtcSSfont 87}{subsection.4.3.2}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3.3}Editing Data}{\reset@font\mtcSSfont 93}{subsection.4.3.3}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3.4}Deleting Data}{\reset@font\mtcSSfont 95}{subsection.4.3.4}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3.5}Validation}{\reset@font\mtcSSfont 96}{subsection.4.3.5}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3.6}Login Box}{\reset@font\mtcSSfont 97}{subsection.4.3.6}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.4}Main Function}{\reset@font\mtcSfont 98}{section.4.4}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.5}Variable Listing}{\reset@font\mtcSfont 99}{section.4.5}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.6}System Evidence}{\reset@font\mtcSfont 105}{section.4.6}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.6.1}User Interface}{\reset@font\mtcSSfont 105}{subsection.4.6.1}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Login Screen}{\reset@font\mtcSSSfont 105}{section*.23}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Displaying Tables}{\reset@font\mtcSSSfont 106}{section*.24}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Adding Data}{\reset@font\mtcSSSfont 109}{section*.25}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Editing Data}{\reset@font\mtcSSSfont 111}{section*.26}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Deleting Data}{\reset@font\mtcSSSfont 113}{section*.27}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Managing Invoices}{\reset@font\mtcSSSfont 115}{section*.28}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Reporting Invoices}{\reset@font\mtcSSSfont 118}{section*.29}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.6.2}ER Diagram}{\reset@font\mtcSSfont 119}{subsection.4.6.2}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.6.3}Database Table Views}{\reset@font\mtcSSfont 120}{subsection.4.6.3}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Member Table}{\reset@font\mtcSSSfont 120}{section*.30}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Parent Table}{\reset@font\mtcSSSfont 121}{section*.31}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Invoice Table}{\reset@font\mtcSSSfont 122}{section*.32}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Price Table}{\reset@font\mtcSSSfont 123}{section*.33}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Connection Table}{\reset@font\mtcSSSfont 124}{section*.34}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.6.4}Database SQL}{\reset@font\mtcSSfont 124}{subsection.4.6.4}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.6.5}SQL Queries}{\reset@font\mtcSSfont 125}{subsection.4.6.5}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.7}Testing}{\reset@font\mtcSfont 125}{section.4.7}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.7.1}Summary of Results}{\reset@font\mtcSSfont 125}{subsection.4.7.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.7.2}Known Issues}{\reset@font\mtcSSfont 128}{subsection.4.7.2}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.8}Code Explanations}{\reset@font\mtcSfont 128}{section.4.8}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.8.1}Difficult Sections}{\reset@font\mtcSSfont 128}{subsection.4.8.1}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Creating a table in a database}{\reset@font\mtcSSSfont 128}{section*.35}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Creating a table}{\reset@font\mtcSSSfont 129}{section*.36}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Printing an invoice}{\reset@font\mtcSSSfont 129}{section*.37}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.8.2}Self-created Algorithms}{\reset@font\mtcSSfont 130}{subsection.4.8.2}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Deleting data}{\reset@font\mtcSSSfont 130}{section*.38}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.9}Settings}{\reset@font\mtcSfont 130}{section.4.9}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.10}Acknowledgements}{\reset@font\mtcSfont 130}{section.4.10}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.11}Code Listing}{\reset@font\mtcSfont 130}{section.4.11}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.1}main\_window}{\reset@font\mtcSSfont 131}{subsection.4.11.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.2}database\_create}{\reset@font\mtcSSfont 150}{subsection.4.11.2}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.3}DisplayWidget}{\reset@font\mtcSSfont 154}{subsection.4.11.3}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.4}SQLConnection}{\reset@font\mtcSSfont 157}{subsection.4.11.4}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.5}AddData}{\reset@font\mtcSSfont 162}{subsection.4.11.5}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.6}EditData}{\reset@font\mtcSSfont 171}{subsection.4.11.6}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.7}DeleteData}{\reset@font\mtcSSfont 173}{subsection.4.11.7}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.8}ManageInvoices}{\reset@font\mtcSSfont 175}{subsection.4.11.8}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.9}SendInvoices}{\reset@font\mtcSSfont 181}{subsection.4.11.9}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.10}LoginBox}{\reset@font\mtcSSfont 186}{subsection.4.11.10}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.11}Password}{\reset@font\mtcSSfont 189}{subsection.4.11.11}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.12}SearchingData}{\reset@font\mtcSSfont 190}{subsection.4.11.12}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.13}SortingTable}{\reset@font\mtcSSfont 191}{subsection.4.11.13}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.14}StyleSheet}{\reset@font\mtcSSfont 194}{subsection.4.11.14}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.1}Environment}{\reset@font\mtcSfont 84}{section.4.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.1.1}Software}{\reset@font\mtcSSfont 84}{subsection.4.1.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.1.2}Usage Explanation}{\reset@font\mtcSSfont 85}{subsection.4.1.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.1.3}Features Used}{\reset@font\mtcSSfont 85}{subsection.4.1.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Python 3}{\reset@font\mtcSSSfont 85}{section*.17}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Idle}{\reset@font\mtcSSSfont 86}{section*.18}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode PyQt4}{\reset@font\mtcSSSfont 86}{section*.19}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode SQLite3}{\reset@font\mtcSSSfont 86}{section*.20}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Notepad++}{\reset@font\mtcSSSfont 86}{section*.21}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode SQLiteInspector}{\reset@font\mtcSSSfont 86}{section*.22}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.2}System Overview}{\reset@font\mtcSfont 87}{section.4.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2.1}Logging In}{\reset@font\mtcSSfont 87}{subsection.4.2.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2.2}Graphical User Interface}{\reset@font\mtcSSfont 87}{subsection.4.2.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2.3}Viewing Data}{\reset@font\mtcSSfont 87}{subsection.4.2.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2.4}Adding Data}{\reset@font\mtcSSfont 87}{subsection.4.2.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2.5}Editing Data}{\reset@font\mtcSSfont 87}{subsection.4.2.5}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2.6}Deleting Data}{\reset@font\mtcSSfont 88}{subsection.4.2.6}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2.7}Printing Invoices}{\reset@font\mtcSSfont 88}{subsection.4.2.7}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.3}Code Structure}{\reset@font\mtcSfont 88}{section.4.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3.1}Overview}{\reset@font\mtcSSfont 88}{subsection.4.3.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3.2}Adding Data}{\reset@font\mtcSSfont 88}{subsection.4.3.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3.3}Editing Data}{\reset@font\mtcSSfont 94}{subsection.4.3.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3.4}Deleting Data}{\reset@font\mtcSSfont 96}{subsection.4.3.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3.5}Validation}{\reset@font\mtcSSfont 97}{subsection.4.3.5}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3.6}Login Box}{\reset@font\mtcSSfont 98}{subsection.4.3.6}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.4}Main Function}{\reset@font\mtcSfont 99}{section.4.4}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.5}Variable Listing}{\reset@font\mtcSfont 100}{section.4.5}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.6}System Evidence}{\reset@font\mtcSfont 106}{section.4.6}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.6.1}User Interface}{\reset@font\mtcSSfont 106}{subsection.4.6.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Login Screen}{\reset@font\mtcSSSfont 106}{section*.23}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Displaying Tables}{\reset@font\mtcSSSfont 107}{section*.24}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Adding Data}{\reset@font\mtcSSSfont 110}{section*.25}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Editing Data}{\reset@font\mtcSSSfont 112}{section*.26}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Deleting Data}{\reset@font\mtcSSSfont 114}{section*.27}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Managing Invoices}{\reset@font\mtcSSSfont 116}{section*.28}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Reporting Invoices}{\reset@font\mtcSSSfont 119}{section*.29}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.6.2}ER Diagram}{\reset@font\mtcSSfont 120}{subsection.4.6.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.6.3}Database Table Views}{\reset@font\mtcSSfont 121}{subsection.4.6.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Member Table}{\reset@font\mtcSSSfont 121}{section*.30}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Parent Table}{\reset@font\mtcSSSfont 122}{section*.31}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Invoice Table}{\reset@font\mtcSSSfont 123}{section*.32}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Price Table}{\reset@font\mtcSSSfont 124}{section*.33}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Connection Table}{\reset@font\mtcSSSfont 125}{section*.34}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.6.4}Database SQL}{\reset@font\mtcSSfont 125}{subsection.4.6.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.6.5}SQL Queries}{\reset@font\mtcSSfont 126}{subsection.4.6.5}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.7}Testing}{\reset@font\mtcSfont 126}{section.4.7}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.7.1}Summary of Results}{\reset@font\mtcSSfont 126}{subsection.4.7.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.7.2}Known Issues}{\reset@font\mtcSSfont 129}{subsection.4.7.2}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.8}Code Explanations}{\reset@font\mtcSfont 129}{section.4.8}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.8.1}Difficult Sections}{\reset@font\mtcSSfont 129}{subsection.4.8.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Creating a table in a database}{\reset@font\mtcSSSfont 129}{section*.35}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Creating a table}{\reset@font\mtcSSSfont 130}{section*.36}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Printing an invoice}{\reset@font\mtcSSSfont 130}{section*.37}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.8.2}Self-created Algorithms}{\reset@font\mtcSSfont 131}{subsection.4.8.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Deleting data}{\reset@font\mtcSSSfont 131}{section*.38}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.9}Settings}{\reset@font\mtcSfont 131}{section.4.9}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.10}Acknowledgements}{\reset@font\mtcSfont 131}{section.4.10}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.11}Code Listing}{\reset@font\mtcSfont 131}{section.4.11}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.1}main\_window}{\reset@font\mtcSSfont 132}{subsection.4.11.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.2}database\_create}{\reset@font\mtcSSfont 151}{subsection.4.11.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.3}DisplayWidget}{\reset@font\mtcSSfont 155}{subsection.4.11.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.4}SQLConnection}{\reset@font\mtcSSfont 158}{subsection.4.11.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.5}AddData}{\reset@font\mtcSSfont 163}{subsection.4.11.5}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.6}EditData}{\reset@font\mtcSSfont 172}{subsection.4.11.6}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.7}DeleteData}{\reset@font\mtcSSfont 174}{subsection.4.11.7}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.8}ManageInvoices}{\reset@font\mtcSSfont 176}{subsection.4.11.8}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.9}SendInvoices}{\reset@font\mtcSSfont 182}{subsection.4.11.9}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.10}LoginBox}{\reset@font\mtcSSfont 187}{subsection.4.11.10}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.11}Password}{\reset@font\mtcSSfont 190}{subsection.4.11.11}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.12}SearchingData}{\reset@font\mtcSSfont 191}{subsection.4.11.12}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.13}SortingTable}{\reset@font\mtcSSfont 192}{subsection.4.11.13}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.11.14}StyleSheet}{\reset@font\mtcSSfont 195}{subsection.4.11.14}}
